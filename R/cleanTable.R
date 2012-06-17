@@ -1,0 +1,16 @@
+cleanTable <- function(filename,class="ctable")
+  {
+    buffer <- readLines(filename)
+    ##tableLine <- grep("<TABLE",buffer,fixed=T)
+    ##if (length(class)==1) class <- rep(class,length(tableLine))
+    ##buffer[tableLine] <- paste("<TABLE class=\"",class,"\">",sep="")
+    buffer <- gsub("@@@@","",buffer)
+    buffer <- gsub("@@nbsp@@","&nbsp",buffer)
+    buffer <- gsub("@@quote@@","\"",buffer)
+    buffer <- gsub("@@lt@@","<",buffer)
+    buffer <- gsub("@@gt@@",">",buffer)
+    buffer <- gsub("&amp ","&",buffer)   
+    f <- file(filename,"w")
+    writeLines(buffer,con=f)
+    close(f)
+  }
