@@ -25,13 +25,13 @@ genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling
   sig.g <- match.arg(sig.g)
     
   ## Gen X, S
-  X <- genX(n=n,J=J,K=K,rho=rho,rho.g=rho.g)
+  X <- genX(n=n, J=J, K=K, rho=rho, rho.g=rho.g)
   S <- matrix(rho,nrow=J*K,ncol=J*K)
   for (i in 1:J) S[(i-1)*K+1:K,(i-1)*K+1:K] <- rho.g
   diag(S) <- rep(1,J*K)
 
   ## Gen beta
-  if (missing(beta) | length(beta)==1) {
+  if (missing(beta) || length(beta)==1) {
     j <- rep(1:J,rep(K,J))
     k <- rep(1:K,J)
     b <- (j <= J0) * (k <= K0)
