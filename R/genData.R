@@ -29,10 +29,10 @@ genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling
   S <- matrix(rho,nrow=J*K,ncol=J*K)
   for (i in 1:J) S[(i-1)*K+1:K,(i-1)*K+1:K] <- rho.g
   diag(S) <- rep(1,J*K)
+  j <- rep(1:J,rep(K,J))
 
   ## Gen beta
   if (missing(beta) || length(beta)==1) {
-    j <- rep(1:J,rep(K,J))
     k <- rep(1:K,J)
     b <- (j <= J0) * (k <= K0)
     s <- c(1,-1)[1+j%%2] * c(1,-1)[1+k%%2]
