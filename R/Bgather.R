@@ -16,12 +16,19 @@ Bgather <- function(suffix="",safe=FALSE)
     e <- new.env()
     load(f,envir=e)
     res.f <- get("res",envir=e)
-    rc <- sapply(res.f,class)
-    for (i in 1:length(rc)) {
-      el <- names(rc)[i]
-      if (rc[i] %in% types) {
-        res[[el]] <- abind(res[[el]],res.f[[el]],along=1)
-      } else res[[el]] <- res.f[[el]]
+    rc <- class(res)
+    if (rc=="list") {
+      rc <- sapply(res.f, class)
+      for (i in 1:length(rc)) {
+        ##el <- names(rc)[i]
+        if (rc[i] %in% types) {
+          res[[i]] <- abind(res[[i]],res.f[[i]],along=1)
+        } else res[[i]] <- res.f[[i]]
+      }
+    } else {
+      if (rc %in% types) {
+        res <- abind(res,res.f,along=1)
+      } else res <- res.f      
     }
   }
   
