@@ -5,6 +5,6 @@ Bsave <- function(res,suffix="")
   if (length(NCA)) {
     save(res,file=paste("tmp",NCA[1], Suffix,".RData",sep=""))
   } else {
-    save(res,file=paste("res", Suffix,".RData",sep=""))
+    save(res,file=paste(Sys.Date(), Suffix,".RData",sep=""))
   }
 }
