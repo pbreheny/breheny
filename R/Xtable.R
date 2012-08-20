@@ -4,6 +4,8 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
     if (class(disp.names)=="character") disp.names <- list(disp.names)
     if (missing(row.names)) {
       include.rownames <- if (is.null(rownames(X))) FALSE else TRUE
+    } else if (row.names==FALSE) {
+      include.rownames <- FALSE
     } else {
       if (!missing(indent)) row.names[indent] <- paste("*",row.names[indent])
       X <- data.frame(ROWNAMES=row.names, X)
