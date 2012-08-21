@@ -4,7 +4,7 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
     if (class(disp.names)=="character") disp.names <- list(disp.names)
     if (missing(row.names)) {
       include.rownames <- if (is.null(rownames(X))) FALSE else TRUE
-    } else if (row.names==FALSE) {
+    } else if (identical(row.names, FALSE)) {
       include.rownames <- FALSE
     } else {
       if (!missing(indent)) row.names[indent] <- paste("*",row.names[indent])
@@ -20,11 +20,12 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
       }
     }
     xtab <- xtable(X, align=align, digits=digits, ...)
+    align <- align(xtab)
     if (!include.rownames) align <- align[-1]
     cat("\\begin{center}\n")
     cat("\\begin{tabular}{@{}",paste(align, collapse=""),"@{}}\n",sep="")
     cat("\\toprule\n")
-    if (!missing(row.names)) cat(" & ")
+    if (include.rownames) cat(" & ")
     for (i in 1:length(disp.names))
       {
         x <- disp.names[[i]]
