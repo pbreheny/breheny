@@ -1,4 +1,4 @@
-binom.bayes <- function(x,n,a=1,b=1,ci=.95,plot=FALSE)
+binom.bayes <- function(x, n, a=1, b=1, ci=.95, plot=FALSE)
   {
     l.p <- qbeta((1-ci)/2,a+x,n-x+b)
     u.p <- qbeta((1+ci)/2,a+x,n-x+b)
