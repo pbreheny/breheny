@@ -1,5 +1,6 @@
-Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, digits = NULL, ...)
-  {
+Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, digits = NULL, save=FALSE, ...)
+{
+  val <- capture.output({
     require(xtable)
     if (class(disp.names)=="character") disp.names <- list(disp.names)
     if (missing(row.names)) {
@@ -27,27 +28,27 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
     cat("\\toprule\n")
     if (include.rownames) cat(" & ")
     for (i in 1:length(disp.names))
+    {
+      x <- disp.names[[i]]
+      for (j in 1:length(x))
       {
-        x <- disp.names[[i]]
-        for (j in 1:length(x))
-          {
-            if (substr(x[j],1,1)!="\\") cat("{\\bf ")
-            if (substr(x[j],1,3)=="\\mr")
-              {
-                nr <- substr(x[j],4,4)
-                cat("\\multirow{-",nr,"}*{\\begin{tabular}{@{}c@{}}\n",sep="")
-                mr <- strsplit(x[j],"\\",fixed=TRUE)[[1]]
-                cat(paste("{\\bf",mr[-1:-2],"}\\\\\n"))
-                cat("\\end{tabular}}\n",sep="")
-              }
-            else cat(x[j])
-            if (substr(x[j],1,1)!="\\") cat("}")
-            if (j!= length(x)) cat(" & ")
-          }
-        ## if (length(x)!=1) cat("\\\\")
-        cat(" \\\\")
-        cat("\n")
+        if (substr(x[j],1,1)!="\\") cat("{\\bf ")
+        if (substr(x[j],1,3)=="\\mr")
+        {
+          nr <- substr(x[j],4,4)
+          cat("\\multirow{-",nr,"}*{\\begin{tabular}{@{}c@{}}\n",sep="")
+          mr <- strsplit(x[j],"\\",fixed=TRUE)[[1]]
+          cat(paste("{\\bf",mr[-1:-2],"}\\\\\n"))
+          cat("\\end{tabular}}\n",sep="")
+        }
+        else cat(x[j])
+        if (substr(x[j],1,1)!="\\") cat("}")
+        if (j!= length(x)) cat(" & ")
       }
+      ## if (length(x)!=1) cat("\\\\")
+      cat(" \\\\")
+      cat("\n")
+    }
     cat("\\midrule\n")
     if (include.rownames) {
       x <- print(xtab, only.contents=TRUE, hline=NULL, include.colnames=FALSE, file=tempfile(), ...)
@@ -58,4 +59,6 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
     cat("\\bottomrule\n")
     cat("\\end{tabular}\n")
     cat("\\end{center}\n")
-  }
+  })
+  if (save) val else cat(val, sep="\n")
+}
