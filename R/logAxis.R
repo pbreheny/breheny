@@ -11,7 +11,11 @@ logAxis <- function(side=1, base, disp=base, n=5, ...)
   px <- pretty(r, n=n)
   px <- px[px > r[1] & px < r[2]]
   at <- px*log(disp)/log(base)
-  lab <- disp^px
-  lab[px < 0] <- paste("1/",disp^(-px[px < 0]))
+  if (isTRUE(all.equal(px, as.integer(px)))) {
+    lab <- disp^px
+    lab[px < 0] <- paste("1/",disp^(-px[px < 0]))    
+  } else {
+    lab <- formatC(disp^px, digits=1, format="f")
+  }
   a <- axis(side, at=at, labels=lab)
 }
