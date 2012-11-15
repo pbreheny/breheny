@@ -1,5 +1,9 @@
-logAxis <- function(side, base, disp=base, n=5, ...)
+logAxis <- function(side=1, base, disp=base, n=5, ...)
 {
+  if (missing(base)) {
+    base <- exp(1)
+    disp <- 2
+  }
   is.x <- side%%2 == 1
   XY <- function(ch) paste0(if (is.x) "x" else "y", ch)
   axp <- par(XY("axp"))
