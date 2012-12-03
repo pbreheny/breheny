@@ -1,9 +1,6 @@
 logAxis <- function(side=1, base, disp=base, n=5, ...)
 {
-  if (missing(base)) {
-    base <- exp(1)
-    disp <- 2
-  }
+  if (missing(base)) base <- exp(1)
   is.x <- side%%2 == 1
   XY <- function(ch) paste0(if (is.x) "x" else "y", ch)
   axp <- par(XY("axp"))
@@ -17,5 +14,5 @@ logAxis <- function(side=1, base, disp=base, n=5, ...)
   } else {
     lab <- formatC(disp^px, digits=1, format="f")
   }
-  a <- axis(side, at=at, labels=lab)
+  a <- axis(side, at=at, labels=lab, las=1, ...)
 }
