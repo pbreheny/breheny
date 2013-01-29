@@ -1,16 +1,17 @@
-Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, digits = NULL, save=FALSE, ...)
+Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, digits, save=FALSE, ...)
 {
   val <- capture.output({
     require(xtable)
     if (class(disp.names)=="character") disp.names <- list(disp.names)
+    if (missing(digits)) digits <- 2
+    if (length(digits)==1) digits <- rep(digits, ncol(X))
+    digits <- c(0, digits)
     if (missing(row.names)) {
       include.rownames <- if (is.null(rownames(X))) FALSE else TRUE
-      if (!include.rownames & !is.null(align)) align <- c("l", align)
-      if (!include.rownames & !is.null(digits)) digits <- c(0, digits)
+      if (include.rownames & !is.null(align)) align <- c("l", align)
     } else if (identical(row.names, FALSE)) {
       include.rownames <- FALSE
       if (!is.null(align)) align <- c("l", align)
-      if (!is.null(digits)) digits <- c(0, digits)
     } else {
       if (!missing(indent)) row.names[indent] <- paste("*",row.names[indent])
       X <- data.frame(ROWNAMES=row.names, X)
@@ -19,10 +20,7 @@ Xtable <- function(X, disp.names=colnames(X), row.names, indent, align = NULL, d
         add <- if (length(align) < ncol(X)) c("l", "l") else "l"
         align <- c(add, align)
       }
-      if (!is.null(digits)) {
-        add <- if (length(digits) < ncol(X)) c(0, 0) else 0
-        digits <- c(add, digits)
-      }
+      digits <- c(0, digits)
     }
     xtab <- xtable(X, align=align, digits=digits, ...)
     align <- align(xtab)
