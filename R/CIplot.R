@@ -1,4 +1,4 @@
-CIplot.matrix <- function(obj, labels=rownames(B), pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar=c(5,nn/3+.5,2,4), axis=TRUE, trans, p.label=FALSE, ...)
+CIplot.matrix <- function(obj, labels=rownames(B), pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar=c(5,nn/3+.5,2,6), axis=TRUE, trans, p.label=FALSE, ...)
 {
   B <- obj
   nn <- max(nchar(rownames(B)))

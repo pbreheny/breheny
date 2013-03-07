@@ -14,7 +14,7 @@ dnplot <- function(M, labs, lwd=3, lty=1, col=pal(p), ylab="Density", xlab="", l
     d <- do.call("density", dens.args)
     X <- cbind(X, d$x)
     Y <- cbind(Y, d$y)
-    mode <- d$x[which.max(d$y)]
+    mode[i] <- d$x[which.max(d$y)]
   }
   matplot(X, Y, lty=lty, lwd=lwd, type="l", col=col, ylab=ylab, xlab=xlab, las=1, ...)
   if (!missing(labs)) toplegend(legend=labs, col=col, lwd=lwd, ncol=min(p, 4))
