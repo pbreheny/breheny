@@ -1,6 +1,7 @@
-CIplot.matrix <- function(obj, labels=rownames(B), pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar=c(5,nn/3+.5,2,6), axis=TRUE, trans, p.label=FALSE, ...)
+CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar=c(5,nn/3+.5,2,6), axis=TRUE, trans, p.label=FALSE, ...)
 {
   B <- obj
+  if (sort) B <- B[order(B[,1], decreasing=TRUE),]
   nn <- max(nchar(rownames(B)))
   par(mar=mar)
   n <- nrow(B)
