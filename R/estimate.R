@@ -1,4 +1,4 @@
-estimate <- function(lambda,fit,alpha=.05,t.test=(class(fit)[1]=="lm"),trans) {
+estimate <- function(lambda, fit, alpha=.05, t.test=(class(fit)[1]=="lm"), trans) {
   ## Calculations
   Estimate <- crossprod(lambda,coef(fit))
   summ <- summary(fit)

@@ -1,18 +1,34 @@
-CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar=c(5,nn/3+.5,2,6), axis=TRUE, trans, p.label=FALSE, ...)
-{
+CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar, axis=TRUE, trans, p.label=FALSE, xlab="", add=FALSE, setupOnly=FALSE, ...) {
   B <- obj
   if (sort) B <- B[order(B[,1], decreasing=TRUE),]
-  nn <- max(nchar(rownames(B)))
-  par(mar=mar)
+  
+  ## Set up margins
+  if (missing(mar)) {
+    m1 <- 5
+    nn <- if (is.null(rownames(B))) 10 else max(nchar(rownames(B)))
+    m2 <- nn/3+.5
+    m3 <- 2
+    m4 <- if (diff) 6 else 2
+    par(mar=c(m1, m2, m3, m4))
+  }
   n <- nrow(B)
   if (!missing(trans)) B[,1:3] <- trans(B[,1:3])
   
+  ## Set up plot structure and add points
   if (missing(pxlim)) {
     pxlim <- if (missing(xlim)) pretty(range(B[,2:3], na.rm=TRUE),n=n.ticks-1) else pretty(xlim, n=n.ticks-1)
   }
   if (missing(ylim)) ylim <- c(0.5,n+0.5)
+  if (add) {
+    points(B[n:1,1], 1:n, pch=19)
+  } else if (setupOnly) {
+    plot(B[n:1,1], 1:n, type="n", xlim = range(pxlim), ylim=ylim, ylab="", axes=FALSE, pch=19, xlab=xlab, ...)
+    return(invisible(NULL))
+  } else {
+    plot(B[n:1,1], 1:n, xlim = range(pxlim), ylim=ylim, ylab="", axes=FALSE, pch=19, xlab=xlab, ...)
+  }
   
-  plot(B[n:1,1],1:n,xlim = range(pxlim), ylim=ylim, ylab="", axes=FALSE,pch=19,...)
+  ## Add lines, p-values
   for (i in 1:n) {
     lines(c(B[i,2:3]),c(n-i+1,n-i+1),lwd=2)
     if (diff) {
@@ -29,12 +45,13 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   }
   if (!missing(sub)) mtext(sub,3,0,cex=0.8)
   
+  ## Add labels
   ind <- !is.na(B[,1])
-  text(x=par("usr")[1], adj=1, y=(n:1)[ind], labels=labels[ind], xpd=TRUE, cex=.8)
+  lapply(which(ind), function(l) text(x=par("usr")[1], adj=1, y=(n:1)[l], labels=labels[[l]], xpd=TRUE, cex=.8)) ## List approach is necessary for compatibility with expressions
   if (sum(!ind) > 0) {
     a <- diff(par("usr")[1:2])/diff(par("plt")[1:2])
     b <- par("usr")[1] - a*par("plt")[1]
-    text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)    
+    text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)
   }
   invisible(B)
 }
