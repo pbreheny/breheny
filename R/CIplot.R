@@ -1,4 +1,4 @@
-CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), n.ticks=6, mar, axis=TRUE, trans, p.label=FALSE, xlab="", add=FALSE, setupOnly=FALSE, ...) {
+CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", add=FALSE, setupOnly=FALSE, lwd=2, ...) {
   B <- obj
   if (sort) B <- B[order(B[,1], decreasing=TRUE),]
   
@@ -30,7 +30,7 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   
   ## Add lines, p-values
   for (i in 1:n) {
-    lines(c(B[i,2:3]),c(n-i+1,n-i+1),lwd=2)
+    lines(c(B[i,2:3]), c(n-i+1,n-i+1), lwd=lwd)
     if (diff) {
       p <- formatP(B[,4], label=p.label)
       p[is.na(B[,4])] <- ""
@@ -39,19 +39,20 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   }
   if (axis) axis(1, pxlim)
   if (diff) {
-    null <- 0
-    if (!missing(trans)) null <- trans(0)
+    if (!missing(trans)) null <- trans(null)
     abline(v=null,col="gray")
   }
   if (!missing(sub)) mtext(sub,3,0,cex=0.8)
   
   ## Add labels
-  ind <- !is.na(B[,1])
-  lapply(which(ind), function(l) text(x=par("usr")[1], adj=1, y=(n:1)[l], labels=labels[[l]], xpd=TRUE, cex=.8)) ## List approach is necessary for compatibility with expressions
-  if (sum(!ind) > 0) {
-    a <- diff(par("usr")[1:2])/diff(par("plt")[1:2])
-    b <- par("usr")[1] - a*par("plt")[1]
-    text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)
+  if (!add) {
+    ind <- !is.na(B[,1])
+    lapply(which(ind), function(l) text(x=par("usr")[1], adj=1, y=(n:1)[l], labels=labels[[l]], xpd=TRUE, cex=.8)) ## List approach is necessary for compatibility with expressions
+    if (sum(!ind) > 0) {
+      a <- diff(par("usr")[1:2])/diff(par("plt")[1:2])
+      b <- par("usr")[1] - a*par("plt")[1]
+      text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)
+    }    
   }
   invisible(B)
 }

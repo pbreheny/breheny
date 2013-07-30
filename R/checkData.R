@@ -7,7 +7,7 @@ checkData <- function(Data) {
       next
     }
     ##cat("Missing: ",sum(is.na(Data[,j])),"\n",sep="")
-    if (is.numeric(Data[,j]) | class(Data[,j])[1]=="POSIXlt")
+    if (is.numeric(Data[,j]) | class(Data[,j])[1]=="POSIXlt" | class(Data[,j])[1]=="Date")
       {
         print(range(Data[,j],na.rm=TRUE))
         hist(Data[,j],xlab=names(Data)[j],breaks=nrow(Data)/10,col="gray",main=paste("Missing: ",sum(is.na(Data[,j])),sep=""))

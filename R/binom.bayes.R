@@ -1,5 +1,4 @@
-binom.bayes <- function(x, n, a=1, b=1, level=.95, plot=FALSE, add=FALSE, xlab="p", ylab="Posterior density", col="blue", ...)
-{
+binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, xlab="p", ylab="Posterior density", col="blue", ...) {
   A <- a+x
   B <- n-x+b
   l.p <- qbeta((1-level)/2, A, B)
@@ -30,6 +29,18 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, plot=FALSE, add=FALSE, xlab="
     u.h <- qbeta(level, A, B)
   }
   ci.hpd <- c(l.h, u.h)
+  if (!missing(null)) {
+    d0 <- dbeta(null, A, B)
+    f <- function(p) dbeta(p, A, B) - d0
+    if (null > mode.post) {
+      u <- null
+      l <- uniroot(f, c(0, mode.post))$root
+    } else {
+      l <- null
+      u <- uniroot(f, c(mode.post, 1))$root      
+    }
+    p <- pbeta(l,A,B) + 1 - pbeta(u,A,B)
+  }
   if (plot | add) {
     xx <- seq(0,1,len=399)
     if (add) {
@@ -38,7 +49,9 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, plot=FALSE, add=FALSE, xlab="
       plot(xx,dbeta(xx, A, B), col=col, type="l", lwd=3, xlab=xlab, ylab=ylab, las=1, ...)
     }
   }
-  structure(list(sample=sample, mean.post=mean.post, mode.post=mode.post, var.post=var.post, ci.central=ci.central, ci.hpd=ci.hpd, level=level), class="onepar.bayes")
+  val <- structure(list(sample=sample, mean.post=mean.post, mode.post=mode.post, var.post=var.post, ci.central=ci.central, ci.hpd=ci.hpd, level=level), class="onepar.bayes")
+  if (!missing(null)) val$p <- p
+  val
 }
 print.onepar.bayes <- function(obj) {
   cat("Sample proportion:", formatC(obj$sample, digits=3, format="f"), "\n")
@@ -47,4 +60,5 @@ print.onepar.bayes <- function(obj) {
   cat("Posterior SD:", formatC(sqrt(obj$var), digits=3, format="f"), "\n")
   cat(100*obj$level,"% central interval: (",formatC(obj$ci.central[1], digits=3, format="f"),", ",formatC(obj$ci.central[2], digits=3, format="f"),")\n",sep="")
   cat(100*obj$level,"% HPD interval: (",formatC(obj$ci.hpd[1], digits=3, format="f"),", ",formatC(obj$ci.hpd[2], digits=3, format="f"),")\n",sep="")  
+  if ("p" %in% names(obj)) cat("Significance: ", formatP(obj$p),"\n",sep="")  
 }
