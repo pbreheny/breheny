@@ -14,7 +14,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        corner,ilogit,rdirichlet,write.delim,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,Xtable,List,
-       revalue, rename, se)
+       revalue, rename, se, multinom.bayes)
 S3method(print,onepar.bayes)
 S3method(print,onepar.bayes)
 S3method(CIplot, matrix)
