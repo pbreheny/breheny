@@ -14,7 +14,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        corner,ilogit,rdirichlet,write.delim,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,Xtable,List,
-       revalue, rename)
+       revalue, rename, se)
 S3method(print,onepar.bayes)
 S3method(print,onepar.bayes)
 S3method(CIplot, matrix)
@@ -24,3 +24,5 @@ S3method(CIplot, mer)
 S3method(CIplot, coxph)
 S3method(coef, ar)
 S3method(vcov, ar)
+S3method(residuals, ar)
+

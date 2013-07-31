@@ -11,3 +11,6 @@ coef.ar <- function(fit) {
 acf.ar <- function(fit, ...) {
   acf(fit$resid[-(1:fit$order)], ...)
 }
+residuals.ar <- function(fit, ...) {
+  fit$resid[-(1:fit$order)]
+}
