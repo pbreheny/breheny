@@ -1,4 +1,4 @@
-CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", add=FALSE, setupOnly=FALSE, lwd=2, ...) {
+CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", ylab="", add=FALSE, setupOnly=FALSE, lwd=2, ...) {
   B <- obj
   if (sort) B <- B[order(B[,1], decreasing=TRUE),]
   
@@ -22,10 +22,10 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   if (add) {
     points(B[n:1,1], 1:n, pch=19)
   } else if (setupOnly) {
-    plot(B[n:1,1], 1:n, type="n", xlim = range(pxlim), ylim=ylim, ylab="", axes=FALSE, pch=19, xlab=xlab, ...)
+    plot(B[n:1,1], 1:n, type="n", xlim = range(pxlim), ylim=ylim, ylab=ylab, axes=FALSE, pch=19, xlab=xlab, ...)
     return(invisible(NULL))
   } else {
-    plot(B[n:1,1], 1:n, xlim = range(pxlim), ylim=ylim, ylab="", axes=FALSE, pch=19, xlab=xlab, ...)
+    plot(B[n:1,1], 1:n, xlim = range(pxlim), ylim=ylim, ylab=ylab, axes=FALSE, pch=19, xlab=xlab, ...)
   }
   
   ## Add lines, p-values
