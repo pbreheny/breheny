@@ -10,7 +10,7 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
     m3 <- 2
     m4 <- if (diff) 6 else 2
     par(mar=c(m1, m2, m3, m4))
-  }
+  } else par(mar=mar)
   n <- nrow(B)
   if (!missing(trans)) B[,1:3] <- trans(B[,1:3])
   

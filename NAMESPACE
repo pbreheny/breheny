@@ -8,15 +8,15 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        capwords,factor2num,poisson.bayes,summary.rlm,
        checkData,fapply,polygon.step,survrate,
        CIplot,fivenumber,psm,toplegend,
-       cleanTable,formatP,qd,tpower,
+       cleanTable,formatP,qd,tpower, tsamsize,
        confint.mer,genData,rbern,trcPlot,
        confint.rlm,Hist,rdex,trimwhite,
        corner,ilogit,rdirichlet,write.delim,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
-       revalue, rename, se, multinom.bayes, addNode)
-S3method(print,onepar.bayes)
-S3method(print,onepar.bayes)
+       revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
+       chisq.bayes)
+S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
 S3method(CIplot, glm)
