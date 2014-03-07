@@ -30,7 +30,9 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   
   ## Add lines, p-values
   for (i in 1:n) {
-    lines(c(B[i,2:3]), c(n-i+1,n-i+1), lwd=lwd)
+    dots <- list(...)
+    col <- if ("col" %in% names(dots)) rep_len(dots$col[n-i+1], n) else "black"
+    lines(c(B[i,2:3]), c(n-i+1,n-i+1), lwd=lwd, col=col)
     if (diff) {
       p <- formatP(B[,4], label=p.label)
       p[is.na(B[,4])] <- ""

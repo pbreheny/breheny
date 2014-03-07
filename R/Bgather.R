@@ -1,6 +1,6 @@
 Bgather <- function (suffix = "", safe = FALSE) 
 {
-  require(abind)
+  require(abind, quietly=TRUE)
   all.files <- list.files()
   Suffix <- if (nchar(suffix) > 0) paste("-",suffix,sep="") else suffix
   pattern <- paste("tmp[[:alnum:]]+", Suffix, "\\.RData", sep = "")
@@ -31,8 +31,9 @@ Bgather <- function (suffix = "", safe = FALSE)
     }
   }
   if (!safe) {
-    save(res, file = paste(Sys.Date(), Suffix, ".RData", 
-                sep = ""))
+    name <- get("name", envir = e)
+    assign(name, res)
+    save(list=name, file = paste(Sys.Date(), Suffix, ".RData", sep = ""))
     for (f in matching.files) {
       system(paste("rm", f))
     }
