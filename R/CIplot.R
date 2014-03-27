@@ -36,7 +36,6 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
     if (diff) {
       p <- formatP(B[,4], label=p.label)
       p[is.na(B[,4])] <- ""
-      print(par("cex"))
       mtext(at=n-i+1,p[i],line=1,side=4,las=1, cex=0.8*par("cex"), adj=0)
     }
   }
