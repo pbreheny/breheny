@@ -1,6 +1,6 @@
 CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", ylab="", add=FALSE, setupOnly=FALSE, lwd=2, ...) {
   B <- obj
-  if (sort) B <- B[order(B[,1], decreasing=TRUE),]
+  if (sort) B <- B[order(B[,1], decreasing=TRUE),,drop=FALSE]
   
   ## Set up margins
   if (missing(mar)) {
@@ -36,7 +36,8 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
     if (diff) {
       p <- formatP(B[,4], label=p.label)
       p[is.na(B[,4])] <- ""
-      mtext(at=n-i+1,p[i],line=1,side=4,las=1,cex=0.7,adj=0)
+      print(par("cex"))
+      mtext(at=n-i+1,p[i],line=1,side=4,las=1, cex=0.8*par("cex"), adj=0)
     }
   }
   if (axis) axis(1, pxlim)
@@ -68,7 +69,7 @@ CIplot.lm <- function(obj, intercept=FALSE, xlab="Regression coefficient", exclu
              tau*confint(fit,j),
              summary(fit)$coef[j,4])
   colnames(B) <- c("Coef","Lower","Upper","p")
-  for (i in seq_along(exclude)) B <- B[-grep(exclude[i],rownames(B)),]
+  for (i in seq_along(exclude)) B <- B[-grep(exclude[i],rownames(B)),,drop=FALSE]
   if (plot) CIplot(B,xlab=xlab,...)
   return(invisible(B))
 }
