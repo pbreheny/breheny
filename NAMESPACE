@@ -4,7 +4,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        Attach,eci,myTrellis,smoothPlot,
        Bgather,epower,esamsize,pal,source.bioc,
        binom.bayes,eps,plot.loess,source.dir,
-       Bsave,estimate,png2,splitleft,splitright,
+       Bsave,estimate,splitleft,splitright,
        capwords,factor2num,poisson.bayes,summary.rlm,
        checkData,fapply,polygon.step,survrate,
        CIplot,fivenumber,psm,toplegend,
@@ -15,7 +15,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
        revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
-       chisq.bayes)
+       chisq.bayes, genCorrData)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)

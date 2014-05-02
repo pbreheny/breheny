@@ -9,8 +9,8 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
     m2 <- nn/3+.5
     m3 <- 2
     m4 <- if (diff) 6 else 2
-    par(mar=c(m1, m2, m3, m4))
-  } else par(mar=mar)
+    op <- par(mar=c(m1, m2, m3, m4))
+  } else op <- par(mar=mar)
   n <- nrow(B)
   if (!missing(trans)) B[,1:3] <- trans(B[,1:3])
   
@@ -56,6 +56,7 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
       text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)
     }    
   }
+  par(op)
   invisible(B)
 }
 CIplot.lm <- function(obj, intercept=FALSE, xlab="Regression coefficient", exclude=NULL, plot=TRUE, tau, ...)
