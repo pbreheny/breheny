@@ -29,9 +29,12 @@ genCorrData <- function(n, J, G, beta, J0=ceiling(J/2), SNR=1, sig=c("homogeneou
   u <- rnorm(G)
   E <- matrix(rnorm(G*H), H, G)
   noise <- as.numeric(sweep(e*E, 2, a*u, "+"))
+  Sigma <- matrix(0, n, n)
+  for (i in 1:G) Sigma[(i-1)*H+1:H,(i-1)*H+1:H] <- rho
+  diag(Sigma) <- 1
   
   ## Generate Y
   y <- X%*%beta + noise
   
-  list(X=X, y=y, beta=beta, group=group)
+  list(X=X, y=y, beta=beta, group=group, Sigma=Sigma)
 }

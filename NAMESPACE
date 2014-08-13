@@ -15,7 +15,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
        revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
-       chisq.bayes, genCorrData)
+       chisq.bayes, genCorrData, soft, check)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
