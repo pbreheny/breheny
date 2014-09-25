@@ -15,13 +15,15 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
        revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
-       chisq.bayes, genCorrData, soft, check)
+       chisq.bayes, genCorrData, soft, check, Plot)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
 S3method(CIplot, glm)
 S3method(CIplot, mer)
 S3method(CIplot, coxph)
+S3method(Plot, BinaryTree)
+S3method(Plot, rpart)
 S3method(coef, ar)
 S3method(vcov, ar)
 S3method(residuals, ar)
