@@ -1,11 +1,11 @@
-CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", ylab="", add=FALSE, setupOnly=FALSE, lwd=2, ...) {
+CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim, sub, diff=(ncol(B)==4), null=0, n.ticks=6, mar, axis=!add, trans, p.label=FALSE, xlab="", ylab="", add=FALSE, setupOnly=FALSE, lwd=2, replaceUnderscore=TRUE, ...) {
   B <- obj
   if (sort) B <- B[order(B[,1], decreasing=TRUE),,drop=FALSE]
   
   ## Set up margins
   if (missing(mar)) {
     m1 <- 5
-    nn <- if (is.null(rownames(B))) 10 else max(nchar(rownames(B)))
+    nn <- if (is.null(labels)) 10 else max(nchar(labels))
     m2 <- nn/3+.5
     m3 <- 2
     m4 <- if (diff) 6 else 2
@@ -47,6 +47,7 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
   if (!missing(sub)) mtext(sub,3,0,cex=0.8)
   
   ## Add labels
+  if (replaceUnderscore) labels <- gsub("_", " ", labels)
   if (!add) {
     ind <- !is.na(B[,1])
     lapply(which(ind), function(l) text(x=par("usr")[1], adj=1, y=(n:1)[l], labels=labels[[l]], xpd=TRUE, cex=.8)) ## List approach is necessary for compatibility with expressions
@@ -54,7 +55,7 @@ CIplot.matrix <- function(obj, labels=rownames(B), sort=TRUE, pxlim, xlim, ylim,
       a <- diff(par("usr")[1:2])/diff(par("plt")[1:2])
       b <- par("usr")[1] - a*par("plt")[1]
       text(x=b+a*.01, adj=0, y=(n:1)[!ind], labels=labels[!ind], xpd=TRUE, cex=.8)
-    }    
+    }
   }
   par(op)
   invisible(B)
