@@ -1,6 +1,6 @@
 ## Alternative parameterization of Weibull
-rWeibull <- function(n, alpha, sigma) {
+rWeibull <- function(n, alpha, sigma, eta=0) {
   W <- log(rexp(n))
-  Y <- alpha + sigma*W
+  Y <- alpha + eta*(-sigma) + sigma*W
   exp(Y)
 }
