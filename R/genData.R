@@ -18,14 +18,23 @@
 #' @param rho.g Correlation between parameters within a group
 #' 
 #' @export
-genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling(J/2), K0=K, SNR=1, sig = c("homogeneous","heterogeneous"), sig.g = c("homogeneous","heterogeneous"), rho = 0, rho.g = rho)
-{
+genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling(J/2), K0=K, SNR=1, sig = c("homogeneous","heterogeneous"), sig.g = c("homogeneous","heterogeneous"), rho = 0, rho.g = rho, corr=c("exchangeable", "autoregressive")) {
   family <- match.arg(family)
   sig <- match.arg(sig)
   sig.g <- match.arg(sig.g)
+  corr <- match.arg(corr)
   
   ## Gen X, S
-  X <- genX(n=n, J=J, K=K, rho=rho, rho.g=rho.g)
+  if (corr=="exchangeable") {
+    X <- genX(n=n, J=J, K=K, rho=rho, rho.g=rho.g)
+  } else {
+    require(Matrix)
+    RHO <- matrix(rho^(0:(J-1)), J, J, byrow=TRUE)
+    S <- bandSparse(J, k=0:(J-1), diagonals=RHO, symmetric=TRUE)
+    R <- chol(S)
+    X <- as.matrix(matrix(rnorm(n*J), n, J) %*% R)
+  }
+  
   j <- rep(1:J,rep(K,J))
   
   ## Gen beta
@@ -51,7 +60,7 @@ genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling
 
 ## rho  : correlation across all explanatory variables
 ## rho.g: correlation within group (must be at least rho)
-genX <- function(n,J,K=1,rho=0,rho.g=rho) {
+genX <- function(n, J, K=1, rho=0, rho.g=rho, corr=corr) {
   a <- sqrt(rho/(1-rho.g))
   b <- sqrt((rho.g-rho)/(1-rho.g))
   Z <- rnorm(n)
