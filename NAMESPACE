@@ -16,7 +16,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
        revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
        chisq.bayes, genCorrData, soft, check, Plot, toClip, rWeibull,
-       Boot, hdpower, qe)
+       Boot, hdpower, qe, mcnpower)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
