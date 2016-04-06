@@ -9,9 +9,9 @@ tpower <- function(n, delta, lam=c(1,-1), b=c(delta,0), sd=1, alpha=.05, w=rep(1
     nn <- length(n)
     W <- matrix(w, byrow=TRUE, ncol=g, nrow=nn)
   }
-  for (i in 1:nn) W[i,] <- W[i,]/sum(W[i,])    
+  for (i in 1:nn) W[i,] <- W[i,]/sum(W[i,])
   df <- n-g
-  
+
   power <- numeric(nn)
   for (i in 1:nn) {
     X <- diag(1/(n[i]*W[i,])) ## XtX^(-1)
@@ -26,7 +26,7 @@ tsamsize <- function(delta, b=c(delta,0), w=rep(1,g), power=.8, upper=5000,...) 
   if (length(w) != g) stop("w does not match b")
   w <- w/sum(w)
   f <- function(n){tpower(n,b=b,...)-power}
-  n <- uniroot(f,interval=c(2*g,upper))$root
+  n <- uniroot(f, interval=c(2*g,upper))$root
   nn <- ceiling(n*w)
   ##if (sd(nn) < .0000001) cat(nn[1]," in each group\n",sep="")
   ##else cat(paste("Group ",1:g,": ",nn,"\n",sep="",collapse=""))

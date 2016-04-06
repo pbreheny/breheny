@@ -3,7 +3,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        array2df,drawBand,mergeHTML,slider,
        Attach,eci,myTrellis,smoothPlot,
        Bgather,epower,esamsize,pal,source.bioc,
-       binom.bayes,eps,plot.loess,source.dir,
+       binom.bayes,eps,source.dir,
        Bsave,estimate,splitleft,splitright,
        capwords,factor2num,poisson.bayes,summary.rlm,
        checkData,fapply,polygon.step,survrate,
@@ -16,7 +16,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List,
        revalue, rename, se, multinom.bayes, addNode, contingency.bayes,
        chisq.bayes, genCorrData, soft, check, Plot, toClip, rWeibull,
-       Boot, hdpower, qe, mcnpower)
+       Boot, hdpower, qe, mcnpower, rightlegend, ciband, lastChar)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
@@ -25,6 +25,8 @@ S3method(CIplot, mer)
 S3method(CIplot, coxph)
 S3method(Plot, BinaryTree)
 S3method(Plot, rpart)
+S3method(plot, loess)
+S3method(lines, loess)
 S3method(coef, ar)
 S3method(vcov, ar)
 S3method(residuals, ar)
@@ -35,3 +37,4 @@ importFrom(grid, xDetails)
 S3method(xDetails, box)
 importFrom(grid, yDetails)
 S3method(yDetails, box)
+S3method(ciband, survfit)

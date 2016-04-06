@@ -87,10 +87,10 @@ CIplot.mer <- function(obj, intercept=FALSE, xlab="Regression coefficient", excl
   if (plot) CIplot(B,xlab=xlab,...)
   return(invisible(B))
 }
-CIplot.coxph <- function(obj, intercept=FALSE, xlab="Regression coefficient", exclude=NULL, plot=TRUE, tau, ...) {
+CIplot.coxph <- function(obj, xlab="Regression coefficient", exclude=NULL, plot=TRUE, tau, ...) {
   fit <- obj
   p <- length(coef(fit))
-  j <- if (intercept) 1:p else 2:p
+  j <- 1:p
   if (missing(tau)) tau <- 1
   B <- cbind(tau*coef(fit)[j],
              tau*confint(fit,j),
