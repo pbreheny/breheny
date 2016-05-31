@@ -5,6 +5,6 @@ Plot.BinaryTree <- function(obj, pval=FALSE, summary=FALSE, digits=1, ...) {
 Plot.rpart <- function(obj, ...) {
   require(partykit)
   fit <- as.party(obj)
-  plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE))
+  plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE), ...)
 }
 Plot <- function(obj,...) UseMethod("Plot")

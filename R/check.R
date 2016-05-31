@@ -1,10 +1,10 @@
-check <- function(x, y, ...) {
+check <- function(x, y, check.attributes=FALSE, ...) {
   if (missing(y)) {
     xname <- gsub("()", "", match.call()[2])
     if (x==TRUE) return(TRUE)
     message <- paste0("Problem in ", .test, "\n", xname, " FALSE")
   }
-  checkResult <- all.equal(x, y, ...)
+  checkResult <- all.equal(x, y, check.attributes=check.attributes, ...)
   if (class(checkResult)[1]=="logical") return(TRUE)
   xname <- gsub("()", "", match.call()[2])
   yname <- gsub("()", "", match.call()[3])
