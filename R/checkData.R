@@ -6,13 +6,18 @@ checkData <- function(Data) {
       readline("Move on to next variable <press enter>:")
       next
     }
-    ##cat("Missing: ",sum(is.na(Data[,j])),"\n",sep="")
-    if (is.numeric(Data[,j]) | class(Data[,j])[1]=="POSIXlt" | class(Data[,j])[1]=="Date")
-      {
-        print(range(Data[,j],na.rm=TRUE))
-        hist(Data[,j],xlab=names(Data)[j],breaks=nrow(Data)/10,col="gray",main=paste("Missing: ",sum(is.na(Data[,j])),sep=""))
-      }
-    if (is.character(Data[,j]) | is.factor(Data[,j])) print(table(Data[,j],useNA="ifany"))
+    if (is.numeric(Data[,j])) {
+      print(range(Data[,j],na.rm=TRUE))
+      Hist(Data[,j], n=nrow(Data)/10, xlab=names(Data)[j], main=paste0("Missing: ",sum(is.na(Data[,j]))))
+    }
+    if (class(Data[,j])[1]=="POSIXlt" | class(Data[,j])[1]=="Date") {
+      print(range(Data[,j],na.rm=TRUE))
+      op <- par(fg="white")
+      hist(Data[,j], breaks=nrow(Data)/10, col="gray", las=1, freq=TRUE, xlab=names(Data)[j],
+           main=paste0("Missing: ",sum(is.na(Data[,j]))))
+      par(op)
+    }
+    if (is.character(Data[,j]) | is.factor(Data[,j]) | is.logical(Data[,j])) print(table(Data[,j],useNA="ifany"))
     readline("Move on to next variable <press enter>:")
   }
 }
