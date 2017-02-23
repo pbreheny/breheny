@@ -7,7 +7,7 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring, antitable,dProd,median.survfit,
        confint.mer,genData,rbern,trcPlot, confint.rlm,Hist,rdex,trimwhite,
        corner,ilogit,rdirichlet,write.delim, cvTree,image.by,refresh,write.xls,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List, se,
-       multinom.bayes, addNode, contingency.bayes, chisq.bayes, genCorrData,
+       multinom.bayes, AddNode, contingency.bayes, chisq.bayes, genCorrData,
        soft, check, Plot, toClip, rWeibull, Boot, hdpower, qe, mcnpower,
        rightlegend, ciband, lastChar, convertJAGS, textPlot, nrisk)
 S3method(print, onepar.bayes)

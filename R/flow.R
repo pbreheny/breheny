@@ -80,7 +80,7 @@ plot.flow <- function(N, x, xm=.1, ym=.1) {
   }
 }
 
-addNode <- function(X, node, parent, edge="") {
+AddNode <- function(X, node, parent, edge="") {
   if (class(X)[1] != "flow") {
     df.i <- data.frame(node=as.character(X), parent=0, edge="", stringsAsFactors=FALSE)
     return(structure(df.i, class=c("flow", "data.frame")))
