@@ -9,7 +9,8 @@ export(alphaCol, acf.ar, dnplot,logAxis,rstring, antitable,dProd,median.survfit,
        displayProgressBar,load.dir,rmvn,rnhb,Xtable,List, se,
        multinom.bayes, AddNode, contingency.bayes, chisq.bayes, genCorrData,
        soft, check, Plot, toClip, rWeibull, Boot, hdpower, qe, mcnpower,
-       rightlegend, ciband, lastChar, convertJAGS, textPlot, nrisk, PCAplot)
+       rightlegend, ciband, lastChar, convertJAGS, textPlot, nrisk, PCAplot,
+       catchWarning)
 S3method(print, onepar.bayes)
 S3method(CIplot, matrix)
 S3method(CIplot, lm)
