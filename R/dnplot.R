@@ -1,4 +1,4 @@
-dnplot <- function(M, labs, lwd=3, lty=1, col=pal(p), ylab="Density", xlab="", las=1, dens.par=NULL, ...) {
+dnplot <- function(M, labs, pos=FALSE, lwd=3, bty="n", lty=1, col=pal(p), ylab="Density", xlab="", las=1, dens.par=NULL, ...) {
   if (!is.matrix(M)) M <- matrix(M, ncol=1)
   p <- ncol(M)
   X <- Y <- NULL
@@ -12,11 +12,20 @@ dnplot <- function(M, labs, lwd=3, lty=1, col=pal(p), ylab="Density", xlab="", l
     dens.args <- list(x=M[,i])
     if (length(dens.par)) dens.args[names(dens.par)] <- dens.par
     d <- do.call("density", dens.args)
+    if (pos) {
+      x <- d$x
+      negid <- which(x < 0)
+      j0 <- length(negid) + 1
+      posid <- j0:(j0 + length(negid) - 1)
+      d$y[posid] <- d$y[posid] + rev(d$y[negid])
+      d$x[negid] <- NA
+      d$y[negid] <- NA
+    }
     X <- cbind(X, d$x)
     Y <- cbind(Y, d$y)
     mode[i] <- d$x[which.max(d$y)]
   }
-  matplot(X, Y, lty=lty, lwd=lwd, type="l", col=col, ylab=ylab, xlab=xlab, las=1, ...)
+  matplot(X, Y, lty=lty, lwd=lwd, type="l", col=col, ylab=ylab, xlab=xlab, las=1, bty=bty, ...)
   if (!missing(labs)) toplegend(legend=labs, col=col, lwd=lwd, ncol=min(p, 4))
   invisible(mode)
 }
