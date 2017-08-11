@@ -1,6 +1,13 @@
 PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", ...) {
+  # Remove constant columns
+  const <- which(apply(X, 2, sd)==0)
+  X <- X[,-const]
+
+  # Do PCA
   PCA <- prcomp(X, scale=TRUE)
   P <- predict(PCA)
+
+  # Plot
   if (!missing(grp)) {
     Grp <- as.factor(grp)
     col <- pal(length(levels(Grp)))[Grp]
