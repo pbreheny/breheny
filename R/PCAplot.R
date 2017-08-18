@@ -1,7 +1,7 @@
 PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", ...) {
   # Remove constant columns
   const <- which(apply(X, 2, sd)==0)
-  X <- X[,-const]
+  if (length(const)) X <- X[,-const]
 
   # Do PCA
   PCA <- prcomp(X, scale=TRUE)
