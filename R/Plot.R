@@ -7,9 +7,14 @@ Plot.rpart <- function(obj, ...) {
   fit <- as.party(obj)
   plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE), ...)
 }
-Plot.survfit <- function(obj, legend=TRUE, xlab="Time", ylab="Survival", ...) {
+Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", ...) {
+  legend <- match.arg(legend)
   n <- length(obj$strata)
   plot(obj, xlab=xlab, ylab=ylab, bty="n", las=1, col=pal(n), lwd=3, ...)
-  if (legend) toplegend(legend=gsub('.*=', '', names(obj$strata)), col=pal(n), lwd=3)
+  if (legend == "top") {
+    toplegend(legend=gsub('.*=', '', names(obj$strata)), col=pal(n), lwd=3)
+  } else if (legend == "right") {
+    rightlegend(legend=gsub('.*=', '', names(obj$strata)), col=pal(n), lwd=3)
+  }
 }
 Plot <- function(obj,...) UseMethod("Plot")
