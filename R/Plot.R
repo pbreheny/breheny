@@ -7,14 +7,16 @@ Plot.rpart <- function(obj, ...) {
   fit <- as.party(obj)
   plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE), ...)
 }
-Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", conf.int=FALSE, ...) {
+Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", conf.int=FALSE, col, ...) {
   legend <- match.arg(legend)
   n <- length(obj$strata)
-  if (n == 0) {
-    col <- pal(2)[2]
-  } else {
-    col <- pal(n)
-  }
+  if (missing(col)) {
+    if (n == 0) {
+      col <- pal(2)[2]
+    } else {
+      col <- pal(n)
+    }
+  }    
   plot(obj, xlab=xlab, ylab=ylab, bty="n", las=1, col=col, lwd=3, conf.int=conf.int, ...)
   if (n > 0) {
     if (legend == "top") {
