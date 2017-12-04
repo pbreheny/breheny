@@ -19,11 +19,13 @@ ciband.survfit <- function(fit, col, fun=as.numeric) {
 }
 ciband.survfitms <- function(fit, col, fun=as.numeric) {
   if(length(fit$strata)) stop('Not implemented for stratified multi-state models')
-  K <- ncol(fit$prev)
+  K <- ncol(fit$pstate)-1
   if (missing(col)) col <- pal(K, alpha=0.4)
-  n <- length(fit$time)
-  for (k in 1:K) {
-    polygon.step(fit$time, fit$lower[-n,k], fit$upper[-n,k], col=col[k])
+  for (i in 1:K) {
+    x <- c(0, fit$time)
+    l <- fun(fit$lower[,i])
+    u <- fun(fit$upper[,i])
+    polygon.step(x, l, u, col=col[i])
   }
 }
 ciband <- function(obj,...) UseMethod("ciband")
