@@ -1,4 +1,4 @@
-export(AddNode, alphaCol, acf.ar, antitable, biocLite, Bgather, Bsave, dnplot, 
+export(AddNode, alphaCol, acf.ar, antitable, bioc, Bgather, Bsave, dnplot, 
        rstring, dProd, median.survfit, logAxis,
        scale, array2df,drawBand,mergeHTML,slider, Attach,eci,myTrellis,
        smoothPlot, epower,esamsize,pal, binom.bayes,eps,
