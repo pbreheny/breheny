@@ -1,4 +1,7 @@
-PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", ...) {
+PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", legend, ...) {
+  
+  if (missing(legend)) legend <- !missing(grp)
+      
   # Remove constant columns
   const <- which(apply(X, 2, sd)==0)
   if (length(const)) X <- X[,-const]
@@ -22,7 +25,7 @@ PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", ...) {
   } else {
     plot(P[,1], P[,2], pch=19)
   }
-  if (!missing(grp)) {
+  if (legend) {
     toplegend(legend=levels(Grp), pch=16, col=pal(length(levels(Grp))))
   }
 }
