@@ -1,9 +1,10 @@
 Package: breheny
 Title: Miscellaneous functions
-Version: 1.1-0
-Date: 2013-09-26
-Author: Patrick Breheny
-Maintainer: Patrick Breheny <patrick-breheny@uiowa.edu>
-Depends: 
+Version: 2.0-000
+Date: 2018-8-16
+Authors@R: person("Patrick", "Breheny", role=c("aut","cre"), email="patrick-breheny@uiowa.edu")
 Description: Miscellaneous functions I frequently refer to
-License: GPL-2
+License: GPL-3
+Imports: grid
+RoxygenNote: 6.1.0
+Roxygen: list(markdown = TRUE)
