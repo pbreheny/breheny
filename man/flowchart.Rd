@@ -18,7 +18,7 @@ addNode(obj, node, parent, edge = "")
 
 \item{parent}{Parent of new node}
 
-\item{edge}{???}
+\item{edge}{Edge text from parent node to this node; default is ''}
 
 \item{x}{left/right positioning of flowchart elements}
 
