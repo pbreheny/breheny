@@ -1,14 +1,16 @@
 #' Make an lFDR plot for an ash object
-#' 
+#'
 #' @param fit   Output from `ash()``
 #' @param n     Number of breaks for histogram
 #' @param ...   Further arguments to `Hist()`
-#' 
+#'
 #' @examples
 #' library(ashr)
 #' z <- c(rnorm(900), rnorm(200, sd=2))
 #' fit <- ash(z, rep(1, length(z)), optmethod='cxxMixSquarem')
 #' lfdrPlot.ash(fit)
+#'
+#' @export
 
 lfdrPlot.ash <- function(fit, n=99, ...) {
   z <- fit$data$x

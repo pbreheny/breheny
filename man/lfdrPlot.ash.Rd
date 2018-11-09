@@ -21,4 +21,5 @@ library(ashr)
 z <- c(rnorm(900), rnorm(200, sd=2))
 fit <- ash(z, rep(1, length(z)), optmethod='cxxMixSquarem')
 lfdrPlot.ash(fit)
+
 }
