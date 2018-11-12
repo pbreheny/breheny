@@ -1,3 +1,22 @@
+#' Make a legend on top or right side of plot
+#'
+#' @param horiz   Horizontal layout?
+#' @param ...     Further arguments to `legend()`
+#'
+#' @name toplegend
+#'
+#' @examples
+#' g <- rbinom(20, 1, 0.5)
+#' x <- rnorm(20)
+#' y <- rnorm(20)
+#' plot(x, y, col=pal(2)[g+1], pch=19)
+#' toplegend(legend=c('Group 1', 'Group 2'), col=pal(2), pch=19)
+NULL
+
+#' @rdname toplegend
+#'
+#' @export
+
 toplegend <- function(horiz=TRUE, ...) {
   if (par("oma")[3]==0) {
     x <- mean(par("usr")[1:2])
@@ -14,6 +33,11 @@ toplegend <- function(horiz=TRUE, ...) {
     legend(mean(xxx), mean(c(yyy[2],yyyy[2])), xpd=NA, bty="n", xjust=0.5, yjust=0.5, horiz=horiz, ...)
   }
 }
+
+#' @rdname toplegend
+#'
+#' @export
+
 rightlegend <- function(...) {
   if (par("oma")[4]==0) {
     y <- mean(par("usr")[3:4])
