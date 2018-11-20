@@ -1,3 +1,23 @@
+#' Add a confidence interval band to a KM curve
+#'
+#' @param obj   A `survfit` or `survfitms` object
+#' @param ...   Not used
+#'
+#' @examples
+#' library(survival)
+#'
+#' fit <- survfit(Surv(time, status) ~ 1, veteran)
+#' Plot(fit)
+#' ciband(fit)
+#'
+#' fit <- survfit(Surv(time, status) ~ celltype, veteran)
+#' Plot(fit)
+#' ciband(fit)
+#'
+#' @export
+
+ciband <- function(obj, ...) UseMethod("ciband")
+
 ciband.survfit <- function(fit, col, fun=as.numeric) {
   K <- length(fit$strata)
   if (K==0) {
@@ -28,4 +48,3 @@ ciband.survfitms <- function(fit, col, fun=as.numeric) {
     polygon.step(x, l, u, col=col[i])
   }
 }
-ciband <- function(obj,...) UseMethod("ciband")

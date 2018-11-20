@@ -1,12 +1,34 @@
+#' Customized plotting functions
+#'
+#' @examples
+#' # KM curves
+#' data(veteran, package='survival')
+#' fit <- survival::survfit(survival::Surv(time, status) ~ celltype, veteran)
+#' Plot(fit)
+#'
+#' # Trees
+#' data(kyphosis, package='rpart')
+#' fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+#' Plot(fit)
+#' fit <- party::ctree(Kyphosis ~ Age + Number + Start, data = kyphosis)
+#'
+#' @export
+
+Plot <- function(obj,...) UseMethod("Plot")
+
+#' @export
 Plot.BinaryTree <- function(obj, pval=FALSE, summary=FALSE, digits=1, ...) {
   if (summary) plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits), terminal_panel=panelSummary)
   else plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits))
 }
+
+#' @export
 Plot.rpart <- function(obj, ...) {
-  require(partykit)
-  fit <- as.party(obj)
+  fit <- partykit::as.party(obj)
   plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE), ...)
 }
+
+#' @export
 Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", conf.int=FALSE, col, ...) {
   legend <- match.arg(legend)
   if ("pstate" %in% names(obj)) {
@@ -32,4 +54,3 @@ Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", yla
     }
   }
 }
-Plot <- function(obj,...) UseMethod("Plot")

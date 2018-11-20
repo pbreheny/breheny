@@ -1,3 +1,26 @@
+#' Power for t tests, including arbitrary linear hypotheses
+#'
+#' @param n       Sample size (total)
+#' @param delta   Effect size
+#' @param lam     Contrast
+#' @param b       Coefficient vector
+#' @param sd      Standard deviation of outcome
+#' @param alpha   Type I error rate
+#' @param w       Weights for unequal allocation (normalized to 1)
+#' @param n1      Sample size for group 1
+#' @param n2      Sample size for group 2
+#' @param power   Desired power
+#'
+#' @name tpower
+#'
+#' @examples
+#' tpower(100, 0.5)
+#' tsamsize(0.5)
+#'
+NULL
+
+#' @describeIn tpower   Calculates power
+#' @export
 tpower <- function(n, delta, lam=c(1,-1), b=c(delta,0), sd=1, alpha=.05, w=rep(1,g), n1, n2) {
   g <- length(b)
   if (!missing(n1) & !missing(n2)) {
@@ -21,6 +44,9 @@ tpower <- function(n, delta, lam=c(1,-1), b=c(delta,0), sd=1, alpha=.05, w=rep(1
   }
   return(power)
 }
+
+#' @describeIn tpower   Calculates sample size
+#' @export
 tsamsize <- function(delta, b=c(delta,0), w=rep(1,g), power=.8, upper=5000,...) {
   g <- length(b)
   if (length(w) != g) stop("w does not match b")
