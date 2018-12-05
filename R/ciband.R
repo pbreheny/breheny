@@ -18,6 +18,7 @@
 
 ciband <- function(obj, ...) UseMethod("ciband")
 
+#' @export
 ciband.survfit <- function(fit, col, fun=as.numeric) {
   K <- length(fit$strata)
   if (K==0) {
@@ -37,6 +38,8 @@ ciband.survfit <- function(fit, col, fun=as.numeric) {
     polygon.step(x, l, u, col=col[i])
   }
 }
+
+#' @export
 ciband.survfitms <- function(fit, col, fun=as.numeric) {
   if(length(fit$strata)) stop('Not implemented for stratified multi-state models')
   K <- ncol(fit$pstate)-1
