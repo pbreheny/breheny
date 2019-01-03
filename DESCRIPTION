@@ -6,5 +6,5 @@ Authors@R: person("Patrick", "Breheny", role=c("aut","cre"), email="patrick-breh
 Description: Miscellaneous functions I frequently refer to
 License: GPL-3
 Imports: grid
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
