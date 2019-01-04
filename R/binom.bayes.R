@@ -1,3 +1,23 @@
+#' Bayesian analysis of one-sample binomial data using conjugate beta priors
+#'
+#' @param x       Number of "successes"
+#' @param n       Number of trials
+#' @param a       'alpha' parameter for beta prior. Default: uniform prior
+#' @param b       'beta' parameter for beta prior. Default: uniform prior
+#' @param level   For posterior interval; .95 for a 95\% credible interval
+#' @param null    Point null to evaluate as a kind of hypothesis test
+#' @param plot    Draw a plot?  Default: false
+#' @param add     Add to existing plot?  Default: false
+#' @param xlab    xlab for plot
+#' @param ylab    ylab for plot
+#' @param col     color of density line for plot
+#'
+#' @examples
+#' binom.bayes(10, 16)
+#' binom.bayes(0, 21, plot=TRUE)
+#'
+#' @export
+
 binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, xlab="p", ylab="Posterior density", col="blue", ...) {
   A <- a+x
   B <- n-x+b
@@ -18,7 +38,7 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
     l.h <- qbeta(L, a+x, n-x+b)
     if (l.h < 1e-8) l.h <- 0
     u.h <- qbeta(L+level, a+x, n-x+b)
-    if (u.h > 1-1e-8) u.h <- 1    
+    if (u.h > 1-1e-8) u.h <- 1
   } else if (A > B) {
     mode.post <- 1
     l.h <- qbeta(1-level, A, B)
@@ -37,7 +57,7 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
       l <- uniroot(f, c(0, mode.post))$root
     } else {
       l <- null
-      u <- uniroot(f, c(mode.post, 1))$root      
+      u <- uniroot(f, c(mode.post, 1))$root
     }
     p <- pbeta(l,A,B) + 1 - pbeta(u,A,B)
   }
@@ -53,12 +73,14 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
   if (!missing(null)) val$p <- p
   val
 }
+
+#' @export
 print.onepar.bayes <- function(obj) {
   cat("Sample proportion:", formatC(obj$sample, digits=3, format="f"), "\n")
   cat("Posterior mean:", formatC(obj$mean, digits=3, format="f"), "\n")
   cat("Posterior mode:", formatC(obj$mode, digits=3, format="f"), "\n")
   cat("Posterior SD:", formatC(sqrt(obj$var), digits=3, format="f"), "\n")
   cat(100*obj$level,"% central interval: (",formatC(obj$ci.central[1], digits=3, format="f"),", ",formatC(obj$ci.central[2], digits=3, format="f"),")\n",sep="")
-  cat(100*obj$level,"% HPD interval: (",formatC(obj$ci.hpd[1], digits=3, format="f"),", ",formatC(obj$ci.hpd[2], digits=3, format="f"),")\n",sep="")  
-  if ("p" %in% names(obj)) cat("Significance: ", formatP(obj$p),"\n",sep="")  
+  cat(100*obj$level,"% HPD interval: (",formatC(obj$ci.hpd[1], digits=3, format="f"),", ",formatC(obj$ci.hpd[2], digits=3, format="f"),")\n",sep="")
+  if ("p" %in% names(obj)) cat("Significance: ", formatP(obj$p),"\n",sep="")
 }
