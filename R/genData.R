@@ -16,14 +16,13 @@
 #' @param sig.g Should the coefficients within a group be heterogeneous or homogeneous
 #' @param rho Correlation between groups
 #' @param rho.g Correlation between parameters within a group
-#' 
-#' @export
+
 genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling(J/2), K0=K, SNR=1, sig = c("homogeneous","heterogeneous"), sig.g = c("homogeneous","heterogeneous"), rho = 0, rho.g = rho, corr=c("exchangeable", "autoregressive")) {
   family <- match.arg(family)
   sig <- match.arg(sig)
   sig.g <- match.arg(sig.g)
   corr <- match.arg(corr)
-  
+
   ## Gen X, S
   if (corr=="exchangeable") {
     X <- genX(n=n, J=J, K=K, rho=rho, rho.g=rho.g)
@@ -34,9 +33,9 @@ genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling
     R <- chol(S)
     X <- as.matrix(matrix(rnorm(n*J), n, J) %*% R)
   }
-  
+
   j <- rep(1:J,rep(K,J))
-  
+
   ## Gen beta
   if (missing(beta) || length(beta)==1) {
     k <- rep(1:K,J)
@@ -52,7 +51,7 @@ genData <- function(n, J, K=1, beta, family=c("gaussian","binomial"), J0=ceiling
       beta <- b*sqrt(SNR)/sqrt(crossprod(b,S)%*%b)
     } else beta <- b*s*beta
   }
-  
+
   ## Gen y
   y <- genY(X%*%beta, family=family, sigma=1)
   return(list(X=X,y=y,beta=beta,family=family,group=j))
