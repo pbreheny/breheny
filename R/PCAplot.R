@@ -1,14 +1,35 @@
-PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", legend, ...) {
-  
+#' Make a PCA/tSNE plot
+#'
+#' @param X            A numeric matrix
+#' @param grp          Optional grouping factor to color instances by
+#' @param txt          Use rownames as labels instead of dots (default: false)
+#' @param tsne         Use tSNE instead of PCA?  (default: false)
+#' @param xlab, ylab   Axis labels
+#' @param legend       Include a legend (default: true)
+#' @param ...          Further arguments to `plot()`
+#'
+#' @examples
+#' PCAplot(iris[,1:4])
+#' PCAplot(iris[,1:4], grp=iris[,5])
+#' PCAplot(iris[,1:4], grp=iris[,5], tsne=TRUE)
+#' PCAplot(USArrests, txt=TRUE)
+
+PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, xlab="PCA 1", ylab="PCA 2", legend, ...) {
+
   if (missing(legend)) legend <- !missing(grp)
-      
+
   # Remove constant columns
   const <- which(apply(X, 2, sd)==0)
   if (length(const)) X <- X[,-const]
 
   # Do PCA
-  PCA <- prcomp(X, scale=TRUE)
-  P <- predict(PCA)
+  if (tsne) {
+    library(Rtsne)
+    P <- Rtsne(X, pca_scale=TRUE, perplexity = 28, theta=0, check_duplicates = FALSE)$Y
+  } else {
+    PCA <- prcomp(X, scale=TRUE)
+    P <- predict(PCA)
+  }
 
   # Plot
   if (!missing(grp)) {
@@ -21,9 +42,9 @@ PCAplot <- function(X, grp, txt=FALSE, xlab="PCA 1", ylab="PCA 2", legend, ...) 
     plot(P[,1], P[,2], type="n", xlab=xlab, ylab=ylab, bty="n", las=1, ...)
     text(P[,1], P[,2], rownames(X), col=col)
   } else if (!missing(grp)) {
-    plot(P[,1], P[,2], pch=16, col=col, las=1, bty='n', xlab=xlab, ylab=ylab, )
+    plot(P[,1], P[,2], pch=16, col=col, las=1, bty='n', xlab=xlab, ylab=ylab, ...)
   } else {
-    plot(P[,1], P[,2], pch=19)
+    plot(P[,1], P[,2], pch=19, xlab=xlab, ylab=ylab, ...)
   }
   if (legend) {
     toplegend(legend=levels(Grp), pch=16, col=pal(length(levels(Grp))))
