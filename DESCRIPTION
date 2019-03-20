@@ -1,7 +1,7 @@
 Package: breheny
 Title: Miscellaneous functions
-Version: 2.0-000
-Date: 2018-8-16
+Version: 2.0-1
+Date: 2019-03-20
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"), email="patrick-breheny@uiowa.edu")
 Description: Miscellaneous functions I frequently refer to
 License: GPL-3
