@@ -4,6 +4,7 @@
 #' @param grp          Optional grouping factor to color instances by
 #' @param txt          Use rownames as labels instead of dots (default: false)
 #' @param tsne         Use tSNE instead of PCA?  (default: false)
+#' @param perp         Perplexity (for tSNE)
 #' @param xlab, ylab   Axis labels
 #' @param legend       Include a legend (default: true)
 #' @param ...          Further arguments to `plot()`
@@ -14,7 +15,7 @@
 #' PCAplot(iris[,1:4], grp=iris[,5], tsne=TRUE)
 #' PCAplot(USArrests, txt=TRUE)
 
-PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, xlab="PCA 1", ylab="PCA 2", legend, ...) {
+PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="PCA 2", legend, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
 
@@ -24,8 +25,7 @@ PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, xlab="PCA 1", ylab="PCA 2", l
 
   # Do PCA
   if (tsne) {
-    library(Rtsne)
-    P <- Rtsne(X, pca_scale=TRUE, perplexity = 28, theta=0, check_duplicates = FALSE)$Y
+    P <- Rtsne::Rtsne(X, pca_scale=TRUE, perplexity=perp, theta=0, check_duplicates = FALSE)$Y
   } else {
     PCA <- prcomp(X, scale=TRUE)
     P <- predict(PCA)
