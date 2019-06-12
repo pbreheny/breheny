@@ -1,1 +1,5 @@
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/pbreheny/breheny.svg?branch=master)](https://travis-ci.org/pbreheny/breheny)
+<!-- badges: end -->
+
 Miscellaneous R functions that I find personally useful
