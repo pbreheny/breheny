@@ -33,7 +33,7 @@ addNode <- function(obj, node, parent, edge="") {
   }
   df.i <- data.frame(node=node, parent=parent, edge=edge, stringsAsFactors=FALSE)
   obj <- rbind(obj, df.i)
-  assign(as.character(match.call()[2]), structure(obj, class=c("flow", "data.frame")), env=.GlobalEnv)
+  assign(as.character(match.call()[2]), structure(obj, class=c("flow", "data.frame")), envir=.GlobalEnv)
 }
 
 drawBox <- function(lab, x=.5, y=.5, hpad=20, vpad=20) {

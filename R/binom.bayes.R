@@ -75,12 +75,12 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
 }
 
 #' @export
-print.onepar.bayes <- function(obj) {
-  cat("Sample proportion:", formatC(obj$sample, digits=3, format="f"), "\n")
-  cat("Posterior mean:", formatC(obj$mean, digits=3, format="f"), "\n")
-  cat("Posterior mode:", formatC(obj$mode, digits=3, format="f"), "\n")
-  cat("Posterior SD:", formatC(sqrt(obj$var), digits=3, format="f"), "\n")
-  cat(100*obj$level,"% central interval: (",formatC(obj$ci.central[1], digits=3, format="f"),", ",formatC(obj$ci.central[2], digits=3, format="f"),")\n",sep="")
-  cat(100*obj$level,"% HPD interval: (",formatC(obj$ci.hpd[1], digits=3, format="f"),", ",formatC(obj$ci.hpd[2], digits=3, format="f"),")\n",sep="")
-  if ("p" %in% names(obj)) cat("Significance: ", formatP(obj$p),"\n",sep="")
+print.onepar.bayes <- function(x, ...) {
+  cat("Sample proportion:", formatC(x$sample, digits=3, format="f"), "\n")
+  cat("Posterior mean:", formatC(x$mean, digits=3, format="f"), "\n")
+  cat("Posterior mode:", formatC(x$mode, digits=3, format="f"), "\n")
+  cat("Posterior SD:", formatC(sqrt(x$var), digits=3, format="f"), "\n")
+  cat(100*x$level,"% central interval: (",formatC(x$ci.central[1], digits=3, format="f"),", ",formatC(x$ci.central[2], digits=3, format="f"),")\n",sep="")
+  cat(100*x$level,"% HPD interval: (",formatC(x$ci.hpd[1], digits=3, format="f"),", ",formatC(x$ci.hpd[2], digits=3, format="f"),")\n",sep="")
+  if ("p" %in% names(x)) cat("Significance: ", formatP(x$p),"\n",sep="")
 }

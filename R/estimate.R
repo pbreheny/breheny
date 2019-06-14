@@ -4,8 +4,8 @@ estimate <- function(lambda, fit, alpha=.05, t.test=(class(fit)[1]=="lm"), trans
   summ <- summary(fit)
   SE <- sqrt(crossprod(lambda,vcov(fit))%*%lambda)
   z <- Estimate/SE
-  if (t.test) p <- 2*pt(abs(z),fit$df.resid,low=FALSE)
-  else p <- 2*pnorm(abs(z),low=FALSE)
+  if (t.test) p <- 2*pt(abs(z),fit$df.resid, lower.tail=FALSE)
+  else p <- 2*pnorm(abs(z), lower.tail=FALSE)
   if (t.test) hw <- qt(1-alpha/2,fit$df.resid)*SE
   else hw <- qnorm(1-alpha/2)*SE
   lower <- Estimate - hw

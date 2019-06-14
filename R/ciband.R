@@ -19,35 +19,35 @@
 ciband <- function(obj, ...) UseMethod("ciband")
 
 #' @export
-ciband.survfit <- function(fit, col, fun=as.numeric) {
-  K <- length(fit$strata)
+ciband.survfit <- function(obj, col, fun=as.numeric, ...) {
+  K <- length(obj$strata)
   if (K==0) {
-    s <- c(0, length(fit$time))
+    s <- c(0, length(obj$time))
     if (missing(col)) col <- rgb(0.5, 0.5, 0.5, alpha=0.3)
     K <- 1
   } else {
-    s <- c(0, cumsum(fit$strata))
+    s <- c(0, cumsum(obj$strata))
     if (missing(col)) col <- pal(K, alpha=0.4)
   }
   for (i in 1:K) {
     ind1 <- (s[i]+1):s[i+1]
     ind2 <- (s[i]+1):(s[i+1]-1)
-    x <- c(0, fit$time[ind1])
-    l <- fun(c(1, fit$lower[ind2]))
-    u <- fun(c(1, fit$upper[ind2]))
+    x <- c(0, obj$time[ind1])
+    l <- fun(c(1, obj$lower[ind2]))
+    u <- fun(c(1, obj$upper[ind2]))
     polygon.step(x, l, u, col=col[i])
   }
 }
 
 #' @export
-ciband.survfitms <- function(fit, col, fun=as.numeric) {
-  if(length(fit$strata)) stop('Not implemented for stratified multi-state models')
-  K <- ncol(fit$pstate)-1
+ciband.survfitms <- function(obj, col, fun=as.numeric, ...) {
+  if(length(obj$strata)) stop('Not implemented for stratified multi-state models')
+  K <- ncol(obj$pstate)-1
   if (missing(col)) col <- pal(K, alpha=0.4)
   for (i in 1:K) {
-    x <- c(0, fit$time)
-    l <- fun(fit$lower[,i])
-    u <- fun(fit$upper[,i])
+    x <- c(0, obj$time)
+    l <- fun(obj$lower[,i])
+    u <- fun(obj$upper[,i])
     polygon.step(x, l, u, col=col[i])
   }
 }

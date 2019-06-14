@@ -3,8 +3,8 @@ confint.mer <- function(object, parm, level = 0.95, n.sim = 10000, ...) {
   varnames <- names(object@fixef)[parm]
   alpha <- 1-level
   if (missing(parm)) parm <- 1:length(object@fixef)
-  
-  summ <- lme4::summary(object)
+
+  summ <- summary(object)
   df <- summ@ngrps
   CI <- cbind(summ@coefs[parm,1] - qt(1-alpha/2, df)*summ@coefs[parm,2],
               summ@coefs[parm,1] + qt(1-alpha/2, df)*summ@coefs[parm,2])
