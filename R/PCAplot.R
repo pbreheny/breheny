@@ -14,6 +14,8 @@
 #' PCAplot(iris[,1:4], grp=iris[,5])
 #' PCAplot(iris[,1:4], grp=iris[,5], tsne=TRUE)
 #' PCAplot(USArrests, txt=TRUE)
+#'
+#' @export
 
 PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="PCA 2", legend, ...) {
 

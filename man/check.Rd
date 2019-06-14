@@ -17,6 +17,7 @@ Checks whether two vectors are equal; wrapper for \code{all.equal}
 \examples{
 .test <- 'Example'
 check(1,1)
-check(1,2)
+try(check(1,2), silent=TRUE)
+cat(geterrmessage())
 
 }

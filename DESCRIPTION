@@ -1,10 +1,11 @@
 Package: breheny
 Title: Miscellaneous functions
-Version: 2.0-1
-Date: 2019-03-20
+Version: 2.1-0
+Date: 2019-06-14
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"), email="patrick-breheny@uiowa.edu")
-Description: Miscellaneous functions I frequently refer to
+Description: A collection of miscellaneous functions that I frequently refer to; these may or may not be useful to anyone else.
 License: GPL-3
-Imports: grid
+Imports: grid, stringr, Rtsne, lme4, rpart, party, partykit, survival, data.table
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
+Encoding: UTF-8

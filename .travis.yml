@@ -1,3 +1,2 @@
 language: R
-r_check_args: --test-dir=inst/tests
 cache: packages

@@ -11,7 +11,7 @@
 #' @export
 
 table2dt <- function(Tab) {
-  tmp <- as.data.table(Tab)
+  tmp <- data.table::as.data.table(Tab)
   tmp[rep(1:nrow(tmp), tmp$N),-ncol(tmp)]
 }
 

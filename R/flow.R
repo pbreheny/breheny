@@ -48,15 +48,24 @@ flowBox <- function(lab, x=.5, y=.5, hpad=20, vpad=20) {
   grid::grob(lab=lab, x=x, y=y, hpad=hpad, vpad=vpad, cl="box")
 }
 
+#' @rdname flowchart
+#' @export
+
 drawDetails.box <- function(x, ...) {
   drawBox(x$lab, x$x, x$y, hpad=x$hpad, vpad=x$vpad)
 }
+
+#' @rdname flowchart
+#' @export
 
 xDetails.box <- function(x, theta) {
   height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
   width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
   grid::grobX(grid::roundrectGrob(x=x$x, y=x$y, width=width, height=height), theta)
 }
+
+#' @rdname flowchart
+#' @export
 
 yDetails.box <- function(x, theta) {
   height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
@@ -72,7 +81,8 @@ yDetails.box <- function(x, theta) {
 #'
 #' @export
 
-plot.flow <- function(obj, x, xm=.1, ym=.1) {
+plot.flow <- function(x, y, xm=.1, ym=.1, ...) {
+  obj <- x; x <- y
   userX <- if (missing(x)) FALSE else TRUE
   n <- nrow(obj)
   depth <- numeric(n)

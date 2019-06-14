@@ -4,12 +4,21 @@
 \alias{flowchart}
 \alias{flow}
 \alias{addNode}
+\alias{drawDetails.box}
+\alias{xDetails.box}
+\alias{yDetails.box}
 \alias{plot.flow}
 \title{Create a flowchart}
 \usage{
 addNode(obj, node, parent, edge = "")
 
-\method{plot}{flow}(obj, x, xm = 0.1, ym = 0.1)
+drawDetails.box(x, ...)
+
+xDetails.box(x, theta)
+
+yDetails.box(x, theta)
+
+\method{plot}{flow}(x, y, xm = 0.1, ym = 0.1, ...)
 }
 \arguments{
 \item{obj}{\code{flow} object; in addNode, a new object will be created if not supplied}

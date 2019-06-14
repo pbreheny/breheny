@@ -6,7 +6,8 @@
 #' @examples
 #' .test <- 'Example'
 #' check(1,1)
-#' check(1,2)
+#' try(check(1,2), silent=TRUE)
+#' cat(geterrmessage())
 #'
 #' @export
 
