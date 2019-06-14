@@ -8,8 +8,17 @@ Description: A collection of miscellaneous functions that I frequently refer to;
   these may or may not be useful to anyone else.
 License: GPL-3
 Depends: stats
-Imports: grid, stringr, Rtsne, lme4, rpart, party, partykit, survival,
-  data.table
+Suggests: 
+  ashr,
+  data.table,
+  grid,
+  lme4,
+  party,
+  partykit,
+  rpart,
+  Rtsne,
+  stringr,
+  survival
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
