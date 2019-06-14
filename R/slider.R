@@ -1,19 +1,15 @@
-slider <- function(fun,from,to,res)
-  {
-    require(tcltk)
-    v <- from
-    fun(v)
-    tt <- tktoplevel()
-    f<-function(...)
-      {
-        vv <- as.numeric(tclvalue(tv))
-        if (vv != v)
-          {
-            v <<- vv
-            fun(vv)
-          }
-      }
-    tv <- tclVar(init=v)
-    s <- tkscale(tt,command=f,from=from,to=to,variable=tv,resolution=res,orient="horiz",length=500)
-    tkpack(s)
+slider <- function(fun, from, to, res) {
+  v <- from
+  fun(v)
+  tt <- tcltk::tktoplevel()
+  f <- function(...) {
+    vv <- as.numeric(tcltk::tclvalue(tv))
+    if (vv != v) {
+      v <<- vv
+      fun(vv)
+    }
   }
+  tv <- tcltk::tclVar(init=v)
+  s <- tcltk::tkscale(tt, command=f, from=from, to=to, variable=tv, resolution=res, orient="horiz", length=500)
+  tcltk::tkpack(s)
+}

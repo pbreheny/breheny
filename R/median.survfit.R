@@ -10,6 +10,7 @@
 #' median(fit)
 #'
 #' @export
+#' @import stats
 
 median.survfit <- function(x, ...) {
   start.time <- if (!is.null(x$start.time)) x$start.time else min(0, x$time)
