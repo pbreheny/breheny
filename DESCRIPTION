@@ -10,8 +10,10 @@ License: GPL-3
 Depends: stats
 Suggests: 
   ashr,
+  boot,
   data.table,
   grid,
+  lattice,
   lme4,
   party,
   partykit,

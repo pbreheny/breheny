@@ -2,7 +2,8 @@
 #'
 #' Based on survmean function from survival package
 #'
-#' @param x   A survfit object
+#' @param x     A survfit object
+#' @param ...   Not used
 #'
 #' @examples
 #' library(survival)

@@ -18,7 +18,7 @@ PCAplot(X, grp, txt = FALSE, tsne = FALSE, perp = 30,
 
 \item{perp}{Perplexity (for tSNE)}
 
-\item{xlab, }{ylab   Axis labels}
+\item{xlab, ylab}{Axis labels}
 
 \item{legend}{Include a legend (default: true)}
 

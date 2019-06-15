@@ -5,7 +5,7 @@
 #' @param txt          Use rownames as labels instead of dots (default: false)
 #' @param tsne         Use tSNE instead of PCA?  (default: false)
 #' @param perp         Perplexity (for tSNE)
-#' @param xlab, ylab   Axis labels
+#' @param xlab,ylab    Axis labels
 #' @param legend       Include a legend (default: true)
 #' @param ...          Further arguments to `plot()`
 #'

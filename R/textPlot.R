@@ -4,6 +4,7 @@
 #' @param y      y positions, if x is not a matrix
 #' @param xlab   x axis label
 #' @param ylab   y axis label
+#' @param ...    Additional arguments to `plot()`
 #'
 #' @examples
 #' a <- runif(10)

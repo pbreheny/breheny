@@ -2,6 +2,7 @@
 #'
 #' @param x,y                Vectors to test
 #' @param check.attributes   Default: FALSE
+#' @param ...                Additional arguments to `all.equal()`
 #'
 #' @examples
 #' .test <- 'Example'

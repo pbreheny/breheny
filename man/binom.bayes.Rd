@@ -30,6 +30,8 @@ binom.bayes(x, n, a = 1, b = 1, level = 0.95, null, plot = FALSE,
 \item{ylab}{ylab for plot}
 
 \item{col}{color of density line for plot}
+
+\item{...}{Additional arguments to \code{plot()}}
 }
 \description{
 Bayesian analysis of one-sample binomial data using conjugate beta priors

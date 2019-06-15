@@ -11,6 +11,7 @@
 #' @param xlab    xlab for plot
 #' @param ylab    ylab for plot
 #' @param col     color of density line for plot
+#' @param ...     Additional arguments to `plot()`
 #'
 #' @examples
 #' binom.bayes(10, 16)
@@ -27,14 +28,14 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
   mean.post <- A/(A+B)
   var.post <- (a+x)*(b+n-x)/((a+b+n)^2*(a+b+n+1))
   ci.central <- c(l.p, u.p)
-  f <- function(L) {
+  f_central <- function(L) {
     l <- qbeta(L, a+x, n-x+b)
     u <- qbeta(L+level, a+x, n-x+b)
     u-l
   }
   if (A > 1 & B > 1) {
     mode.post <- (A-1)/(A+B-2)
-    L <- optimize(f, lower=0, upper=1-level, tol=1e-10)$minimum
+    L <- optimize(f_central, lower=0, upper=1-level, tol=1e-10)$minimum
     l.h <- qbeta(L, a+x, n-x+b)
     if (l.h < 1e-8) l.h <- 0
     u.h <- qbeta(L+level, a+x, n-x+b)
@@ -51,13 +52,13 @@ binom.bayes <- function(x, n, a=1, b=1, level=.95, null, plot=FALSE, add=FALSE, 
   ci.hpd <- c(l.h, u.h)
   if (!missing(null)) {
     d0 <- dbeta(null, A, B)
-    f <- function(p) dbeta(p, A, B) - d0
+    f_hpd <- function(p) dbeta(p, A, B) - d0
     if (null > mode.post) {
       u <- null
-      l <- uniroot(f, c(0, mode.post))$root
+      l <- uniroot(f_hpd, c(0, mode.post))$root
     } else {
       l <- null
-      u <- uniroot(f, c(mode.post, 1))$root
+      u <- uniroot(f_hpd, c(mode.post, 1))$root
     }
     p <- pbeta(l,A,B) + 1 - pbeta(u,A,B)
   }

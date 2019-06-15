@@ -6,6 +6,13 @@
 \usage{
 Attach(x, name = deparse(substitute(x)), ...)
 }
+\arguments{
+\item{x}{What to attach.}
+
+\item{name}{Name to use for attached database.  Default: name of \code{x}.}
+
+\item{...}{Additional arguments to \code{attach()}.}
+}
 \description{
 Detach before attaching
 }

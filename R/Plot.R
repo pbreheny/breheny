@@ -1,5 +1,8 @@
 #' Customized plotting functions
 #'
+#' @param obj   Object to be plotted
+#' @param ...   Additional arguments to underlying plot function
+#'
 #' @examples
 #' # KM curves
 #' data(veteran, package='survival')
@@ -14,7 +17,7 @@
 #'
 #' @export
 
-Plot <- function(obj,...) UseMethod("Plot")
+Plot <- function(obj, ...) UseMethod("Plot")
 
 #' @export
 Plot.BinaryTree <- function(obj, pval=FALSE, summary=FALSE, digits=1, ...) {

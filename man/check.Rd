@@ -10,6 +10,8 @@ check(x, y, check.attributes = FALSE, ...)
 \item{x, y}{Vectors to test}
 
 \item{check.attributes}{Default: FALSE}
+
+\item{...}{Additional arguments to \code{all.equal()}}
 }
 \description{
 Checks whether two vectors are equal; wrapper for \code{all.equal}

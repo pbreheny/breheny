@@ -1,8 +1,13 @@
 #' Power and sample size for time-to-event data based on exponential closed form solution
 #'
-#' @param n       The table
-#' @param r       Effect size (ratio of hazards/medians)
-#' @param power   Desired power; default: 0.8
+#' @param n       Total sample size.
+#' @param r       Effect size (ratio of hazards/medians).
+#' @param alpha   Type I error rate.
+#' @param w       Controls sample size balance between two groups.  Default: Equal size groups.
+#' @param n1,n2   Sample size in each group.
+#' @param lam     Hazard rate in each group (if specified, overrides `r`).
+#' @param cens    Censoring rate.
+#' @param power   Desired power.  Default: 0.8.
 #'
 #' @examples
 #' epower(30, 1.5)

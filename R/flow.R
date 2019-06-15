@@ -23,6 +23,7 @@ NULL
 #' @param node     Text for new node
 #' @param parent   Parent of new node
 #' @param edge     Edge text from parent node to this node; default is ''
+#' @param theta,...   For S3 compatibility.
 #'
 #' @export
 
@@ -75,7 +76,8 @@ yDetails.box <- function(x, theta) {
 
 #' @rdname flowchart
 #'
-#' @param x    left/right positioning of flowchart elements
+#' @param x    Flowchart object
+#' @param y    Left/right positioning of flowchart elements
 #' @param xm   x (horizontal) margin (.2 = 20\% whitespace on left/right margins)
 #' @param ym   y (vertical) margin (.2 = 20\% whitespace on top/bottom margins)
 #'

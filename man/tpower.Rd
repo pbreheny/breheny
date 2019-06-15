@@ -12,25 +12,29 @@ tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8,
   upper = 5000, ...)
 }
 \arguments{
-\item{n}{Sample size (total)}
+\item{n}{Sample size (total).}
 
-\item{delta}{Effect size}
+\item{delta}{Effect size.}
 
-\item{lam}{Contrast}
+\item{lam}{Contrast.}
 
-\item{b}{Coefficient vector}
+\item{b}{Coefficient vector.}
 
-\item{sd}{Standard deviation of outcome}
+\item{sd}{Standard deviation of outcome.}
 
-\item{alpha}{Type I error rate}
+\item{alpha}{Type I error rate.}
 
-\item{w}{Weights for unequal allocation (normalized to 1)}
+\item{w}{Weights for unequal allocation (normalized to 1).}
 
-\item{n1}{Sample size for group 1}
+\item{n1}{Sample size for group 1.}
 
-\item{n2}{Sample size for group 2}
+\item{n2}{Sample size for group 2.}
 
-\item{power}{Desired power}
+\item{power}{Desired power.}
+
+\item{upper}{Upper bound for \code{tsamsize()}; increase if tsamsize hits this bound.  Default: 5000.}
+
+\item{...}{For \code{tsamsize()}, additional arguments to be passed to \code{tpower()}.}
 }
 \description{
 Power for t tests, including arbitrary linear hypotheses

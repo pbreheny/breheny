@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{A survfit object}
+
+\item{...}{Not used}
 }
 \description{
 Based on survmean function from survival package

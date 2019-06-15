@@ -10,11 +10,21 @@ epower(n, r, alpha = 0.05, w = c(1, 1), n1, n2, lam, cens)
 esamsize(r, w = c(1, 1), alpha = 0.05, power = 0.8, lam, cens)
 }
 \arguments{
-\item{n}{The table}
+\item{n}{Total sample size.}
 
-\item{r}{Effect size (ratio of hazards/medians)}
+\item{r}{Effect size (ratio of hazards/medians).}
 
-\item{power}{Desired power; default: 0.8}
+\item{alpha}{Type I error rate.}
+
+\item{w}{Controls sample size balance between two groups.  Default: Equal size groups.}
+
+\item{n1, n2}{Sample size in each group.}
+
+\item{lam}{Hazard rate in each group (if specified, overrides \code{r}).}
+
+\item{cens}{Censoring rate.}
+
+\item{power}{Desired power.  Default: 0.8.}
 }
 \description{
 Power and sample size for time-to-event data based on exponential closed form solution

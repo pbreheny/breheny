@@ -1,15 +1,17 @@
 #' Power for t tests, including arbitrary linear hypotheses
 #'
-#' @param n       Sample size (total)
-#' @param delta   Effect size
-#' @param lam     Contrast
-#' @param b       Coefficient vector
-#' @param sd      Standard deviation of outcome
-#' @param alpha   Type I error rate
-#' @param w       Weights for unequal allocation (normalized to 1)
-#' @param n1      Sample size for group 1
-#' @param n2      Sample size for group 2
-#' @param power   Desired power
+#' @param n       Sample size (total).
+#' @param delta   Effect size.
+#' @param lam     Contrast.
+#' @param b       Coefficient vector.
+#' @param sd      Standard deviation of outcome.
+#' @param alpha   Type I error rate.
+#' @param w       Weights for unequal allocation (normalized to 1).
+#' @param n1      Sample size for group 1.
+#' @param n2      Sample size for group 2.
+#' @param power   Desired power.
+#' @param upper   Upper bound for `tsamsize()`; increase if tsamsize hits this bound.  Default: 5000.
+#' @param ...     For `tsamsize()`, additional arguments to be passed to `tpower()`.
 #'
 #' @name tpower
 #'
@@ -51,8 +53,8 @@ tsamsize <- function(delta, b=c(delta,0), w=rep(1,g), power=.8, upper=5000,...) 
   g <- length(b)
   if (length(w) != g) stop("w does not match b")
   w <- w/sum(w)
-  f <- function(n){tpower(n,b=b,...)-power}
-  n <- uniroot(f, interval=c(2*g,upper))$root
+  f <- function(n){tpower(n, b=b, ...)-power}
+  n <- uniroot(f, interval=c(2*g, upper))$root
   nn <- ceiling(n*w)
   ##if (sd(nn) < .0000001) cat(nn[1]," in each group\n",sep="")
   ##else cat(paste("Group ",1:g,": ",nn,"\n",sep="",collapse=""))

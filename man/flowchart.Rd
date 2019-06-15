@@ -29,7 +29,11 @@ yDetails.box(x, theta)
 
 \item{edge}{Edge text from parent node to this node; default is ''}
 
-\item{x}{left/right positioning of flowchart elements}
+\item{x}{Flowchart object}
+
+\item{theta, ...}{For S3 compatibility.}
+
+\item{y}{Left/right positioning of flowchart elements}
 
 \item{xm}{x (horizontal) margin (.2 = 20\% whitespace on left/right margins)}
 

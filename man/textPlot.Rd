@@ -14,6 +14,8 @@ textPlot(x, y, xlab, ylab, ...)
 \item{xlab}{x axis label}
 
 \item{ylab}{y axis label}
+
+\item{...}{Additional arguments to \code{plot()}}
 }
 \description{
 Scatter plot, but with text labels

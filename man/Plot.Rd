@@ -6,6 +6,11 @@
 \usage{
 Plot(obj, ...)
 }
+\arguments{
+\item{obj}{Object to be plotted}
+
+\item{...}{Additional arguments to underlying plot function}
+}
 \description{
 Customized plotting functions
 }
