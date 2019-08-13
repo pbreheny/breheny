@@ -5,8 +5,8 @@
 \alias{tsamsize}
 \title{Power for t tests, including arbitrary linear hypotheses}
 \usage{
-tpower(n, delta, lam = c(1, -1), b = c(delta, 0), sd = 1,
-  alpha = 0.05, w = rep(1, g), n1, n2)
+tpower(n, delta, lam = c(1, -1), b, sd = 1, alpha = 0.05,
+  w = rep(1, g), n1, n2)
 
 tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8,
   upper = 5000, ...)
@@ -14,11 +14,11 @@ tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8,
 \arguments{
 \item{n}{Sample size (total).}
 
-\item{delta}{Effect size.}
+\item{delta}{Effect size; if specified, a two-group design is assumed.  If more than two groups, use \code{b} instead.}
 
 \item{lam}{Contrast.}
 
-\item{b}{Coefficient vector.}
+\item{b}{If a vector, the coefficient for each group.  If a matrix, must have \code{length(n)} rows.}
 
 \item{sd}{Standard deviation of outcome.}
 
@@ -48,6 +48,9 @@ Power for t tests, including arbitrary linear hypotheses
 
 \examples{
 tpower(100, 0.5)
+tpower(10*(6:9), 0.5)                # Vectorize sample size
+tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
+tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))   # A multi-group example
 tsamsize(0.5)
 
 }
