@@ -2,7 +2,7 @@
 % Please edit documentation in R/power-hd.R
 \name{power_hd}
 \alias{power_hd}
-\title{Sample size / power calculator for high-dimensional testing}
+\title{Power calculator for high-dimensional testing}
 \usage{
 power_hd(n, p, d, m, FDR = 0.1)
 }
@@ -18,7 +18,7 @@ power_hd(n, p, d, m, FDR = 0.1)
 \item{FDR}{Target FDR}
 }
 \description{
-Sample size / power calculator for high-dimensional testing
+Power calculator for high-dimensional testing
 }
 \examples{
 power_hd(10, 1000, 100, 1)
