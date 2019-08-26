@@ -50,7 +50,8 @@ Power for t tests, including arbitrary linear hypotheses
 tpower(100, 0.5)
 tpower(10*(6:9), 0.5)                # Vectorize sample size
 tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
-tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))   # A multi-group example
+tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
+tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 tsamsize(0.5)
 
 }

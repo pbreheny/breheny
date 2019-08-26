@@ -19,7 +19,8 @@
 #' tpower(100, 0.5)
 #' tpower(10*(6:9), 0.5)                # Vectorize sample size
 #' tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
-#' tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))   # A multi-group example
+#' tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
+#' tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 #' tsamsize(0.5)
 #'
 NULL
@@ -37,15 +38,17 @@ tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2
   } else {
     nd <- length(delta)
   }
+  na <- length(alpha)
   ns <- length(sd)
-  N <- max(nn, nd, ns)
+  N <- max(nn, nd, ns, na)
   if (length(setdiff(c(nn, nd, ns), c(1, N)))) {
-    stop('n/delta/b/sigma must either be length 1 or same length as longest vector')
+    stop('n/delta/b/sigma/alpha must either be length 1 or same length as longest vector')
   }
 
   # Check for agreement among arguments / recycle
   n <- rep_len(n, N)
   sd <- rep_len(sd, N)
+  alpha <- rep_len(alpha, N)
   if (!missing(delta) & !missing(b)) {
     stop('Specify only one of "delta" and "b"')
   }
@@ -79,9 +82,9 @@ tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2
   power <- numeric(N)
   for (i in 1:N) {
     X <- diag(1/(n[i]*W[i,])) ## XtX^(-1)
-    C <- qt(1-alpha/2,df[i])
+    C <- qt(1-alpha[i]/2, df[i])
     ncp <- abs(crossprod(lam, B[i,])/(sd[i]*sqrt(qd(lam,X))))
-    power[i] <- 1-pt(C,df[i],ncp)
+    power[i] <- 1-pt(C, df[i], ncp)
   }
   return(power)
 }
