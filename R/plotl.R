@@ -7,8 +7,11 @@
 #' @param xlab   Default: theta
 #' @param ylab   Default: L(theta)
 #' @param bty    Default: no boundary box
+#' @param ...    Further arguments to `plot()`
 #'
 #' @name likelihood_plot
+#'
+#' @encoding UTF-8
 #'
 #' @examples
 #' x <- seq(-3, 4, length=99)
