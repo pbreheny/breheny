@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -i 's/ℓ/\\u2113/' man/likelihood_plot.Rd
