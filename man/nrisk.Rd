@@ -22,7 +22,9 @@ Plot(fit)
 nrisk(fit)
 
 fit <- survfit(Surv(time, status) ~ celltype, veteran)
-Plot(fit)
+op <- par(mar=c(5,5,6,7))
+Plot(fit, legend='right')
 nrisk(fit)
+par(op)
 
 }
