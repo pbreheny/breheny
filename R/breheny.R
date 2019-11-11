@@ -6,6 +6,7 @@
 #' @import graphics
 #' @import grDevices
 #' @import utils
+#' @import data.table
 #'
 #' @name breheny
 NULL
