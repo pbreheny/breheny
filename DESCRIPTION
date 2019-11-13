@@ -12,6 +12,8 @@ Suggests:
   ashr,
   boot,
   grid,
+  kableExtra,
+  knitr,
   lattice,
   lme4,
   party,
