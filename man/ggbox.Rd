@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggbox.R
 \name{ggbox}
 \alias{ggbox}
-\title{Boxplot of a matrix using ggplot}
+\title{Boxplot of a data frame / matrix using ggplot}
 \usage{
 ggbox(X, xlab = "ind", ylab = "values")
 }
@@ -14,7 +14,7 @@ ggbox(X, xlab = "ind", ylab = "values")
 \item{ylab}{Vertical axis label (default: values)}
 }
 \description{
-Boxplot of a matrix using ggplot
+Boxplot of a data frame / matrix using ggplot
 }
 \examples{
 ggbox(matrix(rnorm(50), 10, 5))

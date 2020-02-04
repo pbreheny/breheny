@@ -1,4 +1,4 @@
-#' Boxplot of a matrix using ggplot
+#' Boxplot of a data frame / matrix using ggplot
 #'
 #' @param X       Matrix of values
 #' @param xlab    Horizontal axis label (default: ind)
@@ -10,5 +10,6 @@
 #' @export
 
 ggbox <- function(X, xlab='ind', ylab='values') {
-  ggplot2::ggplot(stack(X), ggplot2::aes(ind, values)) + ggplot2::geom_boxplot() + ggplot2::xlab(xlab) + ggplot2::ylab(ylab)
+  if (is.matrix(X)) X <- as.data.frame(X)
+  ggplot2::ggplot(utils::stack(X), ggplot2::aes_string('ind', 'values')) + ggplot2::geom_boxplot() + ggplot2::xlab(xlab) + ggplot2::ylab(ylab)
 }
