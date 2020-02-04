@@ -5,11 +5,19 @@
 \alias{tsamsize}
 \title{Power for t tests, including arbitrary linear hypotheses}
 \usage{
-tpower(n, delta, lam = c(1, -1), b, sd = 1, alpha = 0.05,
-  w = rep(1, g), n1, n2)
+tpower(
+  n,
+  delta,
+  lam = c(1, -1),
+  b,
+  sd = 1,
+  alpha = 0.05,
+  w = rep(1, g),
+  n1,
+  n2
+)
 
-tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8,
-  upper = 5000, ...)
+tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8, upper = 5000, ...)
 }
 \arguments{
 \item{n}{Sample size (total).}

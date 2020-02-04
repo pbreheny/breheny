@@ -11,6 +11,7 @@ Imports: stats, data.table
 Suggests: 
   ashr,
   boot,
+  ggplot2,
   grid,
   kableExtra,
   knitr,
@@ -22,6 +23,6 @@ Suggests:
   Rtsne,
   stringr,
   survival
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

@@ -4,9 +4,20 @@
 \alias{dnplot}
 \title{Density plot}
 \usage{
-dnplot(M, labs, pos = FALSE, lwd = 3, bty = "n", lty = 1,
-  col = pal(p), ylab = "Density", xlab = "", las = 1,
-  dens.par = NULL, ...)
+dnplot(
+  M,
+  labs,
+  pos = FALSE,
+  lwd = 3,
+  bty = "n",
+  lty = 1,
+  col = pal(p),
+  ylab = "Density",
+  xlab = "",
+  las = 1,
+  dens.par = NULL,
+  ...
+)
 }
 \arguments{
 \item{M}{A vector or matrix of values upon which the density plot is based; if a matrix, separate densities will be estimated and plotted for each column}

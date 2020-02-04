@@ -3,7 +3,6 @@
 \docType{package}
 \name{breheny}
 \alias{breheny}
-\alias{breheny-package}
 \title{breheny: Miscellaneous functions that Patrick Breheny finds useful}
 \description{
 breheny: Miscellaneous functions that Patrick Breheny finds useful

@@ -7,11 +7,23 @@
 \alias{plotl}
 \title{Plot likelihood function}
 \usage{
-plotL(x, l, xlab = expression(theta), ylab = expression(L(theta)),
-  bty = "n", ...)
+plotL(
+  x,
+  l,
+  xlab = expression(theta),
+  ylab = expression(L(theta)),
+  bty = "n",
+  ...
+)
 
-plotl(x, l, xlab = expression(theta), ylab = expression("\u2113" *
-  (theta)), bty = "n", ...)
+plotl(
+  x,
+  l,
+  xlab = expression(theta),
+  ylab = expression("ℓ" * (theta)),
+  bty = "n",
+  ...
+)
 }
 \arguments{
 \item{x}{Parameter values (on x axis)}

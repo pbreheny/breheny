@@ -4,8 +4,17 @@
 \alias{PCAplot}
 \title{Make a PCA/tSNE plot}
 \usage{
-PCAplot(X, grp, txt = FALSE, tsne = FALSE, perp = 30,
-  xlab = "PCA 1", ylab = "PCA 2", legend, ...)
+PCAplot(
+  X,
+  grp,
+  txt = FALSE,
+  tsne = FALSE,
+  perp = 30,
+  xlab = "PCA 1",
+  ylab = "PCA 2",
+  legend,
+  ...
+)
 }
 \arguments{
 \item{X}{A numeric matrix}

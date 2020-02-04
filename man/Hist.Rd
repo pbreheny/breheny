@@ -4,9 +4,17 @@
 \alias{Hist}
 \title{Nicer-looking histogram}
 \usage{
-Hist(x, ..., col = "gray", border = "white", n = 10,
+Hist(
+  x,
+  ...,
+  col = "gray",
+  border = "white",
+  n = 10,
   breaks = seq(min(x, na.rm = TRUE), max(x, na.rm = TRUE), len = n),
-  main = "", las = 1, xlab = deparse(substitute(x)))
+  main = "",
+  las = 1,
+  xlab = deparse(substitute(x))
+)
 }
 \arguments{
 \item{x}{A vector of values to make a histogram out of}

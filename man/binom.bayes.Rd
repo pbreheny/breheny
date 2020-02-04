@@ -4,9 +4,20 @@
 \alias{binom.bayes}
 \title{Bayesian analysis of one-sample binomial data using conjugate beta priors}
 \usage{
-binom.bayes(x, n, a = 1, b = 1, level = 0.95, null, plot = FALSE,
-  add = FALSE, xlab = "p", ylab = "Posterior density",
-  col = "blue", ...)
+binom.bayes(
+  x,
+  n,
+  a = 1,
+  b = 1,
+  level = 0.95,
+  null,
+  plot = FALSE,
+  add = FALSE,
+  xlab = "p",
+  ylab = "Posterior density",
+  col = "blue",
+  ...
+)
 }
 \arguments{
 \item{x}{Number of "successes"}

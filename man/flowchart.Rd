@@ -46,13 +46,13 @@ Create a flowchart
 Probably would be better with R6/RC object orientation
 }
 \examples{
-X <- addNode("All children\\n(n=935)")
-addNode(X, "Returned form\\n(n=511)", parent=1)
-addNode(X, "Baseline: 0\\n(n=447)", parent=2)
-addNode(X, "Baseline: 1 or 2\\n(n=14)", parent=2)
-addNode(X, "Baseline: 3\\n(n=50)", parent=2)
-addNode(X, "Initiation\\n(n=315)", parent=3)
-addNode(X, "Completion\\n(n=276)", parent=4)
-addNode(X, "Completion\\n(n=12)", parent=6)
+X <- addNode("All children\n(n=935)")
+addNode(X, "Returned form\n(n=511)", parent=1)
+addNode(X, "Baseline: 0\n(n=447)", parent=2)
+addNode(X, "Baseline: 1 or 2\n(n=14)", parent=2)
+addNode(X, "Baseline: 3\n(n=50)", parent=2)
+addNode(X, "Initiation\n(n=315)", parent=3)
+addNode(X, "Completion\n(n=276)", parent=4)
+addNode(X, "Completion\n(n=12)", parent=6)
 plot(X, c(0, 0, -1, 0, 1, -1, 0, -1), xm=.2)
 }

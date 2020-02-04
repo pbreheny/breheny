@@ -19,10 +19,10 @@ NULL
 
 #' @rdname flowchart
 #'
-#' @param obj      `flow` object; in addNode, a new object will be created if not supplied
-#' @param node     Text for new node
-#' @param parent   Parent of new node
-#' @param edge     Edge text from parent node to this node; default is ''
+#' @param obj         `flow` object; in addNode, a new object will be created if not supplied
+#' @param node        Text for new node
+#' @param parent      Parent of new node
+#' @param edge        Edge text from parent node to this node; default is ''
 #' @param theta,...   For S3 compatibility.
 #'
 #' @export
@@ -78,8 +78,8 @@ yDetails.box <- function(x, theta) {
 #'
 #' @param x    Flowchart object
 #' @param y    Left/right positioning of flowchart elements
-#' @param xm   x (horizontal) margin (.2 = 20\% whitespace on left/right margins)
-#' @param ym   y (vertical) margin (.2 = 20\% whitespace on top/bottom margins)
+#' @param xm   x (horizontal) margin (.2 = 20% whitespace on left/right margins)
+#' @param ym   y (vertical) margin (.2 = 20% whitespace on top/bottom margins)
 #'
 #' @export
 

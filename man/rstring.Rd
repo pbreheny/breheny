@@ -4,8 +4,7 @@
 \alias{rstring}
 \title{Generate random string of characters}
 \usage{
-rstring(n = 1, length = 20, include.extra = FALSE,
-  include.num = FALSE)
+rstring(n = 1, length = 20, include.extra = FALSE, include.num = FALSE)
 }
 \arguments{
 \item{n}{Number of random strings to generate}

@@ -24,7 +24,7 @@ Object of class `power.htest``, a list of the arguments augmented with method an
 Targets the probability of correct classification (PCC) to within a certain tolerance of the optimal PCC.
 }
 \details{
-Loosely based on the function \code{MKmisc::ssize.pcc()}, but more accurate.  I think it is also more accurate than the results presented by Dobbin (2008), but I'm not 100% clear on their method when n1 != n2.  When n1=n2, all methods agree.
+Loosely based on the function \code{MKmisc::ssize.pcc()}, but more accurate.  I think it is also more accurate than the results presented by Dobbin (2008), but I'm not 100\% clear on their method when n1 != n2.  When n1=n2, all methods agree.
 }
 \examples{
 samsize_pcc(0.1, 2, 0.3, 22000)

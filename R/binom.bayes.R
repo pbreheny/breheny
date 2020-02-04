@@ -4,7 +4,7 @@
 #' @param n       Number of trials
 #' @param a       'alpha' parameter for beta prior. Default: uniform prior
 #' @param b       'beta' parameter for beta prior. Default: uniform prior
-#' @param level   For posterior interval; .95 for a 95\% credible interval
+#' @param level   For posterior interval; .95 for a 95% credible interval
 #' @param null    Point null to evaluate as a kind of hypothesis test
 #' @param plot    Draw a plot?  Default: false
 #' @param add     Add to existing plot?  Default: false
