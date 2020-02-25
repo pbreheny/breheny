@@ -13,14 +13,14 @@
 #' @export
 
 scale_x_revlog <- function(base=exp(1), ...) {
-  scale_x_continuous(trans=reverselog_trans(10), ...)
+  ggplot2::scale_x_continuous(trans=reverselog_trans(10), ...)
 }
 
 #' @rdname scale_revlog
 #' @export
 
 scale_y_revlog <- function(base=exp(1), ...) {
-  scale_y_continuous(trans=reverselog_trans(10), ...)
+  ggplot2::scale_y_continuous(trans=reverselog_trans(10), ...)
 }
 
 reverselog_trans <- function(base = exp(1)) {
