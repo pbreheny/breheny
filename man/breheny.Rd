@@ -4,3 +4,6 @@
 \name{breheny}
 \alias{breheny}
 \title{breheny: Miscellaneous functions that Patrick Breheny finds useful}
+\description{
+Miscellaneous functions that Patrick Breheny finds useful
+}
