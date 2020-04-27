@@ -19,18 +19,23 @@
 
 Plot <- function(obj, ...) UseMethod("Plot")
 
+#' @param pval   Show p-values?  Default=FALSE
+#' @rdname Plot
 #' @export
 Plot.BinaryTree <- function(obj, pval=FALSE, summary=FALSE, digits=1, ...) {
   if (summary) plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits), terminal_panel=panelSummary)
   else plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits))
 }
 
+#' @rdname Plot
 #' @export
 Plot.rpart <- function(obj, ...) {
   fit <- partykit::as.party(obj)
   plot(fit, ip_args=list(id=FALSE), tp_args=list(id=FALSE), ...)
 }
 
+#' @param legend   Where to put the legend. Either 'top', 'right', or 'none'; default: 'top'
+#' @rdname Plot
 #' @export
 Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", conf.int=FALSE, col, ...) {
   legend <- match.arg(legend)

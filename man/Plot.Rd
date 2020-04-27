@@ -2,14 +2,35 @@
 % Please edit documentation in R/Plot.R
 \name{Plot}
 \alias{Plot}
+\alias{Plot.BinaryTree}
+\alias{Plot.rpart}
+\alias{Plot.survfit}
 \title{Customized plotting functions}
 \usage{
 Plot(obj, ...)
+
+\method{Plot}{BinaryTree}(obj, pval = FALSE, summary = FALSE, digits = 1, ...)
+
+\method{Plot}{rpart}(obj, ...)
+
+\method{Plot}{survfit}(
+  obj,
+  legend = c("top", "right", "none"),
+  xlab = "Time",
+  ylab = "Survival",
+  conf.int = FALSE,
+  col,
+  ...
+)
 }
 \arguments{
 \item{obj}{Object to be plotted}
 
 \item{...}{Additional arguments to underlying plot function}
+
+\item{pval}{Show p-values?  Default=FALSE}
+
+\item{legend}{Where to put the legend. Either 'top', 'right', or 'none'; default: 'top'}
 }
 \description{
 Customized plotting functions
