@@ -11,14 +11,13 @@ Plot(obj, ...)
 
 \method{Plot}{BinaryTree}(obj, pval = FALSE, summary = FALSE, digits = 1, ...)
 
-\method{Plot}{rpart}(obj, ...)
+\method{Plot}{rpart}(obj, summary = FALSE, digits = 1, ...)
 
 \method{Plot}{survfit}(
   obj,
   legend = c("top", "right", "none"),
   xlab = "Time",
   ylab = "Survival",
-  conf.int = FALSE,
   col,
   ...
 )
@@ -28,9 +27,17 @@ Plot(obj, ...)
 
 \item{...}{Additional arguments to underlying plot function}
 
-\item{pval}{Show p-values?  Default=FALSE}
+\item{pval}{Show p-values at branching nodes?  Default=FALSE}
+
+\item{summary}{Show summary statistics at terminal nodes?  Default is FALSE; plots are drawn instead.}
+
+\item{digits}{Number of digits to show in edges.  Default: 1.}
 
 \item{legend}{Where to put the legend. Either 'top', 'right', or 'none'; default: 'top'}
+
+\item{xlab, ylab}{Axis labels.}
+
+\item{col}{Vector of colors corresponding to groups.}
 }
 \description{
 Customized plotting functions
@@ -46,5 +53,14 @@ data(kyphosis, package='rpart')
 fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
 Plot(fit)
 fit <- party::ctree(Kyphosis ~ Age + Number + Start, data = kyphosis)
+Plot(fit)
+Plot(fit, summary=TRUE)
+Plot(fit, summary=TRUE, pval=TRUE)
+Plot(fit, pval=TRUE, digits=2)
+Data <- kyphosis
+Data$Start <- Data$Start + runif(nrow(Data))
+fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = Data)
+Plot(fit)
+Plot(fit, digits=10)
 
 }
