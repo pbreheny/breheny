@@ -53,7 +53,7 @@ flowBox <- function(lab, x=.5, y=.5, hpad=20, vpad=20) {
 #' @export
 
 drawDetails.box <- function(x, ...) {
-  drawBox(x$lab, x$x, x$y, hpad=x$hpad, vpad=x$vpad)
+  breheny::drawBox(x$lab, x$x, x$y, hpad=x$hpad, vpad=x$vpad)
 }
 
 #' @rdname flowchart
@@ -128,8 +128,8 @@ plot.flow <- function(x, y, xm=.1, ym=.1, ...) {
       }
       grid::grid.curve(grid::grobX(box[[p]], "south"), grid::grobY(box[[p]], "south"),
                  grid::grobX(box[[j]], "north"), grid::grobY(box[[j]], "north"),
-                 inflect=inflect, curv=curv,
-                 arrow=grid::arrow(type="closed", angle=15, length=grid::unit(3, "mm")), gp=grid::gpar(fill="black"))
+                 inflect=inflect, curv=curv, gp=grid::gpar(fill="black"))
+      #            arrow=grid::arrow(type="closed", angle=15, length=grid::unit(3, "mm")))
       if (obj$edge[j]!="") {
         just <- if (x[j] > x[p]) "right" else "left"
         grid::grid.text(obj$edge[j], x[j], (y[p]+y[j])/2, just=c(just,"bottom"))
