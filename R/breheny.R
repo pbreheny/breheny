@@ -9,6 +9,7 @@
 #' @import grDevices
 #' @import utils
 #' @import data.table
+#' @import R6
 #'
 #' @name breheny
 NULL
