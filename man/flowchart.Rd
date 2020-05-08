@@ -3,56 +3,125 @@
 \name{flowchart}
 \alias{flowchart}
 \alias{flow}
-\alias{addNode}
-\alias{drawDetails.box}
-\alias{xDetails.box}
-\alias{yDetails.box}
-\alias{plot.flow}
+\alias{Flow}
+\alias{plot.Flow}
 \title{Create a flowchart}
 \usage{
-addNode(obj, node, parent, edge = "")
-
-drawDetails.box(x, ...)
-
-xDetails.box(x, theta)
-
-yDetails.box(x, theta)
-
-\method{plot}{flow}(x, y, xm = 0.1, ym = 0.1, ...)
+\method{plot}{Flow}(obj, xm = 0.1, ym = 0.1, hpad = 20, vpad = 20, ...)
 }
 \arguments{
-\item{obj}{\code{flow} object; in addNode, a new object will be created if not supplied}
+\item{obj}{\code{Flow} object}
 
-\item{node}{Text for new node}
+\item{xm, ym}{Outer x/y margins of the plot (.2 = 20\% margin on each side); default: 0.1}
 
-\item{parent}{Parent of new node}
-
-\item{edge}{Edge text from parent node to this node; default is ''}
-
-\item{x}{Flowchart object}
-
-\item{theta, ...}{For S3 compatibility.}
-
-\item{y}{Left/right positioning of flowchart elements}
-
-\item{xm}{x (horizontal) margin (.2 = 20\% whitespace on left/right margins)}
-
-\item{ym}{y (vertical) margin (.2 = 20\% whitespace on top/bottom margins)}
+\item{hpad, vpad}{Horzontal/verticl padding around text in chart nodes, in mm; default: 20}
 }
 \description{
-Create a flowchart
-}
-\note{
-Probably would be better with R6/RC object orientation
+\code{Flow} is an R6 class used for initializing, constructing and modifying the
+information that goes into the flowchart.  The plotting is then handled via the
+\code{plot()} function.
 }
 \examples{
-X <- addNode("All children\n(n=935)")
-addNode(X, "Returned form\n(n=511)", parent=1)
-addNode(X, "Baseline: 0\n(n=447)", parent=2)
-addNode(X, "Baseline: 1 or 2\n(n=14)", parent=2)
-addNode(X, "Baseline: 3\n(n=50)", parent=2)
-addNode(X, "Initiation\n(n=315)", parent=3)
-addNode(X, "Completion\n(n=276)", parent=4)
-addNode(X, "Completion\n(n=12)", parent=6)
-plot(X, c(0, 0, -1, 0, 1, -1, 0, -1), xm=.2)
+fl <- Flow$new("All children\n(n=935)")
+fl$add("Returned form\n(n=511)", parent=1)
+fl$add("Baseline: 0\n(n=447)", parent=2, x=-1)
+fl$add("Baseline: 1 or 2\n(n=14)", parent=2)
+fl$add("Baseline: 3\n(n=50)", parent=2, x=1)
+fl$add("Initiation\n(n=315)", parent=3, x=-1)
+fl$add("Completion\n(n=276)", parent=6, x=-1)
+fl$add("Completion\n(n=12)", parent=4)
+fl
+plot(fl)
+plot(fl, xm=0.3)
+plot(fl, xm=0.2, hpad=10, vpad=10)
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{n}}{Number of nodes}
+
+\item{\code{Parent}}{Vector of parent nodes}
+
+\item{\code{x}}{Vector of horizontal positions}
+
+\item{\code{Label}}{Vector of labels}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{Flow$new()}}
+\item \href{#method-print}{\code{Flow$print()}}
+\item \href{#method-add}{\code{Flow$add()}}
+\item \href{#method-clone}{\code{Flow$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initialize a new flowchart at its parent node
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Flow$new(lab, x = 0)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lab}}{Label (node text)}
+
+\item{\code{x}}{Horizontal position (0=center)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the current status of the flowchart
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Flow$print()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add"></a>}}
+\if{latex}{\out{\hypertarget{method-add}{}}}
+\subsection{Method \code{add()}}{
+Add a node to the flowchart
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Flow$add(lab, parent, x = 0)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lab}}{Label (node text)}
+
+\item{\code{parent}}{Number (i.e., row) of this node's parent}
+
+\item{\code{x}}{Horizontal position (0=center)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Flow$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
 }

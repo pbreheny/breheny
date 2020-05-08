@@ -1,9 +1,12 @@
 #' Create a flowchart
 #'
+#' `Flow` is an R6 class used for initializing, constructing and modifying the
+#' information that goes into the flowchart.  The plotting is then handled via the
+#' `plot()` function.
+#'
 #' @name flowchart
 #' @aliases flow
-#'
-#' @note Probably would be better with R6/RC object orientation
+#' @aliases Flow
 #'
 #' @examples
 #' fl <- Flow$new("All children\n(n=935)")
@@ -15,75 +18,53 @@
 #' fl$add("Completion\n(n=276)", parent=6, x=-1)
 #' fl$add("Completion\n(n=12)", parent=4)
 #' fl
-#' plot(fl, xm=.2)
+#' plot(fl)
+#' plot(fl, xm=0.25)
+#' plot(fl, xm=0.2, hpad=10, vpad=10)
 NULL
 
-#' @rdname flowchart
-#'
-#' @param obj         `flow` object; in addNode, a new object will be created if not supplied
-#' @param node        Text for new node
-#' @param parent      Parent of new node
-#' @param edge        Edge text from parent node to this node; default is ''
-#' @param theta,...   For S3 compatibility.
+#' @param x     Horizontal position (0=center)
+#' @param lab   Label (node text)
 #'
 #' @export
+#' @rdname flowchart
 
 Flow <- R6::R6Class('Flow', public=list(
-  val = NULL,
+  #' @description Initialize a new flowchart at its parent node
   initialize = function(lab, x=0) {
-    self$val <- data.frame(Label=lab, Parent=0, x=x)
+    private$val <- data.frame(Label=lab, Parent=0, x=x)
   },
+
+  #' @description Print the current status of the flowchart
+  print = function() {
+    print.data.frame(private$val)
+    cat("Class: Flow")
+  },
+
+  #' @description Add a node to the flowchart
+  #' @param parent   Number (i.e., row) of this node's parent
   add = function(lab, parent, x=0) {
     new <- data.frame(Label=lab, Parent=parent, x=x)
-    self$val <- rbind(self$val, new)
-  },
-  print = function() {
-    print.data.frame(self$val)
-    cat("Class: Flow")
+    private$val <- rbind(private$val, new)
   }
 ), active = list(
-  n = function() nrow(self$val),
-  Parent = function() self$val$Parent,
-  x = function() self$val$x,
-  Label = function() self$val$Label
+  #' @field n        Number of nodes
+  #' @field Parent   Vector of parent nodes
+  #' @field x        Vector of horizontal positions
+  #' @field Label    Vector of labels
+  n = function() nrow(private$val),
+  Parent = function() private$val$Parent,
+  x = function() private$val$x,
+  Label = function() private$val$Label
+), private=list(
+  val = NULL
 ))
 
-#' @rdname flowchart
-#' @export
-
-drawDetails.box <- function(x, lab, hpad=20, vpad=20, ...) {
-  vp <- grid::viewport(x=x$x, y=x$y, width=grid::stringWidth(x$lab) + grid::unit(hpad, "mm"), height=grid::stringHeight(x$lab) + grid::unit(vpad, "mm"))
-  grid::pushViewport(vp)
-  grid::grid.roundrect(gp=grid::gpar(fill="gray90", lwd=0))
-  grid::grid.text(x$lab)
-  grid::popViewport()
-}
-
-#' @rdname flowchart
-#' @export
-
-xDetails.box <- function(x, theta) {
-  height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
-  width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
-  grid::grobX(grid::roundrectGrob(x=x$x, y=x$y, width=width, height=height), theta)
-}
-
-#' @rdname flowchart
-#' @export
-
-yDetails.box <- function(x, theta) {
-  height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
-  width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
-  grid::grobY(grid::rectGrob(x=x$x, y=x$y, width=width, height=height), theta)
-}
-
-#' @rdname flowchart
+#' @param obj     `Flow` object
+#' @param xm,ym   Outer x/y margins of the plot (.2 = 20% margin on each side); default: 0.1
+#' @param hpad,vpad   Horzontal/verticl padding around text in chart nodes, in mm; default: 20
 #'
-#' @param x    Flowchart object
-#' @param y    Left/right positioning of flowchart elements
-#' @param xm   x (horizontal) margin (.2 = 20% whitespace on left/right margins)
-#' @param ym   y (vertical) margin (.2 = 20% whitespace on top/bottom margins)
-#'
+#' @rdname flowchart
 #' @export
 
 plot.Flow <- function(obj, xm=.1, ym=.1, hpad=20, vpad=20, ...) {
@@ -124,24 +105,27 @@ plot.Flow <- function(obj, xm=.1, ym=.1, hpad=20, vpad=20, ...) {
   grid::grid.newpage()
   grid::pushViewport(grid::viewport(x=0.5, y=0.5, w=1-2*xm, h=1-2*ym))
   grid::grid.draw(gt)
-
-  # for (i in 2:obj$n) {
-  #   parent <- grid::getGrob(gt, as.character(obj$Parent[i]))
-  #   child <- grid::getGrob(gt, as.character(i))
-  #   xdiff <- x[i] - x[obj$Parent[i]]
-  #   if (xdiff == 0) {
-  #     inflect <- FALSE
-  #     curv <- 0
-  #   } else {
-  #     inflect <- TRUE
-  #     curv <- 2*(xdiff>0)-1
-  #   }
-  #   grid::grid.curve(grid::grobX(parent, "south"),
-  #                    grid::grobY(parent, "south"),
-  #                    grid::grobX(child, "north"),
-  #                    grid::grobY(child, "north"),
-  #                    inflect=inflect, curv=curv, gp=grid::gpar(fill="black"),
-  #                    arrow=grid::arrow(type="closed", angle=15, length=grid::unit(3, 'mm')))
-  # }
 }
 
+#' @export
+drawDetails.box <- function(x, lab, hpad=20, vpad=20, ...) {
+  vp <- grid::viewport(x=x$x, y=x$y, width=grid::stringWidth(x$lab) + grid::unit(hpad, "mm"), height=grid::stringHeight(x$lab) + grid::unit(vpad, "mm"))
+  grid::pushViewport(vp)
+  grid::grid.roundrect(gp=grid::gpar(fill="gray90", lwd=0))
+  grid::grid.text(x$lab)
+  grid::popViewport()
+}
+
+#' @export
+xDetails.box <- function(x, theta) {
+  height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
+  width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
+  grid::grobX(grid::roundrectGrob(x=x$x, y=x$y, width=width, height=height), theta)
+}
+
+#' @export
+yDetails.box <- function(x, theta) {
+  height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
+  width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
+  grid::grobY(grid::rectGrob(x=x$x, y=x$y, width=width, height=height), theta)
+}
