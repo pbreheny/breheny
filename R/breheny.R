@@ -10,6 +10,7 @@
 #' @import utils
 #' @import data.table
 #' @import R6
+#' @import grid
 #'
 #' @name breheny
 NULL

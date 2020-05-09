@@ -19,8 +19,8 @@
 #' fl$add("Completion\n(n=12)", parent=4)
 #' fl
 #' plot(fl)
+#' plot(fl, hpad=20, vpad=20)
 #' plot(fl, xm=0.25)
-#' plot(fl, xm=0.2, hpad=10, vpad=10)
 NULL
 
 #' @param x     Horizontal position (0=center)
@@ -60,14 +60,16 @@ Flow <- R6::R6Class('Flow', public=list(
   val = NULL
 ))
 
-#' @param obj     `Flow` object
-#' @param xm,ym   Outer x/y margins of the plot (.2 = 20% margin on each side); default: 0.1
-#' @param hpad,vpad   Horzontal/verticl padding around text in chart nodes, in mm; default: 20
+#' @param x         `Flow` object
+#' @param xm,ym       Outer x/y margins of the plot (.2 = 20% margin on each side); default: 0.1
+#' @param hpad,vpad   Horzontal/verticl padding around text in chart nodes, in mm; default: 10
+#' @param ...         For S3 method compatibility
 #'
 #' @rdname flowchart
 #' @export
 
-plot.Flow <- function(obj, xm=.1, ym=.1, hpad=20, vpad=20, ...) {
+plot.Flow <- function(x, xm=.1, ym=.1, hpad=10, vpad=10, ...) {
+  obj <- x
   depth <- numeric(obj$n)
   for (i in 1:obj$n) {
     if (obj$Parent[i]==0) {
@@ -108,8 +110,9 @@ plot.Flow <- function(obj, xm=.1, ym=.1, hpad=20, vpad=20, ...) {
 }
 
 #' @export
-drawDetails.box <- function(x, lab, hpad=20, vpad=20, ...) {
-  vp <- grid::viewport(x=x$x, y=x$y, width=grid::stringWidth(x$lab) + grid::unit(hpad, "mm"), height=grid::stringHeight(x$lab) + grid::unit(vpad, "mm"))
+#' @method drawDetails box
+drawDetails.box <- function(x, ...) {
+  vp <- grid::viewport(x=x$x, y=x$y, width=grid::stringWidth(x$lab) + grid::unit(x$hpad, "mm"), height=grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm"))
   grid::pushViewport(vp)
   grid::grid.roundrect(gp=grid::gpar(fill="gray90", lwd=0))
   grid::grid.text(x$lab)
@@ -117,6 +120,7 @@ drawDetails.box <- function(x, lab, hpad=20, vpad=20, ...) {
 }
 
 #' @export
+#' @method xDetails box
 xDetails.box <- function(x, theta) {
   height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
   width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)
@@ -124,6 +128,7 @@ xDetails.box <- function(x, theta) {
 }
 
 #' @export
+#' @method yDetails box
 yDetails.box <- function(x, theta) {
   height <- grid::stringHeight(x$lab) + grid::unit(x$vpad, "mm")
   width <- grid::unit(x$hpad, "mm") + grid::stringWidth(x$lab)

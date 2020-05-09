@@ -1,13 +1,13 @@
 Package: breheny
 Title: Miscellaneous Functions
-Version: 2.2.2.1002
-Date: 2020-05-08
+Version: 2.2.2.1003
+Date: 2020-05-09
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
   email="patrick-breheny@uiowa.edu")
 Description: A collection of miscellaneous functions that I frequently refer to;
   these may or may not be useful to anyone else.
 License: GPL-3
-Imports: stats, data.table
+Imports: stats, data.table, R6
 Suggests: 
   ashr,
   boot,

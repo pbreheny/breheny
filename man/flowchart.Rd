@@ -7,14 +7,16 @@
 \alias{plot.Flow}
 \title{Create a flowchart}
 \usage{
-\method{plot}{Flow}(obj, xm = 0.1, ym = 0.1, hpad = 20, vpad = 20, ...)
+\method{plot}{Flow}(x, xm = 0.1, ym = 0.1, hpad = 10, vpad = 10, ...)
 }
 \arguments{
-\item{obj}{\code{Flow} object}
+\item{x}{\code{Flow} object}
 
 \item{xm, ym}{Outer x/y margins of the plot (.2 = 20\% margin on each side); default: 0.1}
 
-\item{hpad, vpad}{Horzontal/verticl padding around text in chart nodes, in mm; default: 20}
+\item{hpad, vpad}{Horzontal/verticl padding around text in chart nodes, in mm; default: 10}
+
+\item{...}{For S3 method compatibility}
 }
 \description{
 \code{Flow} is an R6 class used for initializing, constructing and modifying the
@@ -32,8 +34,8 @@ fl$add("Completion\n(n=276)", parent=6, x=-1)
 fl$add("Completion\n(n=12)", parent=4)
 fl
 plot(fl)
-plot(fl, xm=0.3)
-plot(fl, xm=0.2, hpad=10, vpad=10)
+plot(fl, hpad=20, vpad=20)
+plot(fl, xm=0.25)
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
