@@ -4,7 +4,7 @@
 \alias{write_fwf}
 \title{Generate fixed width file in R}
 \usage{
-write_fwf(dt, width, con = stdout(), justify = "l", replace_na = "NA")
+write_fwf(dt, width, con = stdout(), align = "l", na = "NA")
 }
 \arguments{
 \item{dt}{The data to be printed}
@@ -13,15 +13,15 @@ write_fwf(dt, width, con = stdout(), justify = "l", replace_na = "NA")
 
 \item{con}{Connection, as in \code{writeLines()}; default is \code{stdout()}.}
 
-\item{justify}{"l", "r" or something like "lrl" for left, right, left.}
+\item{align}{"l", "r" or something like "lrl" for left, right, left.}
 
-\item{replace_na}{What to print in places of missing values; default: "NA"}
+\item{na}{What to print in places of missing values; default: "NA"}
 }
 \description{
 https://gist.github.com/haozhu233/28d1309b58431f4929f78243054f1f58
 }
 \examples{
 dt <- data.frame(a = 1:3, b = NA, c = c('a', 'b', 'c'))
-write_fwf(dt, "test.txt", width = c(4, 4, 3))
+write_fwf(dt, width = c(4, 4, 3))
 
 }
