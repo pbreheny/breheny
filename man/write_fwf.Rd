@@ -4,7 +4,7 @@
 \alias{write_fwf}
 \title{Generate fixed width file in R}
 \usage{
-write_fwf(dt, width, con = stdout(), align = "l", na = "NA")
+write_fwf(dt, width, con = stdout(), align = "l", na = "NA", col.names = TRUE)
 }
 \arguments{
 \item{dt}{The data to be printed}
@@ -16,6 +16,8 @@ write_fwf(dt, width, con = stdout(), align = "l", na = "NA")
 \item{align}{"l", "r" or something like "lrl" for left, right, left.}
 
 \item{na}{What to print in places of missing values; default: "NA"}
+
+\item{col.names}{Print column names?  Default: TRUE}
 }
 \description{
 https://gist.github.com/haozhu233/28d1309b58431f4929f78243054f1f58
