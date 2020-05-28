@@ -7,6 +7,7 @@
 #' @param con          Connection, as in `writeLines()`; default is `stdout()`.
 #' @param align        "l", "r" or something like "lrl" for left, right, left.
 #' @param na           What to print in places of missing values; default: "NA"
+#' @param col.names    Print column names?  Default: TRUE
 #'
 #' @examples
 #' dt <- data.frame(a = 1:3, b = NA, c = c('a', 'b', 'c'))
@@ -14,7 +15,7 @@
 #'
 #' @export
 
-write_fwf = function(dt, width, con=stdout(), align = "l", na = "NA") {
+write_fwf = function(dt, width, con=stdout(), align = "l", na = "NA", col.names=TRUE) {
   fct_col = which(sapply(dt, is.factor))
   if (length(fct_col) > 0) {
     for (i in fct_col) {
@@ -34,6 +35,6 @@ write_fwf = function(dt, width, con=stdout(), align = "l", na = "NA") {
   )
   tbl_content = do.call(sprintf, c(fmt = sptf_fmt, dt))
   tbl_header = do.call(sprintf, c(list(sptf_fmt), names(dt)))
-  out = c(tbl_header, tbl_content)
+  out <- if (col.names) c(tbl_header, tbl_content) else tbl_content
   writeLines(out, con)
 }
