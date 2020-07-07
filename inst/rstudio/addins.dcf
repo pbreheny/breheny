@@ -1,0 +1,4 @@
+Name: run_tests
+Description: Runs R code in tests
+Binding: run_tests
+Interactive: false
