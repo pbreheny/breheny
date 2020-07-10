@@ -1,7 +1,15 @@
+#' Soft-thresholding operator
+#'
+#' @param x   The thing to be thresholded
+#' @param l   The threshold; must either be length 1 or same langth as x
+#'
+#' @examples
+#' soft(-10:10, 2.5)
+#' soft(rep(5.5, 10), 1:10)
+#'
+#' @export
+
 soft <- function(x, l) {
-  v <- x
-  v[x > l] <- x[x > l] - l
-  v[abs(x) <= l] <- 0
-  v[x < -l] <- x[x < -l] + l
-  v
+  if (length(l) != 1 & length(l) != length(x)) stop('Threshold must either be a scalar or same length as x', call.=FALSE)
+  sign(x) * (abs(x) > l) * (abs(x) - l)
 }
