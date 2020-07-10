@@ -6,6 +6,7 @@
 #' @examples
 #' soft(-10:10, 2.5)
 #' soft(rep(5.5, 10), 1:10)
+#' soft(matrix(1:30, ncol=3), 10)
 #'
 #' @export
 
