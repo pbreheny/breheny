@@ -7,6 +7,7 @@
 #' @param perp         Perplexity (for tSNE)
 #' @param xlab,ylab    Axis labels
 #' @param legend       Include a legend (default: true)
+#' @param dims         Dimensions to return (for tsne)
 #' @param ...          Further arguments to `plot()`
 #'
 #' @examples
@@ -17,7 +18,7 @@
 #'
 #' @export
 
-PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="PCA 2", legend, ...) {
+PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="PCA 2", dims=2, legend, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
 
@@ -27,7 +28,7 @@ PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="
 
   # Do PCA
   if (tsne) {
-    P <- Rtsne::Rtsne(X, pca_scale=TRUE, perplexity=perp, theta=0, check_duplicates = FALSE)$Y
+    P <- Rtsne::Rtsne(X, pca_scale=TRUE, perplexity=perp, theta=0, check_duplicates = FALSE, dims=dims)$Y
   } else {
     PCA <- prcomp(X, scale=TRUE)
     P <- predict(PCA)
@@ -51,4 +52,5 @@ PCAplot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, xlab="PCA 1", ylab="
   if (legend) {
     toplegend(legend=levels(Grp), pch=16, col=pal(length(levels(Grp))))
   }
+  return(invisible(P))
 }

@@ -12,6 +12,7 @@ PCAplot(
   perp = 30,
   xlab = "PCA 1",
   ylab = "PCA 2",
+  dims = 2,
   legend,
   ...
 )
@@ -28,6 +29,8 @@ PCAplot(
 \item{perp}{Perplexity (for tSNE)}
 
 \item{xlab, ylab}{Axis labels}
+
+\item{dims}{Dimensions to return (for tsne)}
 
 \item{legend}{Include a legend (default: true)}
 
