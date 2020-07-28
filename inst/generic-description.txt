@@ -1,0 +1,12 @@
+Package: 
+Title: What the Package Does Using Title Case
+Version: 0.0.0
+Date: 
+Authors@R: person("Patrick", "Breheny", role=c("aut","cre"), email="patrick-breheny@uiowa.edu", comment=c(ORCID="000-0002-0650-1119"))
+Description: More details about what the package does.
+Depends: R (>= 3.5.0)
+Imports: 
+Suggests: tinytest
+License: GPL-3
+LazyData: TRUE
+Encoding: UTF-8
