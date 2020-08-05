@@ -1,16 +1,16 @@
 #' Power for t tests, including arbitrary linear hypotheses
 #'
-#' @param n       Sample size (total).
-#' @param delta   Effect size; if specified, a two-group design is assumed.  If more than two groups, use `b` instead.
-#' @param lam     Contrast.
-#' @param b       If a vector, the coefficient for each group.  If a matrix, must have `length(n)` rows.
-#' @param sd      Standard deviation of outcome.
-#' @param alpha   Type I error rate.
-#' @param w       Weights for unequal allocation (normalized to 1).
-#' @param n1      Sample size for group 1.
-#' @param n2      Sample size for group 2.
-#' @param power   Desired power.
-#' @param upper   Upper bound for `tsamsize()`; increase if tsamsize hits this bound.  Default: 5000.
+#' @param n         Sample size (total).
+#' @param delta     Effect size; if specified, a two-group design is assumed.  If more than two groups, use `b` instead.
+#' @param lam       Contrast.
+#' @param b         If a vector, the coefficient for each group.  If a matrix, must have `length(n)` rows.
+#' @param sd        Standard deviation of outcome.
+#' @param alpha     Type I error rate.
+#' @param w         Weights for unequal allocation (normalized to 1).
+#' @param n1,n2     Sample size for group 1, 2.
+#' @param power     Desired power.
+#' @param upper     Upper bound for `tsamsize()`; increase if tsamsize hits this bound.  Default: 5000.
+#' @param verbose   Print details for power calculations.  Default: TRUE unless vectorized.
 #' @param ...     For `tsamsize()`, additional arguments to be passed to `tpower()`.
 #'
 #' @name tpower
@@ -20,7 +20,7 @@
 #' tpower(10*(6:9), 0.5)                # Vectorize sample size
 #' tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
 #' tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
-#' tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
+#' tpower(99, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 #' tsamsize(0.5)
 #'
 NULL
@@ -28,7 +28,7 @@ NULL
 #' @describeIn tpower   Calculates power
 #' @export
 
-tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2) {
+tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2, verbose=(N==1)) {
 
   # Determine N / check for agreement
   if (!missing(n1) & !missing(n2)) n <- n1+n2
@@ -81,12 +81,20 @@ tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2
   df <- n-g
   power <- numeric(N)
   for (i in 1:N) {
-    X <- diag(1/(n[i]*W[i,])) ## XtX^(-1)
+    X <- diag(1/(n[i]*W[i,]))   # XtX^(-1)
     C <- qt(1-alpha[i]/2, df[i])
     ncp <- abs(crossprod(lam, B[i,])/(sd[i]*sqrt(qd(lam,X))))
     power[i] <- 1-pt(C, df[i], ncp)
   }
-  return(power)
+  if (verbose) {
+    for (i in 1:g) {
+      cat('Group ', i, ': ', n*W[i], '\n', sep='')
+    }
+    cat('Power:   ', round(power, 3), '\n', sep='')
+    return(invisible(power))
+  } else {
+    return(power)
+  }
 }
 
 #' @describeIn tpower   Calculates sample size
@@ -95,7 +103,7 @@ tsamsize <- function(delta, b=c(delta,0), w=rep(1,g), power=.8, upper=5000,...) 
   g <- length(b)
   if (length(w) != g) stop("w does not match b")
   w <- w/sum(w)
-  f <- function(n){tpower(n, b=b, ...)-power}
+  f <- function(n){tpower(n, b=b, verbose=FALSE, ...)-power}
   n <- uniroot(f, interval=c(2*g, upper))$root
   nn <- ceiling(n*w)
   ##if (sd(nn) < .0000001) cat(nn[1]," in each group\n",sep="")

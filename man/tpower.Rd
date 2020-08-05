@@ -14,7 +14,8 @@ tpower(
   alpha = 0.05,
   w = rep(1, g),
   n1,
-  n2
+  n2,
+  verbose = (N == 1)
 )
 
 tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8, upper = 5000, ...)
@@ -34,9 +35,9 @@ tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8, upper = 5000, ...)
 
 \item{w}{Weights for unequal allocation (normalized to 1).}
 
-\item{n1}{Sample size for group 1.}
+\item{n1, n2}{Sample size for group 1, 2.}
 
-\item{n2}{Sample size for group 2.}
+\item{verbose}{Print details for power calculations.  Default: TRUE unless vectorized.}
 
 \item{power}{Desired power.}
 
@@ -59,7 +60,7 @@ tpower(100, 0.5)
 tpower(10*(6:9), 0.5)                # Vectorize sample size
 tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
 tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
-tpower(100, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
+tpower(99, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 tsamsize(0.5)
 
 }
