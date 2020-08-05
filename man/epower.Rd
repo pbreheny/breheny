@@ -27,7 +27,7 @@ esamsize(r, w = c(1, 1), alpha = 0.05, power = 0.8, lam, cens)
 \item{power}{Desired power.  Default: 0.8.}
 }
 \description{
-Power and sample size for time-to-event data based on exponential closed form solution
+Power is calculated for two-sample studies.  Can be vectorized, but \code{w}, \code{lam}, \code{cens}, must always be length 2.
 }
 \section{Functions}{
 \itemize{
@@ -37,6 +37,11 @@ Power and sample size for time-to-event data based on exponential closed form so
 }}
 
 \examples{
-epower(30, 1.5)
+epower(30, 2)
+epower(30, lam=c(2,1), cens=c(0.2, 0.5))
+epower(seq(30, 100, 10), lam=c(2,1), cens=c(0.2, 0.5))
+epower(seq(30, 100, 10), w=c(2,1), lam=c(2,1), cens=c(0.2, 0.5))
+epower(30, seq(1.5, 2.5, 0.1))
+epower(30, 2, alpha=c(0.01, 0.05, 0.1))
 esamsize(1.5)
 }
