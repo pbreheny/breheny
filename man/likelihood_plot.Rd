@@ -13,6 +13,8 @@ plotL(
   xlab = expression(theta),
   ylab = expression(L(theta)),
   bty = "n",
+  col,
+  add = FALSE,
   ...
 )
 
@@ -35,6 +37,8 @@ plotl(
 \item{ylab}{Default: L(theta)}
 
 \item{bty}{Default: no boundary box}
+
+\item{add}{Add to existing plot?  Default: FALSE}
 
 \item{...}{Further arguments to \code{plot()}}
 }
