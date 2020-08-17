@@ -7,6 +7,7 @@
 #' @param xlab   Default: theta
 #' @param ylab   Default: L(theta)
 #' @param bty    Default: no boundary box
+#' @param col    Color (or vector of colors, if `l` is a matrix)
 #' @param add    Add to existing plot?  Default: FALSE
 #' @param ...    Further arguments to `plot()`
 #'

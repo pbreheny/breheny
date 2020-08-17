@@ -38,6 +38,8 @@ plotl(
 
 \item{bty}{Default: no boundary box}
 
+\item{col}{Color (or vector of colors, if \code{l} is a matrix)}
+
 \item{add}{Add to existing plot?  Default: FALSE}
 
 \item{...}{Further arguments to \code{plot()}}
