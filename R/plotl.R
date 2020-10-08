@@ -31,8 +31,9 @@ plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='
   if (is.matrix(l)) {
     if (missing(col)) col <- pal(ncol(L))
     L <- apply(l, 2, function(x) x/max(x))
-    matplot(x, L, type='l', xlab=xlab, ylab=ylab, bty=bty, las=1, col=col, lwd=3, lty=1, add=add)
+    matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, lty=1, add=add)
     if (!is.null(colnames(L))) toplegend(legend=colnames(L), lwd=3, col=pal(ncol(L)))
+    mtext(ylab, 2, line=2.5)
     return(invisible(L))
   } else {
     if (missing(col)) col <- pal(2)[2]
@@ -40,8 +41,9 @@ plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='
     if (add) {
       lines(x, l, xlab=xlab, ylab=ylab, bty=bty, las=1, col=col, lwd=3, ...)
     } else {
-      plot(x, l, type='l', xlab=xlab, ylab=ylab, bty=bty, las=1, col=col, lwd=3, ...)
+      plot(x, l, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, ...)
     }
+    mtext(ylab, 2, line=2.5)
     return(invisible(l))
   }
 }
@@ -53,14 +55,16 @@ plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='
 plotl <- function(x, l, xlab=expression(theta), ylab=expression("\u2113"*(theta)), bty='n', ...) {
   if (is.matrix(l)) {
     L <- apply(l, 2, function(x) x - max(x))
-    matplot(x, L, type='l', xlab=xlab, ylab=ylab, bty=bty,
+    matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty,
             las=1, col=pal(ncol(L)), lwd=3, lty=1)
     if (!is.null(colnames(L))) toplegend(legend=colnames(L), lwd=3, col=pal(ncol(L)))
+    mtext(ylab, 2, line=2.5)
     return(invisible(L))
   } else {
     l <- l - max(l)
-    plot(x, l, type='l', xlab=xlab, ylab=ylab, bty=bty,
+    plot(x, l, type='l', xlab=xlab, ylab='', bty=bty,
          las=1, col=pal(2)[2], lwd=3, ...)
+    mtext(ylab, 2, line=2.5)
     return(invisible(l))
   }
 }
