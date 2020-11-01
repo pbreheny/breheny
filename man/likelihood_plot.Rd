@@ -24,6 +24,8 @@ plotl(
   xlab = expression(theta),
   ylab = expression("\u2113" * (theta)),
   bty = "n",
+  col,
+  add = FALSE,
   ...
 )
 }
