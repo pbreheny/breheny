@@ -54,7 +54,7 @@ plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='
 
 plotl <- function(x, l, xlab=expression(theta), ylab=expression("\u2113"*(theta)), bty='n', col, add=FALSE, ...) {
   if (is.matrix(l)) {
-    if (missing(col)) col <- pal(ncol(l))    
+    if (missing(col)) col <- pal(ncol(l))
     L <- apply(l, 2, function(x) x - max(x))
     matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty,
             las=1, col=col, lwd=3, lty=1)
@@ -62,6 +62,7 @@ plotl <- function(x, l, xlab=expression(theta), ylab=expression("\u2113"*(theta)
     if (!add) mtext(ylab, 2, line=2.5)
     return(invisible(L))
   } else {
+    if (missing(col)) col <- pal(2)[2]
     l <- l - max(l)
     plot(x, l, type='l', xlab=xlab, ylab='', bty=bty,
          las=1, col=col, lwd=3, ...)
