@@ -64,8 +64,11 @@ plotl <- function(x, l, xlab=expression(theta), ylab=expression("\u2113"*(theta)
   } else {
     if (missing(col)) col <- pal(2)[2]
     l <- l - max(l)
-    plot(x, l, type='l', xlab=xlab, ylab='', bty=bty,
-         las=1, col=col, lwd=3, ...)
+    if (add) {
+      lines(x, l, col=col, lwd=3, ...)
+    } else {
+      plot(x, l, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, ...)
+    }
     if (!add) mtext(ylab, 2, line=2.5)
     return(invisible(l))
   }
