@@ -17,8 +17,15 @@ power_hd(n, p, d, m, FDR = 0.1)
 
 \item{FDR}{Target FDR}
 }
+\value{
+A list containing two items:
+\itemize{
+\item \code{Power}: The power to detect a given feature (function assumes this is the same for all features)
+\item \code{Hits}: The total number of expected discoveries (power multiplied by number of differential features)
+}
+}
 \description{
-Power calculator for high-dimensional testing
+The function sets up a root-finding problem in which the appropriate per-test cutoff alpha is found that satisfies the supplied FDR (in expectation), then reports overall power for tests carried out at that alpha level.  Vectorized over n, but nothing else.
 }
 \examples{
 power_hd(10, 1000, 100, 1)
