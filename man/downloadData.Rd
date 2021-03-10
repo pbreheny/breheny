@@ -20,9 +20,7 @@ To keep the size of the package manageable, these data sets are not included wit
 \dontrun{
 downloadData()         # Download all data sets
 downloadData(bcTCGA)   # Download a specific data set}
-
 \dontrun{
 Data <- readData(whickham)
 head(Data)}
-
 }

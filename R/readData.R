@@ -9,8 +9,6 @@
 #' \dontrun{
 #' downloadData()         # Download all data sets
 #' downloadData(bcTCGA)   # Download a specific data set}
-#'
-#' @export
 
 downloadData <- function(name) {
   name <- as.character(substitute(name))
@@ -27,8 +25,6 @@ downloadData <- function(name) {
 #' \dontrun{
 #' Data <- readData(whickham)
 #' head(Data)}
-#'
-#' @export
 
 readData <- function(name) {
   name <- as.character(substitute(name))
