@@ -25,7 +25,12 @@ ddice <- function(x, n, s) {
   structure(num/den, numerator=num, denominator=den, class='ddice')
 }
 
+#' @rdname ddice
+#'
+#' @param lower.tail   logical: if TRUE (default), probabilities are P(X <= x); otherwise P(X >= x)
+#'
 #' @export
+
 pdice <- function(x, n, s, lower.tail=TRUE) {
   den <- s^n
   num <- 0
