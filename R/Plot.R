@@ -5,7 +5,7 @@
 #'
 #' @examples
 #' # KM curves
-#' data(veteran, package='survival')
+#' veteran <- survival::veteran
 #' fit <- survival::survfit(survival::Surv(time, status) ~ celltype, veteran)
 #' Plot(fit)
 #'

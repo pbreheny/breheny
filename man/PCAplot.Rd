@@ -4,18 +4,7 @@
 \alias{PCAplot}
 \title{Make a PCA/tSNE plot}
 \usage{
-PCAplot(
-  X,
-  grp,
-  txt = FALSE,
-  tsne = FALSE,
-  perp = 30,
-  xlab = "PCA 1",
-  ylab = "PCA 2",
-  dims = 2,
-  legend,
-  ...
-)
+PCAplot(X, grp, txt = FALSE, tsne = FALSE, perp = 30, dims = 2, legend, ...)
 }
 \arguments{
 \item{X}{A numeric matrix}
@@ -27,8 +16,6 @@ PCAplot(
 \item{tsne}{Use tSNE instead of PCA?  (default: false)}
 
 \item{perp}{Perplexity (for tSNE)}
-
-\item{xlab, ylab}{Axis labels}
 
 \item{dims}{Dimensions to return (for tsne)}
 
@@ -42,6 +29,7 @@ Make a PCA/tSNE plot
 \examples{
 PCAplot(iris[,1:4])
 PCAplot(iris[,1:4], grp=iris[,5])
+PCAplot(iris[,1:4], grp=iris[,5], col='gray')
 PCAplot(iris[,1:4], grp=iris[,5], tsne=TRUE)
 PCAplot(USArrests, txt=TRUE)
 
