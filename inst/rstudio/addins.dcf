@@ -2,3 +2,8 @@ Name: run_tests
 Description: Runs R code in tests
 Binding: run_tests
 Interactive: false
+
+Name: run_ex
+Description: Runs R code in examples
+Binding: run_ex
+Interactive: false
