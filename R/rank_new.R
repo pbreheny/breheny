@@ -28,6 +28,7 @@ rank_new <- function(x, new, ...) {
 
 rank_new_vector <- function(x, new, ...) {
   r <- rank(x, ...)
-  f <- approxfun(x, r, rule=2)
+  ind <- !duplicated(x)
+  f <- approxfun(x[ind], r[ind], rule=2)
   f(new)
 }
