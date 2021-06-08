@@ -7,11 +7,13 @@
 s3_share(file, out = stdout(), expiration = 168, r)
 }
 \arguments{
-\item{file}{Character vector of files to share.  If path is included, it will be included in the download script save location.}
+\item{file}{Character vector of files to share.If path is included, it will be included in the download script save location.}
 
 \item{out}{A connection object or character string, as in \verb{[writeLines()]}, to which R commands are to be saved.  If nothing is supplied, output is to console.}
 
-\item{expiration}{How long until URLs expire (in hours)?  Numeric.  Default: 168 (1 week).}
+\item{expiration}{How long until URLs expire (in hours)? Numeric.  Default: 168 (1 week).}
+
+\item{r}{Output R code (as opposed to link)? By default, the function will return links if \code{out=stdout()} and R code if \code{out} otherwise. However, this can be overridden by explicitly setting r to be \code{TRUE} or \code{FALSE}.}
 }
 \description{
 Shares Amazon S3 file(s) and returns either a url or R script.  The latter is particularly useful for batch downloads and specifying file save paths.
@@ -20,6 +22,8 @@ Shares Amazon S3 file(s) and returns either a url or R script.  The latter is pa
 Requires aws command line functionality.
 }
 \examples{
+\dontrun{
 s3_share('~/web/pdf/BrehenyCV.pdf')
 s3_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
+}
 }

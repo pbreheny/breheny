@@ -4,13 +4,16 @@
 #'
 #' Requires aws command line functionality.
 #'
-#' @param file         Character vector of files to share.  If path is included, it will be included in the download script save location.
+#' @param file         Character vector of files to share.If path is included, it will be included in the download script save location.
 #' @param out          A connection object or character string, as in `[writeLines()]`, to which R commands are to be saved.  If nothing is supplied, output is to console.
-#' @param expiration   How long until URLs expire (in hours)?  Numeric.  Default: 168 (1 week).
+#' @param expiration   How long until URLs expire (in hours)? Numeric.  Default: 168 (1 week).
+#' @param r            Output R code (as opposed to link)? By default, the function will return links if `out=stdout()` and R code if `out` otherwise. However, this can be overridden by explicitly setting r to be `TRUE` or `FALSE`.
 #'
 #' @examples
+#' \dontrun{
 #' s3_share('~/web/pdf/BrehenyCV.pdf')
 #' s3_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
+#' }
 #' @export
 
 s3_share <- function(file, out=stdout(), expiration=168, r) {
