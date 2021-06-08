@@ -11,6 +11,7 @@
 #' @examples
 #' s3_share('~/web/pdf/BrehenyCV.pdf')
 #' s3_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
+#' @export
 
 s3_share <- function(file, out=stdout(), expiration=168, r) {
   checkmate::assertNumeric(expiration, min.len=1, max.len=1)
