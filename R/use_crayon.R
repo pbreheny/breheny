@@ -5,5 +5,11 @@
 use_crayon <- function() {
   if (!suppressMessages({requireNamespace("crayon")})) stop("crayon package is not installed", call.=FALSE)
   options(error = quote({cat(crayon::red$bold((geterrmessage()))); if (!interactive()) q()}), show.error.messages=FALSE)
-  #options(warning.expression = quote(cat(crayon::magenta$bold(paste0("Warning: ", names(warnings()), ": ", as.character(warnings()), "\n")))))
+  globalCallingHandlers(
+    warning = function(cnd) { 
+      cnd$message <- crayon::magenta(conditionMessage(cnd))
+      warning(cnd)
+      tryInvokeRestart("muffleWarning")
+    }
+  )
 }
