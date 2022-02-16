@@ -38,7 +38,7 @@ Flow <- R6::R6Class('Flow', public=list(
   #' @description Print the current status of the flowchart
   print = function() {
     print.data.frame(private$val)
-    cat("Class: Flow")
+    cat("Class: Flow\n")
   },
 
   #' @description Add a node to the flowchart
