@@ -55,4 +55,8 @@ L <- dnorm(1, x)
 l <- dnorm(1, x, log=TRUE)
 plotL(x, L)
 plotl(x, l)
+L <- cbind(dnorm(1, x), dnorm(2, x))
+l <- cbind(dnorm(1, x, log=TRUE), dnorm(2, x, log=TRUE))
+plotL(x, L)
+plotl(x, l)
 }

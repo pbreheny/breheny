@@ -21,6 +21,10 @@
 #' l <- dnorm(1, x, log=TRUE)
 #' plotL(x, L)
 #' plotl(x, l)
+#' L <- cbind(dnorm(1, x), dnorm(2, x))
+#' l <- cbind(dnorm(1, x, log=TRUE), dnorm(2, x, log=TRUE))
+#' plotL(x, L)
+#' plotl(x, l)
 NULL
 
 #' @rdname likelihood_plot
@@ -29,7 +33,7 @@ NULL
 
 plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='n', col, add=FALSE, ...) {
   if (is.matrix(l)) {
-    if (missing(col)) col <- pal(ncol(L))
+    if (missing(col)) col <- pal(ncol(l))
     L <- apply(l, 2, function(x) x/max(x))
     matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, lty=1, add=add)
     if (!is.null(colnames(L))) toplegend(legend=colnames(L), lwd=3, col=col)
