@@ -6,8 +6,14 @@
 \usage{
 catchWarning(expr)
 }
+\arguments{
+\item{expr}{An R expression}
+}
 \description{
-Catch warnings
+This is mainly used for code that either (a) generates a bunch of warnings, which makes it hard
+to find a warning that may have happened 78 warnings ago, or (b) generates a warning and an error,
+but it's hard to get at the warning because the error causes the code to crash before the warning
+is signalled.
 }
 \examples{
 out <- catchWarning(log('a'))

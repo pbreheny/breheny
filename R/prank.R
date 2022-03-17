@@ -4,6 +4,7 @@
 #'
 #' @examples
 #' prank(airquality$Ozone)
+#' @export
 
 prank <- function(x) {
   rank(x)/length(x)

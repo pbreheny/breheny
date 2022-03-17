@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^docs$
 ^fixdoc$
 ^\.version\.json$
+^\.github$
