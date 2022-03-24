@@ -7,21 +7,23 @@
 #' @param perp         Perplexity (for tSNE)
 #' @param dims         Dimensions to return (for tsne)
 #' @param gg           Use ggplot2? (default: true)
+#' @param ellipse      Draw mvn-ellipses around groups? (default: false, only available for ggplot)
 #' @param legend       Include a legend (default: true)
 #' @param plot         Create plot? (default: true)
 #' @param ...          Further arguments to `plot()`
 #'
 #' @return If base plot, returns PCA object invisibly. If ggplot, returns the plot object.
-#' 
+#'
 #' @examples
 #' pca_plot(iris[,1:4])
 #' pca_plot(iris[,1:4], grp=iris[,5])
+#' pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
 #' pca_plot(iris[,1:4], grp=iris[,5], tsne=TRUE)
 #' pca_plot(USArrests, txt=TRUE)
 #' pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
 #' @export
 
-pca_plot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, dims=2, gg=TRUE, legend, plot=TRUE, ...) {
+pca_plot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
 
@@ -68,8 +70,8 @@ pca_plot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, dims=2, gg=TRUE, le
           ggplot2::geom_point() +
           ggplot2::theme(legend.title=ggplot2::element_blank())
       }
-
     }
+    if (ellipse) p <- p + ggplot2::stat_ellipse()
     p <- p + ggplot2::xlab(xlab) + ggplot2::ylab(ylab)
     return(p)
   } else {

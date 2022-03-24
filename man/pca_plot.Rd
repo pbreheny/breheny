@@ -12,6 +12,7 @@ pca_plot(
   perp = 30,
   dims = 2,
   gg = TRUE,
+  ellipse = FALSE,
   legend,
   plot = TRUE,
   ...
@@ -32,6 +33,8 @@ pca_plot(
 
 \item{gg}{Use ggplot2? (default: true)}
 
+\item{ellipse}{Draw mvn-ellipses around groups? (default: false, only available for ggplot)}
+
 \item{legend}{Include a legend (default: true)}
 
 \item{plot}{Create plot? (default: true)}
@@ -47,6 +50,7 @@ Make a PCA/tSNE plot
 \examples{
 pca_plot(iris[,1:4])
 pca_plot(iris[,1:4], grp=iris[,5])
+pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
 pca_plot(iris[,1:4], grp=iris[,5], tsne=TRUE)
 pca_plot(USArrests, txt=TRUE)
 pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
