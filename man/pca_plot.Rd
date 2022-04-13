@@ -8,7 +8,7 @@ pca_plot(
   X,
   grp,
   txt = FALSE,
-  tsne = FALSE,
+  method = c("pca", "tsne", "umap"),
   perp = 30,
   dims = 2,
   gg = TRUE,
@@ -25,7 +25,7 @@ pca_plot(
 
 \item{txt}{Use rownames as labels instead of dots (default: false)}
 
-\item{tsne}{Use tSNE instead of PCA?  (default: false)}
+\item{method}{How to carry out dimension reduction (pca/tsne/umap)}
 
 \item{perp}{Perplexity (for tSNE)}
 
@@ -51,7 +51,10 @@ Make a PCA/tSNE plot
 pca_plot(iris[,1:4])
 pca_plot(iris[,1:4], grp=iris[,5])
 pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
-pca_plot(iris[,1:4], grp=iris[,5], tsne=TRUE)
+pca_plot(iris[,1:4], grp=iris[,5], method='tsne')
+pca_plot(iris[,1:4], grp=iris[,5], method='umap')
 pca_plot(USArrests, txt=TRUE)
 pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
+pca_plot(USArrests, txt=TRUE, method='tsne', perp=5)
+pca_plot(USArrests, txt=TRUE, method='umap')
 }

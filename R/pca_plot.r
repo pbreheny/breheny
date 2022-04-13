@@ -3,7 +3,7 @@
 #' @param X            A numeric matrix
 #' @param grp          Optional grouping factor to color instances by
 #' @param txt          Use rownames as labels instead of dots (default: false)
-#' @param tsne         Use tSNE instead of PCA?  (default: false)
+#' @param method       How to carry out dimension reduction (pca/tsne/umap)
 #' @param perp         Perplexity (for tSNE)
 #' @param dims         Dimensions to return (for tsne)
 #' @param gg           Use ggplot2? (default: true)
@@ -18,22 +18,30 @@
 #' pca_plot(iris[,1:4])
 #' pca_plot(iris[,1:4], grp=iris[,5])
 #' pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
-#' pca_plot(iris[,1:4], grp=iris[,5], tsne=TRUE)
+#' pca_plot(iris[,1:4], grp=iris[,5], method='tsne')
+#' pca_plot(iris[,1:4], grp=iris[,5], method='umap')
 #' pca_plot(USArrests, txt=TRUE)
 #' pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
+#' pca_plot(USArrests, txt=TRUE, method='tsne', perp=5)
+#' pca_plot(USArrests, txt=TRUE, method='umap')
 #' @export
 
-pca_plot <- function(X, grp, txt=FALSE, tsne=FALSE, perp=30, dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
+pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), perp=30, dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
+  method <- match.arg(method)
 
   # Remove constant columns
   const <- which(apply(X, 2, sd)==0)
   if (length(const)) X <- X[,-const]
 
   # Do PCA
-  if (tsne) {
+  if (method=='tsne') {
     P <- Rtsne::Rtsne(X, pca_scale=TRUE, perplexity=perp, theta=0, check_duplicates = FALSE, dims=dims)$Y
+    xlab <- "Dim 1"
+    ylab <- "Dim 2"
+  } else if (method=='umap') {
+    P <- umap::umap(X)$layout
     xlab <- "Dim 1"
     ylab <- "Dim 2"
   } else {

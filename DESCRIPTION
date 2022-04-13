@@ -1,7 +1,7 @@
 Package: breheny
 Title: Miscellaneous Functions
-Version: 2.7.1
-Date: 2022-03-17
+Version: 2.7.2
+Date: 2022-04-13
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
   email="patrick-breheny@uiowa.edu")
 Description: A collection of miscellaneous functions that I frequently refer to;
@@ -27,7 +27,8 @@ Suggests:
   Rtsne,
   scales,
   stringr,
-  survival
+  survival,
+  umap
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
