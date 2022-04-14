@@ -2,14 +2,13 @@
 % Please edit documentation in R/pca_plot.r
 \name{pca_plot}
 \alias{pca_plot}
-\title{Make a PCA/tSNE plot}
+\title{Make a PCA/tSNE/UMAP plot}
 \usage{
 pca_plot(
   X,
   grp,
   txt = FALSE,
   method = c("pca", "tsne", "umap"),
-  perp = 30,
   dims = 2,
   gg = TRUE,
   ellipse = FALSE,
@@ -27,8 +26,6 @@ pca_plot(
 
 \item{method}{How to carry out dimension reduction (pca/tsne/umap)}
 
-\item{perp}{Perplexity (for tSNE)}
-
 \item{dims}{Dimensions to return (for tsne)}
 
 \item{gg}{Use ggplot2? (default: true)}
@@ -45,16 +42,28 @@ pca_plot(
 If base plot, returns PCA object invisibly. If ggplot, returns the plot object.
 }
 \description{
-Make a PCA/tSNE plot
+The function allows the passing of some parameters to Rtsne/umap:
+\itemize{
+\item Rtsne: perplexity
+\item umap: nn (number of neighbors)
+}
 }
 \examples{
+# Plots of the iris data
 pca_plot(iris[,1:4])
 pca_plot(iris[,1:4], grp=iris[,5])
 pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
 pca_plot(iris[,1:4], grp=iris[,5], method='tsne')
 pca_plot(iris[,1:4], grp=iris[,5], method='umap')
+
+# What pca_plot returns if plot=FALSE
+head(pca_plot(iris[,1:4], method='pca', plot=FALSE))
+head(pca_plot(iris[,1:4], method='tsne', dims=3, plot=FALSE))
+head(pca_plot(iris[,1:4], method='umap', dims=3, plot=FALSE))
+
+# Plots of the USArrests data
 pca_plot(USArrests, txt=TRUE)
 pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
-pca_plot(USArrests, txt=TRUE, method='tsne', perp=5)
-pca_plot(USArrests, txt=TRUE, method='umap')
+pca_plot(USArrests, txt=TRUE, method='tsne', perplexity=10)
+pca_plot(USArrests, txt=TRUE, method='umap', nn=6)
 }

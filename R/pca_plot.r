@@ -1,10 +1,13 @@
-#' Make a PCA/tSNE plot
+#' Make a PCA/tSNE/UMAP plot
+#'
+#' The function allows the passing of some parameters to Rtsne/umap:
+#'   * Rtsne: perplexity
+#'   * umap: nn (number of neighbors)
 #'
 #' @param X            A numeric matrix
 #' @param grp          Optional grouping factor to color instances by
 #' @param txt          Use rownames as labels instead of dots (default: false)
 #' @param method       How to carry out dimension reduction (pca/tsne/umap)
-#' @param perp         Perplexity (for tSNE)
 #' @param dims         Dimensions to return (for tsne)
 #' @param gg           Use ggplot2? (default: true)
 #' @param ellipse      Draw mvn-ellipses around groups? (default: false, only available for ggplot)
@@ -15,21 +18,30 @@
 #' @return If base plot, returns PCA object invisibly. If ggplot, returns the plot object.
 #'
 #' @examples
+#' # Plots of the iris data
 #' pca_plot(iris[,1:4])
 #' pca_plot(iris[,1:4], grp=iris[,5])
 #' pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
 #' pca_plot(iris[,1:4], grp=iris[,5], method='tsne')
 #' pca_plot(iris[,1:4], grp=iris[,5], method='umap')
+#'
+#' # What pca_plot returns if plot=FALSE
+#' head(pca_plot(iris[,1:4], method='pca', plot=FALSE))
+#' head(pca_plot(iris[,1:4], method='tsne', dims=3, plot=FALSE))
+#' head(pca_plot(iris[,1:4], method='umap', dims=3, plot=FALSE))
+#'
+#' # Plots of the USArrests data
 #' pca_plot(USArrests, txt=TRUE)
 #' pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
-#' pca_plot(USArrests, txt=TRUE, method='tsne', perp=5)
-#' pca_plot(USArrests, txt=TRUE, method='umap')
+#' pca_plot(USArrests, txt=TRUE, method='tsne', perplexity=10)
+#' pca_plot(USArrests, txt=TRUE, method='umap', nn=6)
 #' @export
 
-pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), perp=30, dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
+pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
   method <- match.arg(method)
+  dots <- list(...)
 
   # Remove constant columns
   const <- which(apply(X, 2, sd)==0)
@@ -37,11 +49,25 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), perp=30
 
   # Do PCA
   if (method=='tsne') {
+    if ('perplexity' %in% names(dots)) {
+      perp <- dots$perplexity
+      dots$perplexity <- NULL
+    } else {
+      perp <- 30
+    }
     P <- Rtsne::Rtsne(X, pca_scale=TRUE, perplexity=perp, theta=0, check_duplicates = FALSE, dims=dims)$Y
+    colnames(P) <- paste0('D', 1:ncol(P))
     xlab <- "Dim 1"
     ylab <- "Dim 2"
   } else if (method=='umap') {
-    P <- umap::umap(X)$layout
+    settings <- umap::umap.defaults
+    settings$n_components <- dims
+    if ('nn' %in% names(dots)) {
+      settings$n_neighbors = dots$nn
+      dots$nn <- NULL
+    }
+    P <- umap::umap(X, settings)$layout
+    colnames(P) <- paste0('D', 1:ncol(P))
     xlab <- "Dim 1"
     ylab <- "Dim 2"
   } else {
@@ -51,6 +77,7 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), perp=30
     xlab <- sprintf("PCA 1 (%.1f%%)", pct[1])
     ylab <- sprintf("PCA 2 (%.1f%%)", pct[2])
   }
+  if (!is.null(rownames(X))) rownames(P) <- rownames(X)
   if (!plot) return(P)
 
   # Set up arguments
