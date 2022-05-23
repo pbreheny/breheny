@@ -19,6 +19,7 @@
 #' epower(30, seq(1.5, 2.5, 0.1))
 #' epower(30, 2, alpha=c(0.01, 0.05, 0.1))
 #' esamsize(1.5)
+#' esamsize(lam=c(1.5, 1), cens=1)
 #' @export
 
 epower <- function(n, r, alpha=.05, w=c(1,1), n1, n2, lam, cens) {
@@ -70,13 +71,18 @@ esamsize <- function(r, w=c(1,1), alpha=.05, power=.8, lam, cens) {
   nn <- numeric(2)
   nn[1] <- (1+a)*(qnorm(1-alpha/2)+qnorm(power))^2/(log(r))^2
   nn[2] <- nn[1]/a
+  what <- "events"
   if (!missing(cens)) {
     nn <- nn*(lam+cens)/lam
+    what <- "subjects"
   }
   nn <- ceiling(nn)
-  if (sd(nn) < .0000001) cat("Group: ",nn[1],"\n",sep="")
-  else cat(paste("Group ",1:2,": ",nn,"\n",sep="",collapse=""))
-  if (!missing(cens)) cat("Total n: ",sum(nn),"\n",sep="")
-  else cat("Total events: ",sum(nn),"\n",sep="")
+  if (sd(nn) < .0000001) {
+    cat("Per group: ", nn[1], " ", what, "\n", sep="")
+    cat("Total    : ", sum(nn),"\n",sep="")
+  } else {
+    cat(paste("Group ", 1:2, ": ", nn, " ", what, "\n", sep="", collapse=""))
+    cat("Total  : ", sum(nn),"\n",sep="")
+  }
   return(invisible(sum(nn)))
 }
