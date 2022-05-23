@@ -48,13 +48,6 @@ tsamsize(delta, b = c(delta, 0), w = rep(1, g), power = 0.8, upper = 5000, ...)
 \description{
 Power for t tests, including arbitrary linear hypotheses
 }
-\section{Functions}{
-\itemize{
-\item \code{tpower}: Calculates power
-
-\item \code{tsamsize}: Calculates sample size
-}}
-
 \examples{
 tpower(100, 0.5)
 tpower(10*(6:9), 0.5)                # Vectorize sample size
@@ -62,5 +55,4 @@ tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
 tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
 tpower(99, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 tsamsize(0.5)
-
 }

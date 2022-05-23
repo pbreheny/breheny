@@ -53,15 +53,15 @@ plot(fl, xm=0.25)
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Flow$new()}}
-\item \href{#method-print}{\code{Flow$print()}}
-\item \href{#method-add}{\code{Flow$add()}}
-\item \href{#method-clone}{\code{Flow$clone()}}
+\item \href{#method-Flow-new}{\code{Flow$new()}}
+\item \href{#method-Flow-print}{\code{Flow$print()}}
+\item \href{#method-Flow-add}{\code{Flow$add()}}
+\item \href{#method-Flow-clone}{\code{Flow$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Flow-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Flow-new}{}}}
 \subsection{Method \code{new()}}{
 Initialize a new flowchart at its parent node
 \subsection{Usage}{
@@ -79,8 +79,8 @@ Initialize a new flowchart at its parent node
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Flow-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Flow-print}{}}}
 \subsection{Method \code{print()}}{
 Print the current status of the flowchart
 \subsection{Usage}{
@@ -89,8 +89,8 @@ Print the current status of the flowchart
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add"></a>}}
-\if{latex}{\out{\hypertarget{method-add}{}}}
+\if{html}{\out{<a id="method-Flow-add"></a>}}
+\if{latex}{\out{\hypertarget{method-Flow-add}{}}}
 \subsection{Method \code{add()}}{
 Add a node to the flowchart
 \subsection{Usage}{
@@ -110,8 +110,8 @@ Add a node to the flowchart
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Flow-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Flow-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

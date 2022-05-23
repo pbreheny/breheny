@@ -29,13 +29,6 @@ esamsize(r, w = c(1, 1), alpha = 0.05, power = 0.8, lam, cens)
 \description{
 Power is calculated for two-sample studies.  Can be vectorized, but \code{w}, \code{lam}, \code{cens}, must always be length 2.
 }
-\section{Functions}{
-\itemize{
-\item \code{epower}: Calculate power
-
-\item \code{esamsize}: Calculate sample size
-}}
-
 \examples{
 epower(30, 2)
 epower(30, lam=c(2,1), cens=c(0.2, 0.5))

@@ -22,10 +22,6 @@
 #' tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
 #' tpower(99, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 #' tsamsize(0.5)
-#'
-NULL
-
-#' @describeIn tpower   Calculates power
 #' @export
 
 tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2, verbose=(N==1)) {
@@ -97,19 +93,19 @@ tpower <- function(n, delta, lam=c(1,-1), b, sd=1, alpha=.05, w=rep(1,g), n1, n2
   }
 }
 
-#' @describeIn tpower   Calculates sample size
+#' @rdname tpower
 #' @export
+
 tsamsize <- function(delta, b=c(delta,0), w=rep(1,g), power=.8, upper=5000,...) {
   g <- length(b)
   if (length(w) != g) stop("w does not match b")
   w <- w/sum(w)
-  f <- function(n){tpower(n, b=b, verbose=FALSE, ...)-power}
-  n <- uniroot(f, interval=c(2*g, upper))$root
-  nn <- ceiling(n*w)
-  ##if (sd(nn) < .0000001) cat(nn[1]," in each group\n",sep="")
-  ##else cat(paste("Group ",1:g,": ",nn,"\n",sep="",collapse=""))
-  ##cat("Total n: ",ceiling(n),"\n",sep="")
-  val <- w*n
+  n <- uniroot(tsamsize_f, interval=c(2*g, upper), b=b, w=w, power=power)$root
+  val <- ceiling(n*w)
   names(val) <- paste0("n", 1:g)
   val
+}
+
+tsamsize_f <- function(n, power, ...) {
+  tpower(n, verbose=FALSE, ...)-power
 }

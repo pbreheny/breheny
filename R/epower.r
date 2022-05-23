@@ -19,10 +19,6 @@
 #' epower(30, seq(1.5, 2.5, 0.1))
 #' epower(30, 2, alpha=c(0.01, 0.05, 0.1))
 #' esamsize(1.5)
-#' @name epower
-NULL
-
-#' @describeIn epower   Calculate power
 #' @export
 
 epower <- function(n, r, alpha=.05, w=c(1,1), n1, n2, lam, cens) {
@@ -64,7 +60,7 @@ epower <- function(n, r, alpha=.05, w=c(1,1), n1, n2, lam, cens) {
   return(1 - pnorm(C, d) + pnorm(-C, d))
 }
 
-#' @describeIn epower   Calculate sample size
+#' @rdname epower
 #' @export
 
 esamsize <- function(r, w=c(1,1), alpha=.05, power=.8, lam, cens) {
