@@ -2,3 +2,8 @@ Name: Check documentation
 Description: Check code/documentation agreement using `devtools::check_man()`
 Binding: chk_man
 Interactive: true
+
+Name: Silently load all
+Description: Run devtools::load_all(), but quietly
+Binding: silent_load
+Interactive: true
