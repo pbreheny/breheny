@@ -3,9 +3,9 @@
 #' @param x   URL to open
 #'
 #' @examples
-#' url('www.google.com')
+#' open_url('www.google.com')
 #' @export
 
-url <- function(x) {
+open_url <- function(x) {
   system2('sensible-browser', c('--new-window', x), stdout=NULL, stderr=NULL, wait=FALSE)
 }
