@@ -17,9 +17,9 @@ Note that as.data.frame can do this, but you get aggregated rows with a \code{Fr
 }
 \section{Functions}{
 \itemize{
-\item \code{table2df}: Convert a table to a (disaggregated) data frame
-}}
+\item \code{table2df()}: Convert a table to a (disaggregated) data frame
 
+}}
 \examples{
 table2dt(Titanic)
 head(table2df(Titanic))

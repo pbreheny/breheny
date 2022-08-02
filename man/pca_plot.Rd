@@ -13,6 +13,7 @@ pca_plot(
   gg = TRUE,
   ellipse = FALSE,
   legend,
+  repel = FALSE,
   plot = TRUE,
   ...
 )
@@ -33,6 +34,8 @@ pca_plot(
 \item{ellipse}{Draw mvn-ellipses around groups? (default: false, only available for ggplot)}
 
 \item{legend}{Include a legend (default: true)}
+
+\item{repel}{If \code{gg=TRUE} and \code{txt=TRUE}, use \code{ggrepel::geom_text_repel()}? (default: false)}
 
 \item{plot}{Create plot? (default: true)}
 
@@ -63,6 +66,7 @@ head(pca_plot(iris[,1:4], method='umap', dims=3, plot=FALSE))
 
 # Plots of the USArrests data
 pca_plot(USArrests, txt=TRUE)
+pca_plot(USArrests, txt=TRUE, repel=TRUE)
 pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
 pca_plot(USArrests, txt=TRUE, method='tsne', perplexity=10)
 pca_plot(USArrests, txt=TRUE, method='umap', nn=6)

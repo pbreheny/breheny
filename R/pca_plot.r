@@ -12,6 +12,7 @@
 #' @param gg           Use ggplot2? (default: true)
 #' @param ellipse      Draw mvn-ellipses around groups? (default: false, only available for ggplot)
 #' @param legend       Include a legend (default: true)
+#' @param repel        If `gg=TRUE` and `txt=TRUE`, use `ggrepel::geom_text_repel()`? (default: false)
 #' @param plot         Create plot? (default: true)
 #' @param ...          Further arguments to `plot()`
 #'
@@ -32,12 +33,14 @@
 #'
 #' # Plots of the USArrests data
 #' pca_plot(USArrests, txt=TRUE)
+#' pca_plot(USArrests, txt=TRUE, repel=TRUE)
 #' pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
 #' pca_plot(USArrests, txt=TRUE, method='tsne', perplexity=10)
 #' pca_plot(USArrests, txt=TRUE, method='umap', nn=6)
 #' @export
 
-pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2, gg=TRUE, ellipse=FALSE, legend, plot=TRUE, ...) {
+pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
+                     gg=TRUE, ellipse=FALSE, legend, repel=FALSE, plot=TRUE, ...) {
 
   if (missing(legend)) legend <- !missing(grp)
   method <- match.arg(method)
@@ -78,17 +81,23 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
     ylab <- sprintf("PCA 2 (%.1f%%)", pct[2])
   }
   if (!is.null(rownames(X))) rownames(P) <- rownames(X)
+  attr(P, 'xlab') <- xlab
+  attr(P, 'ylab') <- ylab
   if (!plot) return(P)
 
-  # Set up arguments
+  # Plot
   if (gg) {
     colnames(P) <- paste0('V', 1:ncol(P))
     DF <- cbind(as.data.frame(P))
     if (missing(grp)) {
       if (txt) {
         DF <- cbind(DF, label=rownames(X))
-        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', label='label')) +
-          ggplot2::geom_text()
+        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', label='label'))
+        if (repel) {
+          p <- p + ggrepel::geom_text_repel() + ggplot2::geom_point()
+        } else {
+          p <- p + ggplot2::geom_text()
+        }
       } else {
         p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2')) +
           ggplot2::geom_point()
@@ -98,8 +107,12 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
       if (txt) {
         DF <- cbind(DF, label=rownames(X))
         p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', color='group', label='label')) +
-          ggplot2::geom_text() +
           ggplot2::theme(legend.title=ggplot2::element_blank())
+          if (repel) {
+            p <- p + ggrepel::geom_text_repel() + ggplot2::geom_point()
+          } else {
+            p <- p + ggplot2::geom_text()
+          }
       } else {
         p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', color='group')) +
           ggplot2::geom_point() +
