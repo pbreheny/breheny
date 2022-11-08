@@ -12,10 +12,14 @@
 #' @examples
 #' dt <- data.frame(a = 1:3, b = NA, c = c('a', 'b', 'c'))
 #' write_fwf(dt, width = c(4, 4, 3))
+#' write_fwf(dt, 5)
 #'
+#' X <- matrix(LETTERS[1:9], 3, 3, dimnames=list(1:3, paste0('V', 1:3)))
+#' write_fwf(X, 6)
 #' @export
 
 write_fwf = function(dt, width, con=stdout(), align = "l", na = "NA", col.names=TRUE) {
+  if (!inherits(dt, 'data.frame')) dt <- as.data.frame(dt)
   fct_col = which(sapply(dt, is.factor))
   if (length(fct_col) > 0) {
     for (i in fct_col) {
