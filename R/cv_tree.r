@@ -10,27 +10,31 @@
 #' @param rev       Reverse horizontal axis (i.e., plot from high-to-low complexity)?  Defualt: FALSE.
 #'
 #' @examples
-#' cv <- cvTree(mpg ~ ., mtcars)
+#' cv <- cv_tree(mpg ~ ., mtcars)
 #' plot(cv)
 #'
 #' @export
 
-cvTree <- function(formula, data, ..., nfolds=10, seed, p=seq(.01,.2,.01)) {
-  if (!missing(seed)) set.seed(seed)
+cv_tree <- function(formula, data, ..., nfolds=10, seed, p=seq(.01,.2,.01)) {
+  if (!missing(seed)) {
+    original_seed <- .GlobalEnv$.Random.seed
+    on.exit(.GlobalEnv$.Random.seed <- original_seed)
+    set.seed(seed)
+  }
   n <- nrow(data)
   E <- matrix(NA, nrow=n, ncol=length(p))
-  for (j in 1:length(p)) E[,j] <- cvTree_fit(formula, data, control=party::ctree_control(testtype="Univariate", mincriterion=1-p[j]), ..., nfolds=nfolds)
+  for (j in 1:length(p)) E[,j] <- cv_tree_fit(formula, data, control=party::ctree_control(testtype="Univariate", mincriterion=1-p[j]), ..., nfolds=nfolds)
   cve <- apply(E, 2, mean)
   cvse <- apply(E, 2, sd) / sqrt(n)
   min <- which.min(cve)
   structure(list(cve=cve, cvse=cvse, min=min, p=p, p.min=p[min]),
-            class='cvTree')
+            class='cv_tree')
 }
 
-#' @rdname cvTree
+#' @rdname cv_tree
 #' @export
 
-plot.cvTree <- function(x, rev=FALSE, ...) {
+plot.cv_tree <- function(x, rev=FALSE, ...) {
   L <- x$cve - x$cvse
   U <- x$cve + x$cvse
   xx <- x$p
@@ -45,7 +49,7 @@ plot.cvTree <- function(x, rev=FALSE, ...) {
   points(xx,x$cve,col="red",pch=19,cex=.5)
 }
 
-cvTree_fit <- function(formula, data, ..., nfolds) {
+cv_tree_fit <- function(formula, data, ..., nfolds) {
   y <- get(as.character(formula[[2]]), data)
   E <- numeric(length(y))
   classification <- class(y) %in% c("factor", "logical")

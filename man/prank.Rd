@@ -13,5 +13,7 @@ prank(x)
 Compute percentile rank
 }
 \examples{
+x <- c(1, 2, NA, 10)
+prank(x)
 prank(airquality$Ozone)
 }
