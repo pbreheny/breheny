@@ -12,7 +12,7 @@ alphaCol(col, alpha)
 \item{alpha}{Semi-transparency value}
 }
 \description{
-Take a solid color and turn it semi-transparent
+Superseded by \code{scales::alpha()}
 }
 \examples{
 alphaCol('red', 0.5)

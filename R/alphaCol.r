@@ -1,5 +1,7 @@
 #' Take a solid color and turn it semi-transparent
 #'
+#' Superseded by `scales::alpha()`
+#'
 #' @param col     Color
 #' @param alpha   Semi-transparency value
 #'

@@ -13,5 +13,5 @@
 rr <- function(x, margin) {
   stopifnot(margin %in% 1:2)
   p <- prop.table(x, margin)
-  switch(margin, p[1,1]/p[2,1], p[1,1]/p[1,2])
+  switch(margin, p[1, 1]/p[2, 1], p[1, 1]/p[1, 2])
 }

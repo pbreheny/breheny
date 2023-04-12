@@ -2,7 +2,7 @@
 % Please edit documentation in R/alldup.r
 \name{alldup}
 \alias{alldup}
-\title{Show all duplicate entries in a data frame/table}
+\title{Show all duplicate entries in a data frame/table/vector}
 \usage{
 alldup(DF, by)
 }
@@ -12,10 +12,11 @@ alldup(DF, by)
 \item{by}{The column of \code{DF} you want to look at duplicates of}
 }
 \description{
-Not just the "duplicated" ones
+Not just the "duplicated" ones.
 }
 \examples{
 DF <- data.frame(x = 1:3, y = c(1, 1, 2))
 alldup(DF, "x")
 alldup(DF, "y")
+alldup(DF$y)
 }
