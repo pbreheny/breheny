@@ -4,7 +4,12 @@
 \alias{colorize_terminal}
 \title{Setup errors and warnings to use cli coloring}
 \usage{
-colorize_terminal()
+colorize_terminal(err = TRUE, warn = FALSE)
+}
+\arguments{
+\item{err}{Try to colorize errors? I think this works OK, so default=\code{TRUE}.}
+
+\item{warn}{Try to colorize warnings? This sometimes screws up the terminal, so set to \code{FALSE} by default.}
 }
 \description{
 Setup errors and warnings to use cli coloring
