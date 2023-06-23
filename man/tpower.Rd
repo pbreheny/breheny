@@ -55,4 +55,5 @@ tpower(100, seq(0.25, 1, by=0.25))   # Vectorize effect size
 tpower(100, 0.5, alpha=seq(0.01, 0.05, 0.01))   # Vectorize alpha
 tpower(99, b=c(0.5, 0.5, 0), lam=c(1,1,-1))    # A multi-group example
 tsamsize(0.5)
+tsamsize(lam=c(-1,1,0,0), b=c(0,1,1,1))
 }
