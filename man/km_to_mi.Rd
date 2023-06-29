@@ -5,16 +5,16 @@
 \alias{mi_to_km}
 \title{Convert between min/km pace and min/mi pace}
 \usage{
-km_to_mi(m, s = 0, half = FALSE)
+km_to_mi(m, s = 0, d = 1)
 
-mi_to_km(m, s = 0, half = FALSE)
+mi_to_km(m, s = 0, d = 1)
 }
 \arguments{
 \item{m}{Minutes}
 
 \item{s}{Seconds (default: 0)}
 
-\item{half}{Per half km? (default: FALSE)}
+\item{dv}{Distance (default: 1)}
 }
 \description{
 Calculation is simple, but the minutes/seconds math somewhat cumbersome
