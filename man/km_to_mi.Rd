@@ -14,7 +14,7 @@ mi_to_km(m, s = 0, d = 1)
 
 \item{s}{Seconds (default: 0)}
 
-\item{dv}{Distance (default: 1)}
+\item{d}{Distance (default: 1)}
 }
 \description{
 Calculation is simple, but the minutes/seconds math somewhat cumbersome

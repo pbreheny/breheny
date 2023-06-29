@@ -4,7 +4,7 @@
 #'
 #' @param m      Minutes
 #' @param s      Seconds (default: 0)
-#' @param dv     Distance (default: 1)
+#' @param d      Distance (default: 1)
 #'
 #' @examples
 #' km_to_mi(3, 50)
