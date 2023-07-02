@@ -30,7 +30,7 @@ s3_share <- function(file, out=stdout(), expiration=168, r) {
     bucket <- stringr::str_split_fixed(config, ':', 2)[1,2]
     profile <- stringr::str_subset(config, 'profile: ') |> stringr::str_replace('profile: ', '')
     aws_cmd <- paste0('aws s3 presign s3://', bucket, '/', bn, ' --expires-in ', ex)
-    if (profile != '') aws_cmd <- paste(aws_cmd, '--profile', profile)
+    if (length(profile)) aws_cmd <- paste(aws_cmd, '--profile', profile)
     url <- system(aws_cmd, intern=TRUE)
     if (r) {
       cmd[i] <- paste0("download.file('", url, "', '", dn, "/", bn, "')")
