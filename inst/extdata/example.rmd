@@ -1,0 +1,20 @@
+---
+author: Patrick Breheny
+slide-level: 3
+date: July 6, 2022
+affiliation: University of Iowa
+institute: |
+  Associate Professor\
+  Department of Biostatistics
+title: Statistical genetics and genome-wide studies
+---
+
+### Overview
+
+- Today's lecture is about the statistical aspects of genetics and how we can link traits (e.g., height, blood pressure, disease) to specific genetic variants
+- We'll go into some depth concerning the most commonly used mathematical / statistical models for genetics, and briefly touch on more complex extensions
+- In addition, we'll discuss how this works at the genome-wide scale and what has been learned from the collective efforts to do so ---
+
+### DNA vs. expression
+
+- The basic flow of information within a cell is as follows:
