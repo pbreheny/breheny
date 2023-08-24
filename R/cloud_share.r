@@ -1,7 +1,7 @@
 #' Share Amazon CloudFront file
 #'
-#' Shares Amazon CloudFront file. Requires aws command line functionality and
-#' quite a bit of setup; see bin/cloud-share.
+#' Shares Amazon CloudFront file. Currently only works to share teaching files;
+#' see `bin/cloud-share`.
 #'
 #' @returns Either a url or R script. The latter is particularly useful for
 #'   batch downloads and specifying file save paths.
@@ -31,6 +31,9 @@ cloud_share <- function(file, out=stdout(), expiration=365, r) {
   if (missing(r)) r <- !inherits(out, 'terminal')
   checkmate::assertLogical(r, min.len=1, max.len=1)
   cmd <- vector('character', length(file))
+  if (getwd() != path.expand('~/pdf/teaching')) {
+    stop('must be run from ~/pdf/teaching', call. = FALSE)
+  }
   for (i in seq_along(file)) {
     bn <- basename(file[i])
     cli_cmd <- paste0('cloud-share ', file[i])

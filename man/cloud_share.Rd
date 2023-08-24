@@ -27,8 +27,8 @@ Either a url or R script. The latter is particularly useful for
 batch downloads and specifying file save paths.
 }
 \description{
-Shares Amazon CloudFront file. Requires aws command line functionality and
-quite a bit of setup; see bin/cloud-share.
+Shares Amazon CloudFront file. Currently only works to share teaching files;
+see \code{bin/cloud-share}.
 }
 \examples{
 \dontrun{
