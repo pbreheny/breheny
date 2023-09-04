@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' cloud_share('~/pdf/teaching/7110-f22/es-2.pdf')
+#' cloud_share('~/pdf/teaching/7110-f23/dk-1.pdf')
 #' list.files(cloud_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
 #' }
 #' @export
@@ -31,9 +31,6 @@ cloud_share <- function(file, out=stdout(), expiration=365, r) {
   if (missing(r)) r <- !inherits(out, 'terminal')
   checkmate::assertLogical(r, min.len=1, max.len=1)
   cmd <- vector('character', length(file))
-  if (getwd() != path.expand('~/pdf/teaching')) {
-    stop('must be run from ~/pdf/teaching', call. = FALSE)
-  }
   for (i in seq_along(file)) {
     bn <- basename(file[i])
     cli_cmd <- paste0('cloud-share ', file[i])
