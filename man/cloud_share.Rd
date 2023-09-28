@@ -32,7 +32,7 @@ see \code{bin/cloud-share}.
 }
 \examples{
 \dontrun{
-cloud_share('~/pdf/teaching/7110-f22/es-2.pdf')
+cloud_share('~/pdf/teaching/7110-f23/dk-1.pdf')
 list.files(cloud_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
 }
 }

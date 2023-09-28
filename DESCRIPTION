@@ -1,13 +1,13 @@
 Package: breheny
 Title: Miscellaneous Functions
-Version: 2.17.0
-Date: 2023-09-04
+Version: 2.17.1
+Date: 2023-09-28
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
   email="patrick-breheny@uiowa.edu")
 Description: A collection of miscellaneous functions that I frequently refer to;
   these may or may not be useful to anyone else.
 License: GPL-3
-Imports: stats, data.table, R6
+Imports: stats, data.table, R6, rlang
 Suggests: 
   ashr,
   boot,
@@ -16,7 +16,6 @@ Suggests:
   devtools,
   ggplot2,
   ggrepel,
-  grid,
   kableExtra,
   knitr,
   lattice,

@@ -92,21 +92,21 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
     if (missing(grp)) {
       if (txt) {
         DF <- cbind(DF, label=rownames(X))
-        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', label='label'))
+        p <- ggplot2::ggplot(DF, ggplot2::aes(.data$V1, .data$V2, label=.data$label))
         if (repel) {
           p <- p + ggrepel::geom_text_repel() + ggplot2::geom_point()
         } else {
           p <- p + ggplot2::geom_text()
         }
       } else {
-        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2')) +
+        p <- ggplot2::ggplot(DF, ggplot2::aes(.data$V1, .data$V2)) +
           ggplot2::geom_point()
       }
     } else {
       DF <- cbind(DF, group=grp)
       if (txt) {
         DF <- cbind(DF, label=rownames(X))
-        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', color='group', label='label')) +
+        p <- ggplot2::ggplot(DF, ggplot2::aes(.data$V1, .data$V2, color=.data$group, label=.data$label)) +
           ggplot2::theme(legend.title=ggplot2::element_blank())
           if (repel) {
             p <- p + ggrepel::geom_text_repel() + ggplot2::geom_point()
@@ -114,7 +114,7 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
             p <- p + ggplot2::geom_text()
           }
       } else {
-        p <- ggplot2::ggplot(DF, ggplot2::aes_string('V1', 'V2', color='group')) +
+        p <- ggplot2::ggplot(DF, ggplot2::aes(.data$V1, .data$V2, color=.data$group)) +
           ggplot2::geom_point() +
           ggplot2::theme(legend.title=ggplot2::element_blank())
       }

@@ -11,6 +11,7 @@
 #' @import data.table
 #' @import R6
 #' @import grid
+#' @importFrom rlang .data
 #'
 #' @name breheny
 NULL

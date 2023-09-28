@@ -36,9 +36,9 @@ event_chart <- function(Data, shift=FALSE, scale=1) {
     X <- DT[, c('y', v[1:2]), with=FALSE]
     names(X) <- c('y', 'x1', 'x2')
     Y <- melt(DT[, c('y', v[-(1:2)]), with=FALSE], id.vars='y')
-    p <- ggplot2::ggplot(Y, ggplot2::aes_string(x='value', y='y')) +
-      ggplot2::geom_point(ggplot2::aes_string(shape='variable'), na.rm=TRUE) +
-      ggplot2::geom_segment(data=X, ggplot2::aes_string(x='x1', xend='x2', y='y', yend='y')) +
+    p <- ggplot2::ggplot(Y, ggplot2::aes(.data$value, .data$y)) +
+      ggplot2::geom_point(ggplot2::aes(shape=.data$variable), na.rm=TRUE) +
+      ggplot2::geom_segment(data=X, ggplot2::aes(x=.data$x1, xend=.data$x2, y=.data$y, yend=.data$y)) +
       ggplot2::xlab('Time on study') +
       ggplot2::theme(axis.title.y = ggplot2::element_blank(),
                      axis.text.y = ggplot2::element_blank(),
@@ -49,9 +49,9 @@ event_chart <- function(Data, shift=FALSE, scale=1) {
     X <- DT[, c('y', v[1:2]), with=FALSE]
     names(X) <- c('y', 'x1', 'x2')
     Y <- melt(DT[, c('y', v[-(1:2)]), with=FALSE], id.vars='y')
-    p <- ggplot2::ggplot(Y, ggplot2::aes_string(x='value', y='y')) +
-      ggplot2::geom_point(ggplot2::aes_string(shape='variable'), na.rm=TRUE) +
-      ggplot2::geom_segment(data=X, ggplot2::aes_string(x='x1', xend='x2', y='y', yend='y')) +
+    p <- ggplot2::ggplot(Y, ggplot2::aes(.data$value, .data$y)) +
+      ggplot2::geom_point(ggplot2::aes(shape=.data$variable), na.rm=TRUE) +
+      ggplot2::geom_segment(data=X, ggplot2::aes(x=.data$x1, xend=.data$x2, y=.data$y, yend=.data$y)) +
       ggplot2::xlab('Date') +
       ggplot2::theme(axis.title.y = ggplot2::element_blank(),
                      axis.text.y = ggplot2::element_blank(),

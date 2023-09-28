@@ -19,5 +19,4 @@ Boxplot of a data frame / matrix using ggplot
 \examples{
 ggbox(matrix(rnorm(50), 10, 5))
 ggbox(rexp(10), 'A plot of', 'Something')
-
 }
