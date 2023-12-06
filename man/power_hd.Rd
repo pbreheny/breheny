@@ -18,10 +18,11 @@ power_hd(n, p, d, m, FDR = 0.1)
 \item{FDR}{Target FDR}
 }
 \value{
-A list containing two items:
+A list containing three items:
 \itemize{
-\item \code{Power}: The power to detect a given feature (function assumes this is the same for all features)
-\item \code{Hits}: The total number of expected discoveries (power multiplied by number of differential features)
+\item \code{expected_hits}: Expected number of discoveries (marginal power multiplied by number of differential features)
+\item \code{marginal_power}: Power to detect a given feature (function assumes this is the same for all features)
+\item \code{disjunctive_power}: Power to detect at least one feature
 }
 }
 \description{
@@ -30,5 +31,4 @@ The function sets up a root-finding problem in which the appropriate per-test cu
 \examples{
 power_hd(10, 1000, 100, 1)
 power_hd(seq(10, 100, by=10), 1000, 100, 1)
-
 }
