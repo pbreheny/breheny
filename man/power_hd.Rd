@@ -31,4 +31,5 @@ The function sets up a root-finding problem in which the appropriate per-test cu
 \examples{
 power_hd(10, 1000, 100, 1)
 power_hd(seq(10, 100, by=10), 1000, 100, 1)
+power_hd(300, 100000, 50, 0.2)
 }

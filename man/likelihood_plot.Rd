@@ -22,7 +22,7 @@ plotl(
   x,
   l,
   xlab = expression(theta),
-  ylab = expression("\u2113" * (theta)),
+  ylab = expression("ℓ" * (theta)),
   bty = "n",
   col,
   add = FALSE,
