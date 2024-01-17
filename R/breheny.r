@@ -1,9 +1,8 @@
 #' breheny: Miscellaneous functions that Patrick Breheny finds useful
 #'
 #' Miscellaneous functions that Patrick Breheny finds useful
-#'
-#' @docType package
-#'
+"_PACKAGE"
+
 #' @import stats
 #' @import graphics
 #' @import grDevices
@@ -12,6 +11,4 @@
 #' @import R6
 #' @import grid
 #' @importFrom rlang .data
-#'
-#' @name breheny
 NULL

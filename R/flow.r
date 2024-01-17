@@ -79,7 +79,11 @@ plot.Flow <- function(x, xm=.1, ym=.1, hpad=10, vpad=10, ...) {
     }
   }
   y <- seq(1, 0, length=max(depth))[depth]
-  x <- (obj$x - min(obj$x)) / diff(range(obj$x))
+  if (diff(range(obj$x)) == 0) {
+    x <- obj$x + 0.5
+  } else {
+    x <- (obj$x - min(obj$x)) / diff(range(obj$x))
+  }
   gt <- grid::gTree()
   for (i in 1:obj$n) {
     gt <- grid::addGrob(
