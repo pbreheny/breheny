@@ -4,19 +4,27 @@
 \alias{ggbox}
 \title{Boxplot of a data frame / matrix using ggplot}
 \usage{
-ggbox(X, xlab = "ind", ylab = "values")
+ggbox(X, xlab)
 }
 \arguments{
 \item{X}{Matrix of values}
 
-\item{xlab}{Horizontal axis label (default: ind)}
-
-\item{ylab}{Vertical axis label (default: values)}
+\item{xlab}{If omitted, no space will be allocated for x axis title (ylab
+can be specified as usual; see examples)}
 }
 \description{
-Boxplot of a data frame / matrix using ggplot
+Works with labels, as from the \code{labelled} package. Axis labels are handled
+somewhat differently depending on whether a single box is present or multiple.
 }
 \examples{
 ggbox(matrix(rnorm(50), 10, 5))
-ggbox(rexp(10), 'A plot of', 'Something')
+ggbox(matrix(rnorm(50), 10, 5), xlab='categories')
+ggbox(rexp(10))
+ggbox(rexp(10), 'A plot of') + ggplot2::ylab('Something')
+
+# Using labels
+X <- iris[, 1:4]
+attr(X[[4]], 'label') <- "The petal's width"
+ggbox(X)
+ggbox(X[,4])
 }
