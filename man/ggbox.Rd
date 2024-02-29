@@ -4,13 +4,15 @@
 \alias{ggbox}
 \title{Boxplot of a data frame / matrix using ggplot}
 \usage{
-ggbox(X, xlab)
+ggbox(X, xlab, horiz = FALSE)
 }
 \arguments{
 \item{X}{Matrix of values}
 
 \item{xlab}{If omitted, no space will be allocated for x axis title (ylab
 can be specified as usual; see examples)}
+
+\item{horiz}{Make horizontal? (default: FALSE)}
 }
 \description{
 Works with labels, as from the \code{labelled} package. Axis labels are handled
@@ -27,4 +29,6 @@ X <- iris[, 1:4]
 attr(X[[4]], 'label') <- "The petal's width"
 ggbox(X)
 ggbox(X[,4])
+ggbox(X[,4], horiz=TRUE)
+ggbox(X, horiz=TRUE)
 }
