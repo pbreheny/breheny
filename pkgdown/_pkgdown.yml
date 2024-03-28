@@ -1,0 +1,12 @@
+template:
+  bootstrap: 5
+  bootswatch: superhero
+  theme: github-dark
+  bslib:
+    body-bg: "#1e1e1e"
+    primary: "#00a7e6"
+
+navbar:
+  bg: primary
+  type: dark
+
