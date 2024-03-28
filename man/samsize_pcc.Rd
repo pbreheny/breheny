@@ -4,29 +4,38 @@
 \alias{samsize_pcc}
 \title{Sample size for classifier development}
 \usage{
-samsize_pcc(tolerance, stdfc, p = 0.5, nfeat, dfeat = 20)
+samsize_pcc(effect, tolerance, p = 0.5, nfeat = 1, dfeat = 1)
 }
 \arguments{
-\item{tolerance}{Sample size is found such that the absolute value of \eqn{PCC(\infty) - PCC(n)} is less than \code{tolerance}.}
+\item{effect}{Effect size (difference in means divided by SD)}
 
-\item{stdfc}{Standardized fold change (difference in means on log scale divided by standard deviation)}
+\item{tolerance}{Sample size is found such that \eqn{PCC(\infty) - PCC(n)} is less than \code{tolerance}.}
 
 \item{p}{Proportion of less common class (default 0.5)}
 
 \item{nfeat}{Number of features}
 
-\item{dfeat}{Number of differential features}
+\item{dfeat}{Number of differential features. Note that Dobbin & Simon recommend using dfeat=1.}
 }
 \value{
 Object of class `power.htest``, a list of the arguments augmented with method and note elements.
 }
 \description{
-Targets the probability of correct classification (PCC) to within a certain tolerance of the optimal PCC.
+Determine the sample size necessary to estimate the probability of correct
+classification (PCC) to within a certain tolerance of the optimal (Bayes)
+PCC.
 }
 \details{
-Loosely based on the function \code{MKmisc::ssize.pcc()}, but more accurate.  I think it is also more accurate than the results presented by Dobbin (2008), but I'm not 100\% clear on their method when n1 != n2.  When n1=n2, all methods agree.
+Assumes a multivariate normal distribution with spherical variance.
+Loosely based on the function \code{MKmisc::ssize.pcc()}, but with two primary
+differences:
+\enumerate{
+\item Doesn't solve for worst case scenario over 1:dfeat, just uses dfeat.
+\item Uses \code{tpower()} rather than approximating the power of the t-test.
+}
 }
 \examples{
-samsize_pcc(0.1, 2, 0.3, 22000)
-
+samsize_pcc(0.5, 0.001)
+samsize_pcc(1, 0.1, nfeat=22000)
+samsize_pcc(0.8, 0.1, p=1/3, nfeat=22000, dfeat=20)
 }
