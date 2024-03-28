@@ -4,16 +4,20 @@
 \alias{gghist}
 \title{Simple interface to ggplot2 histogram}
 \usage{
-gghist(x, n = 10)
+gghist(x, density = FALSE, ...)
 }
 \arguments{
 \item{x}{A vector of values to make a histogram out of}
 
-\item{n}{Number of bins}
+\item{density}{Should y-axis be density? (default: FALSE)}
+
+\item{...}{Further arguments to \code{ggplot2::geom_histogram()}}
 }
 \description{
 Simple interface to ggplot2 histogram
 }
 \examples{
-Hist(rnorm(100))
+gghist(rnorm(100))
+gghist(runif(100), breaks=seq(0, 1, 0.1))
+gghist(rnorm(100), density=TRUE)
 }
