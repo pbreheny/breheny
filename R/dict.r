@@ -2,9 +2,9 @@
 #'
 #' Keys must be valid
 #'
-#' @param dots  Either supply a single, unnamed, two-column table or a list of
-#'              `key=value` pairs; see examples. If a two-column table, first
-#'              column has the keys.
+#' @param ...  Either supply a single, unnamed, two-column table or a list of
+#'             `key=value` pairs; see examples. If a two-column table, first
+#'             column has the keys.
 #'
 #' @examples
 #' d <- dict(a=5, b=10)
