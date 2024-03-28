@@ -1,3 +1,5 @@
 *.RData
 .Rproj.user
 docs
+inst/extdata/*.txt
+!inst/extdata/cdcaids.txt
