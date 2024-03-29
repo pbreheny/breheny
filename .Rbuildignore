@@ -4,3 +4,4 @@
 ^fixdoc$
 ^\.version\.json$
 ^\.github$
+^pkgdown$

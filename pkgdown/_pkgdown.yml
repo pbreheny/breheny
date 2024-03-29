@@ -5,6 +5,7 @@ template:
   bslib:
     body-bg: "#1e1e1e"
     primary: "#00a7e6"
+    pkgdown-nav-height: 100px;
 
 navbar:
   bg: primary

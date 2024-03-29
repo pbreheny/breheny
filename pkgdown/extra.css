@@ -17,6 +17,19 @@ img.orcid {
 .nav-text.text-muted {
   color: #fff !important;
 }
+.navbar-dark .navbar-nav .active>.nav-link {
+  color: #fff !important;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: default;
+  text-decoration: none;
+}
+code a:hover {
+  color: #00a7e6
+}
 
 pre code span.cn {
   color: #69ce3d;
