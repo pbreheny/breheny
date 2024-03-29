@@ -1,0 +1,51 @@
+img {
+  margin: auto;
+  display: block;
+}
+li>a>img {
+  display: inline-block;
+}
+img.orcid {
+  display: inline-block;
+}
+.navbar-nav>.nav-item>.nav-link {
+  background: transparent;
+}
+.navbar-nav>.active.nav-item>.nav-link {
+  background: transparent;
+}
+.nav-text.text-muted {
+  color: #fff !important;
+}
+.navbar-dark .navbar-nav .active>.nav-link {
+  color: #fff !important;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: default;
+  text-decoration: none;
+}
+code a:hover {
+  color: #00a7e6
+}
+
+pre code span.cn {
+  color: #69ce3d;
+}
+pre code span.fl {
+  color: #69ce3d;
+}
+pre code span.st {
+  color: #69ce3d;
+}
+pre code span.op {
+  color: #df9af4;
+}
+pre code span.fu {
+  color: #e1e4e8
+}
+pre code span.va {
+  color: #e1e4e8
+}
