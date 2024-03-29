@@ -3,5 +3,5 @@
 [![R-CMD-check](https://github.com/pbreheny/breheny/workflows/R-CMD-check/badge.svg)](https://github.com/pbreheny/breheny/actions)
 <!-- badges: end -->
 
-## Miscellaneous R functions that I find personally useful
+# Miscellaneous R functions that I find personally useful
 
