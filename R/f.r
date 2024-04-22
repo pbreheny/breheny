@@ -8,5 +8,8 @@
 #' @export
 
 .f <- function(x, digits) {
-  sprintf(paste0('%.', digits, 'f'), x)
+  paste0('%.', digits, 'f') |>
+    sprintf(x) |>
+    as.numeric() |>
+    format(big.mark = ",", nsmall=digits)
 }
