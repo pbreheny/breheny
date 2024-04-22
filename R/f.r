@@ -1,9 +1,11 @@
 #' Compact and pipe-friendly wrapper to sprintf
 #'
-#' .p is the same, but multiplies by 100 first (for percents)
+#' `.p()` is the same as `.f()`, but multiplies by 100 first (for percents).
 #'
 #' @param x        A floating point number
 #' @param digits   Number of decimals to display
+#'
+#' @name dot-f
 #'
 #' @examples
 #' runif(1) |> .f(2)
@@ -16,7 +18,7 @@
     format(big.mark = ",", nsmall=digits)
 }
 
-#' @rdname .f
+#' @rdname dot-f
 #' @export
 .p <- function(x, digits) {
   .f(100*x, digits)

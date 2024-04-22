@@ -8,6 +8,13 @@
 \description{
 Miscellaneous functions that Patrick Breheny finds useful
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://pbreheny.github.io/breheny/}
+}
+
+}
 \author{
 \strong{Maintainer}: Patrick Breheny \email{patrick-breheny@uiowa.edu}
 
