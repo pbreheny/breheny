@@ -4,11 +4,14 @@
 \alias{dot-f}
 \alias{.f}
 \alias{.p}
+\alias{.fm}
 \title{Compact and pipe-friendly wrapper to sprintf}
 \usage{
 .f(x, digits)
 
 .p(x, digits)
+
+.fm(x, digits)
 }
 \arguments{
 \item{x}{A floating point number}
@@ -17,7 +20,11 @@
 }
 \description{
 \code{.p()} is the same as \code{.f()}, but multiplies by 100 first (for percents).
+\code{.fm()} is the same as \code{.f()}, but puts braces around commas for use in
+latex math mode.
 }
 \examples{
 runif(1) |> .f(2)
+runif(1) |> .p(2)
+runif(1, 100000, 200000) |> .fm(2)
 }
