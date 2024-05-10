@@ -81,6 +81,9 @@ pca_plot <- function(X, grp, txt=FALSE, method=c('pca', 'tsne', 'umap'), dims=2,
     ylab <- sprintf("PCA 2 (%.1f%%)", pct[2])
   }
   if (!is.null(rownames(X))) rownames(P) <- rownames(X)
+  for (j in 1:ncol(P)) {
+    if (range(P[,j]) |> abs() |> diff() < 0) P[,j] <- -P[,j]
+  }
   attr(P, 'xlab') <- xlab
   attr(P, 'ylab') <- ylab
   if (!plot) return(P)
