@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">breheny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.22.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.22.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,25 +71,25 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">rasym</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">100</span>, <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             1           2         3         4         5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   7.851127  -2.7659006 -7.189871  6.283814 -1.243170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   8.908687  -0.9896147 -6.630480  3.884503 -7.066735</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   3.099359  -2.1481152 -5.641386 -2.953135 -7.998365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80  13.276432  -8.4612874  3.575989 10.304256 -9.132990</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100  2.977871 -12.5338496 -2.348699  8.720663 -4.129862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             1         2         3         4         5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   2.230693 5.8399866 -1.854649 -2.100971  6.765118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   4.733665 0.9334486  1.340452  3.403360  8.242344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  -3.666180 1.2754442  7.710055  2.673381 10.581033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   5.570732 2.9873205  5.602494  1.436161  8.456374</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100  2.328268 9.2727489  1.647348  4.943217 13.070432</span>
 <span class="r-in"><span><span class="fu">rasym</span><span class="op">(</span><span class="fl">7</span>, <span class="fl">100</span>, <span class="fl">5</span>, mean<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 1           2           3          4            5           6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  -0.0484777795  0.03310679 -0.04956946 -0.6117498 -0.050472291 -0.04842024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   0.0003332851  0.12945695 -0.13603741 -0.2216867  0.089028974 -0.08759986</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   0.0095028413  0.06615973 -0.13707239 -0.1347620  0.036622354  0.02604338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80   0.0018989974 -0.01727033 -0.13013413 -0.1025361 -0.008608831 -0.04796277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 -0.0458138351  0.03558664 -0.07864493 -0.1688133 -0.021735874 -0.05112667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               1            2            3            4          5           6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   0.16784886  0.069344831 -0.022288882 -0.006114752 0.02957515 -0.03538268</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   0.04851881 -0.021959789  0.068937149  0.132947856 0.22809141 -0.14913861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  -0.08436858 -0.020676795  0.006074032  0.118076189 0.16341961 -0.03614143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80  -0.02085884 -0.001951684 -0.014629695  0.117912109 0.16353611 -0.05271901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100  0.08894321 -0.053509026  0.028644533  0.141426302 0.11752155  0.03633427</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  -0.01344834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   0.09142666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   0.14790766</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80   0.18231223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100  0.18736052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   0.24554342</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   0.01604075</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  -0.05110006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   0.05499884</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100  0.04321279</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
