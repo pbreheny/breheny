@@ -51,13 +51,20 @@
 <dd><p>Output of <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code></p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A named vector:</p><ul><li><p><strong>cs:</strong> Cox-Snell \(R^2\)</p></li>
+<li><p><strong>ng:</strong> Nagelkerke \(R^2\)</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">r2</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        cs        ng </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.6453351 0.8708970 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        mf        cs        ng </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.7673104 0.6453351 0.8708970 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
