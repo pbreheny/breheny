@@ -17,6 +17,6 @@ Quick wrapper for a gg bar plot
 }
 \examples{
 x <- rexp(10)
-names(x) <- letters[1:10]
+names(x) <- letters[1:10] |> sample()
 ggbar(x)
 }

@@ -9,6 +9,13 @@ r2(fit)
 \arguments{
 \item{fit}{Output of \code{\link[=glm]{glm()}}}
 }
+\value{
+A named vector:
+\itemize{
+\item \strong{cs:} Cox-Snell \eqn{R^2}
+\item \strong{ng:} Nagelkerke \eqn{R^2}
+}
+}
 \description{
 Nagelkerke R2
 }
