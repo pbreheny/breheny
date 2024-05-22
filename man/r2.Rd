@@ -12,6 +12,7 @@ r2(fit)
 \value{
 A named vector:
 \itemize{
+\item \strong{mf:} McFadden \eqn{R^2}
 \item \strong{cs:} Cox-Snell \eqn{R^2}
 \item \strong{ng:} Nagelkerke \eqn{R^2}
 }
