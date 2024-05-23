@@ -18,7 +18,7 @@ ggcontour <- function(x, y, f) {
     melt(id.vars='x', variable.name='y')
   dat[, x := as.numeric(x)]
   dat[, y := factor2num(y)]
-  ggplot2::ggplot(dat, ggplot2::aes(x, y, z=value)) +
+  ggplot2::ggplot(dat, ggplot2::aes(.data$x, .data$y, z=.data$value)) +
     ggplot2::geom_contour_filled() +
     ggplot2::scale_x_continuous(expand=ggplot2::expansion(0)) +
     ggplot2::scale_y_continuous(expand=ggplot2::expansion(0))

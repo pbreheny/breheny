@@ -12,7 +12,7 @@
 
 ggbar <- function(x) {
   data.frame(label = factor(names(x), levels=names(x)), value=x) |>
-    ggplot2::ggplot(ggplot2::aes(value, label)) +
+    ggplot2::ggplot(ggplot2::aes(.data$value, .data$label)) +
     ggplot2::geom_col() +
     ggplot2::ylab('')
 }

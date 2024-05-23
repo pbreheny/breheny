@@ -3,6 +3,11 @@
 \name{ci_plot}
 \alias{ci_plot}
 \alias{ci_plot.matrix}
+\alias{ci_plot.lm}
+\alias{ci_plot.glm}
+\alias{ci_plot.mer}
+\alias{ci_plot.coxph}
+\alias{ci_plot.data.frame}
 \title{Create forest plot of confidence intervals}
 \usage{
 ci_plot(obj, ...)
@@ -13,8 +18,27 @@ ci_plot(obj, ...)
   diff = (ncol(obj) == 4),
   null = 0,
   trans,
-  p_label = FALSE
+  p_label = FALSE,
+  ...
 )
+
+\method{ci_plot}{lm}(obj, intercept = FALSE, exclude = NULL, plot = TRUE, tau, ...)
+
+\method{ci_plot}{glm}(obj, ...)
+
+\method{ci_plot}{mer}(
+  obj,
+  intercept = FALSE,
+  exclude = NULL,
+  plot = TRUE,
+  tau,
+  nsim = 500,
+  ...
+)
+
+\method{ci_plot}{coxph}(obj, exclude = NULL, plot = TRUE, tau, ...)
+
+\method{ci_plot}{data.frame}(obj, ...)
 }
 \arguments{
 \item{obj}{The object to be plotted; can be a matrix of raw values or a model object}
@@ -27,13 +51,30 @@ ci_plot(obj, ...)
 
 \item{null}{Draw a line representing no effect at this value (default: 0)}
 
+\item{trans}{Transformation to be applied (e.g., \code{trans=exp} for a log link)}
+
 \item{p_label}{Label p-values (p=0.02 instead of just 0.02)? (default: FALSE)}
+
+\item{intercept}{Include a CI for the intercept? (default: FALSE)}
+
+\item{exclude}{Variables to exclude (character vector)}
+
+\item{plot}{If FALSE, just returns the matrix of estimates/CIs/p-values to be plotted but doesn't plot anything}
+
+\item{tau}{A named vector of effect sizes; CIs will be shown for tau*beta. Any coefficients not included are given tau = 1.}
+
+\item{nsim}{Number of simulations; see \code{confint.merMod}}
 }
 \description{
 "Forest plot"-style plotting of confidence intervals from a regression model. Basic input is a matrix with columns of estimate/lower/upper, along with an optional 4th column for the p-value. Also works with a variety of models (lm/glm/coxph/etc).
 }
 \details{
-NEEDS TAU AND PROPER RHL FOR PLABEL
+TO-DO:
+\itemize{
+\item stripes (https://ggplot2-book.org/annotations#sec-custom-annotations)
+\item auto sd
+\item interactions
+}
 }
 \examples{
 # Supplying a matrix
@@ -44,4 +85,6 @@ ci_plot(B)
 # Supplying a fitted model object
 fit <- lm(Ozone ~ Solar.R + Wind + Temp, airquality)
 ci_plot(fit)
+ci_plot(fit, tau=c(Solar.R = 100, Temp = 10, Wind = 3))
+ci_plot(fit, tau=c(Solar.R = 100))
 }

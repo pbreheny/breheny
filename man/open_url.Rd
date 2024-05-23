@@ -13,5 +13,7 @@ open_url(x)
 Open a url: quietly, in the background, and in a new window
 }
 \examples{
+\donttest{
 open_url('www.google.com')
+}
 }

@@ -3,7 +3,9 @@
 #' @param x   URL to open
 #'
 #' @examples
+#' \donttest{
 #' open_url('www.google.com')
+#' }
 #' @export
 
 open_url <- function(x) {

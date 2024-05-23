@@ -23,5 +23,4 @@ Note that as.data.frame can do this, but you get aggregated rows with a \code{Fr
 \examples{
 table2dt(Titanic)
 head(table2df(Titanic))
-
 }

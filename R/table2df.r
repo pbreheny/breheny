@@ -7,7 +7,6 @@
 #' @examples
 #' table2dt(Titanic)
 #' head(table2df(Titanic))
-#'
 #' @export
 
 table2dt <- function(Tab) {
