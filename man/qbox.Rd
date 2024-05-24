@@ -4,7 +4,13 @@
 \alias{qbox}
 \title{Box plot but whiskers show quantiles instead of outliers}
 \usage{
-qbox(df, x, g, orientation = c("horizontal", "vertical"))
+qbox(
+  df,
+  x,
+  g,
+  probs = c(0.1, 0.25, 0.5, 0.75, 0.9),
+  orientation = c("horizontal", "vertical")
+)
 }
 \arguments{
 \item{df}{A data frame}
@@ -12,6 +18,8 @@ qbox(df, x, g, orientation = c("horizontal", "vertical"))
 \item{x}{The continuous variable}
 
 \item{g}{The categorical (group) variable}
+
+\item{probs}{Quantiles at which to draw box and whiskers (default: \code{c(0.1, 0.25, 0.5, 0.75, 0.9)})}
 
 \item{orientation}{Either \code{horizontal} (default) or \code{vertical}}
 }
@@ -21,4 +29,5 @@ Box plot but whiskers show quantiles instead of outliers
 \examples{
 qbox(iris, Sepal.Length, Species)
 qbox(iris, Sepal.Length, Species, orientation='vertical')
+qbox(iris, Sepal.Length, Species, c(0, 0.25, 0.5, 0.75, 1))
 }
