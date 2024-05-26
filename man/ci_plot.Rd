@@ -71,15 +71,13 @@ ci_plot(obj, ...)
 \details{
 TO-DO:
 \itemize{
-\item stripes (https://ggplot2-book.org/annotations#sec-custom-annotations)
-\item auto sd
 \item interactions
 }
 }
 \examples{
 # Supplying a matrix
-B <- cbind(1:3, 0:2, 2:4)
-rownames(B) <- LETTERS[1:3]
+B <- cbind(1:9, 0:8, 2:10)
+rownames(B) <- LETTERS[1:9]
 ci_plot(B)
 
 # Supplying a fitted model object

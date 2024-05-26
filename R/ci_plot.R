@@ -3,8 +3,6 @@
 #' "Forest plot"-style plotting of confidence intervals from a regression model. Basic input is a matrix with columns of estimate/lower/upper, along with an optional 4th column for the p-value. Also works with a variety of models (lm/glm/coxph/etc).
 #'
 #' TO-DO:
-#' * stripes (https://ggplot2-book.org/annotations#sec-custom-annotations)
-#' * auto sd
 #' * interactions
 #'
 #' @param obj    The object to be plotted; can be a matrix of raw values or a model object
@@ -12,8 +10,8 @@
 #'
 #' @examples
 #' # Supplying a matrix
-#' B <- cbind(1:3, 0:2, 2:4)
-#' rownames(B) <- LETTERS[1:3]
+#' B <- cbind(1:9, 0:8, 2:10)
+#' rownames(B) <- LETTERS[1:9]
 #' ci_plot(B)
 #'
 #' # Supplying a fitted model object
@@ -35,13 +33,17 @@ ci_plot <- function(obj, ...) UseMethod("ci_plot")
 #'
 #' @export
 
-ci_plot.matrix <- function(
-    obj, sort=TRUE, diff=(ncol(obj)==4), null=0, trans, p_label=FALSE, ...) {
+ci_plot.matrix <- function(obj, sort=TRUE, diff=(ncol(obj)==4), null=0, trans, p_label=FALSE, ...) {
   # Set up data frame
   if (!missing(trans)) obj[,1:3] <- trans(obj[,1:3])
   colnames(obj)[1:3] <- c('Estimate', 'Lower', 'Upper')
   if (ncol(obj) > 3) colnames(obj)[4] <- 'p'
-  df <- data.frame(name=rownames(obj), as.data.frame(obj))
+  df <- data.frame(
+    name = rownames(obj),
+    as.data.frame(obj),
+    even = rep_len(c('no', 'yes'), nrow(obj)),
+    start = seq(0.5, nrow(obj), 1),
+    end = seq(0.5, nrow(obj), 1) + 1)
 
   # Sort
   if (sort) {
@@ -52,10 +54,15 @@ ci_plot.matrix <- function(
   }
 
   # Plot
-  g <- ggplot2::ggplot(df, ggplot2::aes(.data$Estimate, .data$name)) +
+  stripe_df <- data.frame(start = seq(1.5, nrow(df), 2), end = seq(1.5, nrow(df), 2) + 1)
+  g <- ggplot2::ggplot(df, ggplot2::aes(.data$Estimate, .data$name, fill=.data$even)) +
+    ggplot2::geom_rect(ggplot2::aes(ymin = .data$start, ymax = .data$end), xmin = -Inf, xmax = Inf, alpha = 0.2) +
     ggplot2::geom_point() +
+    ggplot2::theme_minimal() +
     ggplot2::geom_segment(ggplot2::aes(x=.data$Lower, xend=.data$Upper, y=.data$name, yend=.data$name)) +
-    ggplot2::ylab('')
+    ggplot2::ylab('') +
+    ggplot2::scale_fill_manual(values=c('white', 'gray75')) +
+    ggplot2::guides(fill='none')
 
   # Add null line
   if (diff) g <- g + ggplot2::geom_vline(xintercept=null, lty=2, col='gray70')
@@ -65,7 +72,9 @@ ci_plot.matrix <- function(
     rng <- range(obj[,2:3]) |> diff()
     end <- max(obj[,2:3])
     plab <- formatP(df$p, label = p_label)
-    g <- g + ggplot2::annotate("text", end + 0.1*rng, df$name, label=plab, hjust='inward', size=3.25)
+    g <- g +
+      ggplot2::annotate("text", Inf, df$name, label=plab, hjust='inward', size=3) +
+      ggplot2::scale_x_continuous(expand=ggplot2::expansion(mult=c(0.05, 0.15)))
   }
 
   g
