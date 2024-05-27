@@ -86,3 +86,6 @@ ci_plot(fit)
 ci_plot(fit, tau=c(Solar.R = 100, Temp = 10, Wind = 3))
 ci_plot(fit, tau=c(Solar.R = 100))
 }
+\seealso{
+\code{\link[=ci_int]{ci_int()}}
+}

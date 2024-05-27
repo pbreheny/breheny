@@ -8,6 +8,8 @@
 #' @param obj    The object to be plotted; can be a matrix of raw values or a model object
 #' @param ...    Not used
 #'
+#' @seealso [ci_int()]
+#'
 #' @examples
 #' # Supplying a matrix
 #' B <- cbind(1:9, 0:8, 2:10)
