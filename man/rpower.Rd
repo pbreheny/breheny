@@ -3,11 +3,14 @@
 \name{rpower}
 \alias{rpower}
 \alias{rsamsize}
+\alias{rpower_beta}
 \title{Power for regression (or any continuous outcome)}
 \usage{
 rpower(rsq, n, k = 1, p = k, alpha = 0.05)
 
 rsamsize(rsq, k = 1, p = k, power = 0.8, alpha = 0.05)
+
+rpower_beta(rsq, beta)
 }
 \arguments{
 \item{rsq}{Fraction of variance explained by the features to be tested}
@@ -31,4 +34,7 @@ rpower(0.05, 40, 5)
 rpower(0.05, 40, 5, 20)
 rpower(0.05, 40, 5, 20)
 rsamsize(0.05)
+
+rpower_beta(0.1)
+rpower_beta(beta=0.13)
 }

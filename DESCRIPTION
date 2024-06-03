@@ -1,7 +1,7 @@
 Package: breheny
 Title: Miscellaneous Functions
-Version: 2.23.4
-Date: 2024-05-27
+Version: 2.23.5
+Date: 2024-06-03
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
   email="patrick-breheny@uiowa.edu")
 Description: A collection of miscellaneous functions that I frequently refer to;

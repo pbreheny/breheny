@@ -14,7 +14,7 @@
 #' ci_int(fit, Wind, Temp=c(70, 80, 90)) |> ci_plot()
 #' airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
 #' fit <- lm(Ozone ~ Solar.R + Wind * Temp, airquality)
-#' ci_int(fit, Wind, Temp)
+#' ci_int(fit, Wind, Temp) |> ci_plot()
 #' @export
 
 ci_int <- function(fit, term, ...) {
