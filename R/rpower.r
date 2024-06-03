@@ -35,6 +35,7 @@ rsamsize_f <- function(n, rsq, k=1, p=k, power=0.8, alpha=0.05) {
 }
 
 #' @rdname rpower
+#' @param beta   Beta coefficient
 #' @export
 
 rpower_beta <- function(rsq, beta) {

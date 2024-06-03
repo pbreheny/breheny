@@ -24,6 +24,8 @@ rpower_beta(rsq, beta)
 \item{alpha}{Type 1 error rate}
 
 \item{power}{Desired power}
+
+\item{beta}{Beta coefficient}
 }
 \description{
 Power for regression (or any continuous outcome)
