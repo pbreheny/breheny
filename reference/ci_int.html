@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">breheny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.23.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.23.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 <span class="r-plt img"><img src="ci_int-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">airquality</span><span class="op">$</span><span class="va">Heat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>, <span class="fl">3</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cool"</span>,<span class="st">"Mild"</span>,<span class="st">"Hot"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Ozone</span> <span class="op">~</span> <span class="va">Solar.R</span> <span class="op">+</span> <span class="va">Wind</span> <span class="op">*</span> <span class="va">Temp</span>, <span class="va">airquality</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">ci_int</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Wind</span>, <span class="va">Temp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ci_int</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Wind</span>, <span class="va">Temp</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="ci_plot.html">ci_plot</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.frame(Estimate = rep(NA, length(cnd$val)), Lower = rep(NA,     length(cnd$val)), Upper = rep(NA, length(cnd$val)), p = rep(NA,     length(cnd$val)), row.names = paste0(x, " (", cnd$str, " = ",     cnd$val, ")")):</span> duplicate row.names: Wind ( = 74), Wind ( = 69), Wind ( = 66), Wind ( = 68), Wind ( = 62), Wind ( = 59), Wind ( = 61), Wind ( = 57), Wind ( = 58), Wind ( = 67), Wind ( = 79), Wind ( = 87), Wind ( = 82), Wind ( = 72), Wind ( = 65), Wind ( = 73), Wind ( = 76), Wind ( = 77), Wind ( = 78), Wind ( = 80), Wind ( = 84), Wind ( = 85), Wind ( = 81), Wind ( = 83), Wind ( = 92), Wind ( = 86), Wind ( = 88), Wind ( = 89), Wind ( = 90), Wind ( = 75), Wind ( = 94), Wind ( = 91), Wind ( = 93), Wind ( = 71), Wind ( = 64)</span>
 </code></pre></div>
     </div>
