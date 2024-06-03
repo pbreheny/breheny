@@ -55,7 +55,7 @@ ci_int <- function(fit, term, ...) {
     } else {
       dat <- model.frame(fit)
     }
-    dat[,cnd$str] <- dat[,cnd$str] - cnd$val[i]
+    dat[[cnd$str]] <- dat[[cnd$str]] - cnd$val[i]
     new_fit <- update(fit, data=dat)
     s <- summary(new_fit)$coefficients
     out$Estimate[i] <- coef(new_fit)[x]
