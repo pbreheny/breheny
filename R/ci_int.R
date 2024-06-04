@@ -20,6 +20,14 @@
 #' library(survival)
 #' fit <- coxph(Surv(time, status) ~ karno * age, veteran)
 #' ci_int(fit, karno, age) |> ci_plot()
+#'
+#' # A transformation
+#' fit <- lm(Ozone ~ Solar.R + log(Wind) * Temp, airquality)
+#' ci_int(fit, Wind, Temp=c(70, 80, 90))
+#' ci_int(fit, Wind, Temp=c(70, 80, 90)) |> ci_plot()
+#' airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
+#' fit <- lm(Ozone ~ Solar.R + Wind * Temp, airquality)
+#' ci_int(fit, Wind, Temp) |> ci_plot()
 #' @export
 
 ci_int <- function(fit, term, ...) {
@@ -50,11 +58,7 @@ ci_int <- function(fit, term, ...) {
 
   # Recenter and update
   for (i in seq_along(cnd$val)) {
-    if (inherits(fit, 'coxph')) {
-      dat <- eval(fit$call$data, envir=parent.frame())
-    } else {
-      dat <- model.frame(fit)
-    }
+    dat <- eval(fit$call$data, envir=parent.frame())
     dat[[cnd$str]] <- dat[[cnd$str]] - cnd$val[i]
     new_fit <- update(fit, data=dat)
     s <- summary(new_fit)$coefficients

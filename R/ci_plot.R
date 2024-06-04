@@ -132,7 +132,6 @@ ci_plot.coxph <- function(obj, exclude=NULL, plot=TRUE, tau, ...) {
   fit <- obj
   p <- length(coef(fit))
   j <- 1:p
-  if (missing(tau)) tau <- 1
   B <- cbind(coef(fit)[j], confint(fit, j), summary(fit)$coef[j,5])
   if (!missing(tau)) B <- scale_ci(B, tau)
   colnames(B) <- c("Estimate","Lower","Upper","p")
@@ -151,7 +150,7 @@ ci_plot.data.frame <- function(obj, ...) {
 }
 
 scale_ci <- function(B, tau) {
-  if (!all(names(tau) %in% rownames(B))) stop('tau must be a named list with names that correspond to coefficients in the model', call. = FALSE)
+  if (is.null(names(tau)) | (!all(names(tau) %in% rownames(B)))) stop('tau must be a named vector with names that correspond to coefficients in the model', call. = FALSE)
   ord <- match(names(tau), rownames(B))
   B[ord, 1:3] <- B[ord,1:3] * tau
   B
