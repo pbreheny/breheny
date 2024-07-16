@@ -31,6 +31,14 @@ ci_int(fit, Wind, Temp) |> ci_plot()
 library(survival)
 fit <- coxph(Surv(time, status) ~ karno * age, veteran)
 ci_int(fit, karno, age) |> ci_plot()
+
+# A transformation
+fit <- lm(Ozone ~ Solar.R + log(Wind) * Temp, airquality)
+ci_int(fit, log(Wind), Temp=c(70, 80, 90))
+ci_int(fit, log(Wind), Temp=c(70, 80, 90)) |> ci_plot()
+airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
+fit <- lm(Ozone ~ Solar.R + Wind * Heat, airquality)
+ci_int(fit, Wind, Heat) |> ci_plot()
 }
 \seealso{
 \code{\link[=ci_plot]{ci_plot()}}

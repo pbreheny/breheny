@@ -26,7 +26,17 @@ A list containing three items:
 }
 }
 \description{
-The function sets up a root-finding problem in which the appropriate per-test cutoff alpha is found that satisfies the supplied FDR (in expectation), then reports overall power for tests carried out at that alpha level.  Vectorized over n, but nothing else.
+The function sets up a root-finding problem in which the appropriate per-test
+cutoff alpha is found that satisfies the supplied FDR (in expectation), then
+reports overall power for tests carried out at that alpha level. Vectorized
+over n, but nothing else.
+}
+\details{
+\strong{Further reading:}
+\itemize{
+\item Pawitan2005: Original idea
+\item wiki: Derivation and explanation
+}
 }
 \examples{
 power_hd(10, 1000, 100, 1)

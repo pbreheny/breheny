@@ -23,11 +23,11 @@
 #'
 #' # A transformation
 #' fit <- lm(Ozone ~ Solar.R + log(Wind) * Temp, airquality)
-#' ci_int(fit, Wind, Temp=c(70, 80, 90))
-#' ci_int(fit, Wind, Temp=c(70, 80, 90)) |> ci_plot()
+#' ci_int(fit, log(Wind), Temp=c(70, 80, 90))
+#' ci_int(fit, log(Wind), Temp=c(70, 80, 90)) |> ci_plot()
 #' airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
-#' fit <- lm(Ozone ~ Solar.R + Wind * Temp, airquality)
-#' ci_int(fit, Wind, Temp) |> ci_plot()
+#' fit <- lm(Ozone ~ Solar.R + Wind * Heat, airquality)
+#' ci_int(fit, Wind, Heat) |> ci_plot()
 #' @export
 
 ci_int <- function(fit, term, ...) {
@@ -59,7 +59,11 @@ ci_int <- function(fit, term, ...) {
   # Recenter and update
   for (i in seq_along(cnd$val)) {
     dat <- eval(fit$call$data, envir=parent.frame())
-    dat[[cnd$str]] <- dat[[cnd$str]] - cnd$val[i]
+    if (is.factor(cnd$val[i])) {
+      dat[[cnd$str]] <- relevel(dat[[cnd$str]], as.character(cnd$val[i]))
+    } else {
+      dat[[cnd$str]] <- dat[[cnd$str]] - cnd$val[i]
+    }
     new_fit <- update(fit, data=dat)
     s <- summary(new_fit)$coefficients
     out$Estimate[i] <- coef(new_fit)[x]

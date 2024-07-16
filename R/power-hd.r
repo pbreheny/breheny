@@ -1,6 +1,13 @@
 #' Power calculator for high-dimensional testing
 #'
-#' The function sets up a root-finding problem in which the appropriate per-test cutoff alpha is found that satisfies the supplied FDR (in expectation), then reports overall power for tests carried out at that alpha level.  Vectorized over n, but nothing else.
+#' The function sets up a root-finding problem in which the appropriate per-test
+#' cutoff alpha is found that satisfies the supplied FDR (in expectation), then
+#' reports overall power for tests carried out at that alpha level. Vectorized
+#' over n, but nothing else.
+#'
+#' **Further reading:**
+#' * Pawitan2005: Original idea
+#' * wiki: Derivation and explanation
 #'
 #' @param n     Sample size (per group)
 #' @param p     Number of features (genes)
