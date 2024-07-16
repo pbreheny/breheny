@@ -1,273 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Attach.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Boot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/DropMiss.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Hist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/alldup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/alphaCol.html</loc>
-  </url>
-  <url>
-    <loc>/reference/binom_bayes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/breheny-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bsave.html</loc>
-  </url>
-  <url>
-    <loc>/reference/catchWarning.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check.html</loc>
-  </url>
-  <url>
-    <loc>/reference/checkData.html</loc>
-  </url>
-  <url>
-    <loc>/reference/chisqProb.html</loc>
-  </url>
-  <url>
-    <loc>/reference/chk_man.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ci_int.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ci_ipd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ci_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ciband.html</loc>
-  </url>
-  <url>
-    <loc>/reference/clipdt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/colorize_terminal.html</loc>
-  </url>
-  <url>
-    <loc>/reference/contingency_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cv_tree.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ddice.html</loc>
-  </url>
-  <url>
-    <loc>/reference/density_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/devload.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dict.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dnplot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-f.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/epower.html</loc>
-  </url>
-  <url>
-    <loc>/reference/estimate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/event_chart.html</loc>
-  </url>
-  <url>
-    <loc>/reference/factor2num.html</loc>
-  </url>
-  <url>
-    <loc>/reference/flowchart.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formatP.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_object_size.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generic_description.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggbar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggbox.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggcontour.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gghist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/grayCol.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hbytes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/km_to_mi.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lfdrPlot.ash.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likelihood_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/logAxis.html</loc>
-  </url>
-  <url>
-    <loc>/reference/make_unique.html</loc>
-  </url>
-  <url>
-    <loc>/reference/matrix_to_dt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mixcolor.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normProb.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nrisk.html</loc>
-  </url>
-  <url>
-    <loc>/reference/open_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pal.html</loc>
-  </url>
-  <url>
-    <loc>/reference/parse_aux.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pca_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/polygon.step.html</loc>
-  </url>
-  <url>
-    <loc>/reference/power_hd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/prank.html</loc>
-  </url>
-  <url>
-    <loc>/reference/process_yaml.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qbox.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/r2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rank_new.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rasym.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rbern.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rdex.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rdir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rpower.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rstring.html</loc>
-  </url>
-  <url>
-    <loc>/reference/s3_share.html</loc>
-  </url>
-  <url>
-    <loc>/reference/samsize_pcc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scale_revlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/signed_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/silent_load.html</loc>
-  </url>
-  <url>
-    <loc>/reference/soft.html</loc>
-  </url>
-  <url>
-    <loc>/reference/source.dir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/table2dt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/textPlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/toplegend.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tpower.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_fwf.html</loc>
-  </url>
-  <url>
-    <loc>/reference/xlsdt.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/Attach.html</loc></url>
+<url><loc>/reference/Boot.html</loc></url>
+<url><loc>/reference/DropMiss.html</loc></url>
+<url><loc>/reference/Hist.html</loc></url>
+<url><loc>/reference/Plot.html</loc></url>
+<url><loc>/reference/alldup.html</loc></url>
+<url><loc>/reference/alphaCol.html</loc></url>
+<url><loc>/reference/binom_bayes.html</loc></url>
+<url><loc>/reference/breheny-package.html</loc></url>
+<url><loc>/reference/bsave.html</loc></url>
+<url><loc>/reference/catchWarning.html</loc></url>
+<url><loc>/reference/check.html</loc></url>
+<url><loc>/reference/checkData.html</loc></url>
+<url><loc>/reference/chisqProb.html</loc></url>
+<url><loc>/reference/chk_man.html</loc></url>
+<url><loc>/reference/ci_int.html</loc></url>
+<url><loc>/reference/ci_ipd.html</loc></url>
+<url><loc>/reference/ci_plot.html</loc></url>
+<url><loc>/reference/ciband.html</loc></url>
+<url><loc>/reference/clipdt.html</loc></url>
+<url><loc>/reference/colorize_terminal.html</loc></url>
+<url><loc>/reference/contingency_table.html</loc></url>
+<url><loc>/reference/cv_tree.html</loc></url>
+<url><loc>/reference/ddice.html</loc></url>
+<url><loc>/reference/density_plot.html</loc></url>
+<url><loc>/reference/devload.html</loc></url>
+<url><loc>/reference/dict.html</loc></url>
+<url><loc>/reference/dnplot.html</loc></url>
+<url><loc>/reference/dot-f.html</loc></url>
+<url><loc>/reference/download_data.html</loc></url>
+<url><loc>/reference/epower.html</loc></url>
+<url><loc>/reference/estimate.html</loc></url>
+<url><loc>/reference/event_chart.html</loc></url>
+<url><loc>/reference/factor2num.html</loc></url>
+<url><loc>/reference/flowchart.html</loc></url>
+<url><loc>/reference/formatP.html</loc></url>
+<url><loc>/reference/format_object_size.html</loc></url>
+<url><loc>/reference/generic_description.html</loc></url>
+<url><loc>/reference/ggbar.html</loc></url>
+<url><loc>/reference/ggbox.html</loc></url>
+<url><loc>/reference/ggcontour.html</loc></url>
+<url><loc>/reference/gghist.html</loc></url>
+<url><loc>/reference/grayCol.html</loc></url>
+<url><loc>/reference/hbytes.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/km_to_mi.html</loc></url>
+<url><loc>/reference/lfdrPlot.ash.html</loc></url>
+<url><loc>/reference/likelihood_plot.html</loc></url>
+<url><loc>/reference/logAxis.html</loc></url>
+<url><loc>/reference/make_unique.html</loc></url>
+<url><loc>/reference/matrix_to_dt.html</loc></url>
+<url><loc>/reference/mixcolor.html</loc></url>
+<url><loc>/reference/normProb.html</loc></url>
+<url><loc>/reference/nrisk.html</loc></url>
+<url><loc>/reference/open_url.html</loc></url>
+<url><loc>/reference/pal.html</loc></url>
+<url><loc>/reference/parse_aux.html</loc></url>
+<url><loc>/reference/pca_plot.html</loc></url>
+<url><loc>/reference/polygon.step.html</loc></url>
+<url><loc>/reference/power_hd.html</loc></url>
+<url><loc>/reference/prank.html</loc></url>
+<url><loc>/reference/process_yaml.html</loc></url>
+<url><loc>/reference/qbox.html</loc></url>
+<url><loc>/reference/qd.html</loc></url>
+<url><loc>/reference/qe.html</loc></url>
+<url><loc>/reference/r2.html</loc></url>
+<url><loc>/reference/rank_new.html</loc></url>
+<url><loc>/reference/rasym.html</loc></url>
+<url><loc>/reference/rbern.html</loc></url>
+<url><loc>/reference/rdex.html</loc></url>
+<url><loc>/reference/rdir.html</loc></url>
+<url><loc>/reference/rpower.html</loc></url>
+<url><loc>/reference/rr.html</loc></url>
+<url><loc>/reference/rstring.html</loc></url>
+<url><loc>/reference/s3_share.html</loc></url>
+<url><loc>/reference/samsize_pcc.html</loc></url>
+<url><loc>/reference/scale_revlog.html</loc></url>
+<url><loc>/reference/signed_url.html</loc></url>
+<url><loc>/reference/silent_load.html</loc></url>
+<url><loc>/reference/soft.html</loc></url>
+<url><loc>/reference/source.dir.html</loc></url>
+<url><loc>/reference/table2dt.html</loc></url>
+<url><loc>/reference/textPlot.html</loc></url>
+<url><loc>/reference/toplegend.html</loc></url>
+<url><loc>/reference/tpower.html</loc></url>
+<url><loc>/reference/write_fwf.html</loc></url>
+<url><loc>/reference/xlsdt.html</loc></url>
 </urlset>
+
