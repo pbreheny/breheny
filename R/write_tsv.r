@@ -21,5 +21,5 @@ write_tsv <- function(object, precision=8, sep='\t', ...) {
   for (j in jj) {
     set(dat, j=j, value=sprintf(fmt, dat[[j]]))
   }
-  fwrite(dat, ...)
+  fwrite(dat, sep=sep, ...)
 }
