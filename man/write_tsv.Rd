@@ -19,6 +19,6 @@ write_tsv(object, precision = 8, sep = "\\t", ...)
 Write a tab-separated file, rounding floats
 }
 \examples{
-dat <- data.table(a=rnorm(10), b=rexp(10))
+dat <- data.table::data.table(a=rnorm(10), b=rexp(10))
 write_tsv(dat, 4)
 }

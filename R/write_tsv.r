@@ -6,7 +6,7 @@
 #' @param ...  Additional options to `data.table::fwrite()`
 #'
 #' @examples
-#' dat <- data.table(a=rnorm(10), b=rexp(10))
+#' dat <- data.table::data.table(a=rnorm(10), b=rexp(10))
 #' write_tsv(dat, 4)
 #' @export
 
@@ -14,7 +14,7 @@ write_tsv <- function(object, precision=8, sep='\t', ...) {
   if (inherits(object, 'data.table')) {
     dat <- copy(object)
   } else {
-    dat <- data.table::as.data.table(dat)
+    dat <- data.table::as.data.table(object)
   }
   jj <- which(vapply(dat, function(x) class(x)[1], '') == 'numeric')
   fmt <- stringr::str_glue('%.{precision}f')
