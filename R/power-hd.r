@@ -30,6 +30,7 @@ power_hd <- function(n, p, d, m, FDR=0.1) {
   N <- length(n)
   expected_hits <- marginal_power <- disjunctive_power <- numeric(N)
   for (i in 1:N) {
+    # Function to estimate the FDR based on the expected number of rejections
     f <- function(log_a) {
       a <- exp(log_a)
       bb <- tpower(n=2*n[i], delta=m, alpha=a, verbose=FALSE)
