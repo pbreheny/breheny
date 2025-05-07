@@ -7,6 +7,7 @@ Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
 Description: A collection of miscellaneous functions that I frequently refer to;
   these may or may not be useful to anyone else.
 License: GPL-3
+Depends: R (>= 4.3.0)
 Imports:
   data.table, 
   R6,

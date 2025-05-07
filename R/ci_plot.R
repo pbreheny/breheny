@@ -73,7 +73,7 @@ ci_plot.matrix <- function(obj, sort=TRUE, diff=(ncol(obj)==4), null=0, trans, p
   if (ncol(obj) > 3) {
     rng <- range(obj[,2:3]) |> diff()
     end <- max(obj[,2:3])
-    plab <- formatP(df$p, label = p_label)
+    plab <- format_p(df$p, label = p_label)
     g <- g +
       ggplot2::annotate("text", Inf, df$name, label=plab, hjust='inward', size=3) +
       ggplot2::scale_x_continuous(expand=ggplot2::expansion(mult=c(0.05, 0.15)))

@@ -88,5 +88,5 @@ print.onepar.bayes <- function(x, ...) {
           100*x$level, x$ci_central[1], x$ci_central[2]) |> cat()
   sprintf("%1$d%% HPD interval: (%2$.3f, %3$.3f)\n",
           100*x$level, x$ci_hpd[1], x$ci_hpd[2]) |> cat()
-  if ("p" %in% names(x)) cat("Significance: ", formatP(x$p), "\n", sep="")
+  if ("p" %in% names(x)) cat("Significance: ", format_p(x$p), "\n", sep="")
 }
