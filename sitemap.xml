@@ -37,8 +37,8 @@
 <url><loc>/reference/event_chart.html</loc></url>
 <url><loc>/reference/factor2num.html</loc></url>
 <url><loc>/reference/flowchart.html</loc></url>
-<url><loc>/reference/formatP.html</loc></url>
 <url><loc>/reference/format_object_size.html</loc></url>
+<url><loc>/reference/format_p.html</loc></url>
 <url><loc>/reference/generic_description.html</loc></url>
 <url><loc>/reference/ggbar.html</loc></url>
 <url><loc>/reference/ggbox.html</loc></url>
@@ -49,7 +49,7 @@
 <url><loc>/reference/hbytes.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/km_to_mi.html</loc></url>
-<url><loc>/reference/lfdrPlot.ash.html</loc></url>
+<url><loc>/reference/lfdr_plot.ash.html</loc></url>
 <url><loc>/reference/likelihood_plot.html</loc></url>
 <url><loc>/reference/logAxis.html</loc></url>
 <url><loc>/reference/make_unique.html</loc></url>
