@@ -24,6 +24,8 @@ jobs:
           extra-packages: |
             any::rcmdcheck
             any::MKmisc
+            any::broom
+            any::broom.helpers
 
       - uses: r-lib/actions/check-r-package@v2
         with:
