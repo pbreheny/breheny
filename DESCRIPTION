@@ -1,7 +1,7 @@
 Package: breheny
 Title: Miscellaneous Functions
-Version: 2.24.0
-Date: 2025-05-16
+Version: 2.24.1
+Date: 2025-05-30
 Authors@R: person("Patrick", "Breheny", role=c("aut","cre"),
   email="patrick-breheny@uiowa.edu")
 Description: A collection of miscellaneous functions that I frequently refer to;
@@ -9,7 +9,9 @@ Description: A collection of miscellaneous functions that I frequently refer to;
 License: GPL-3
 Depends: R (>= 4.3.0)
 Imports:
-  data.table, 
+  data.table,
+  ggplot2,
+  patchwork,
   R6,
   rlang,
   stats
@@ -19,8 +21,8 @@ Suggests:
   checkmate,
   cli,
   devtools,
-  ggplot2,
   ggrepel,
+  gtsummary,
   kableExtra,
   knitr,
   lattice,

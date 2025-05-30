@@ -5,3 +5,5 @@
 ^\.version\.json$
 ^\.github$
 ^pkgdown$
+^\.lintr$
+

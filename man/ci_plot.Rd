@@ -2,71 +2,85 @@
 % Please edit documentation in R/ci_plot.R
 \name{ci_plot}
 \alias{ci_plot}
-\alias{ci_plot.matrix}
+\alias{ci_plot.data.frame}
 \alias{ci_plot.lm}
 \alias{ci_plot.glm}
-\alias{ci_plot.mer}
+\alias{ci_plot.merMod}
 \alias{ci_plot.coxph}
-\alias{ci_plot.data.frame}
+\alias{ci_plot.matrix}
+\alias{ci_plot.tbl_regression}
 \title{Create forest plot of confidence intervals}
 \usage{
 ci_plot(obj, ...)
 
-\method{ci_plot}{matrix}(
+\method{ci_plot}{data.frame}(
   obj,
-  sort = TRUE,
-  diff = (ncol(obj) == 4),
+  xlab = "Estimate",
   null = 0,
-  trans,
-  p_label = FALSE,
+  exp = FALSE,
+  return = c("gg", "df", "list"),
   ...
 )
 
-\method{ci_plot}{lm}(obj, intercept = FALSE, exclude = NULL, plot = TRUE, tau, ...)
+\method{ci_plot}{lm}(obj, tau, intercept = FALSE, p = TRUE, ...)
 
 \method{ci_plot}{glm}(obj, ...)
 
-\method{ci_plot}{mer}(
-  obj,
-  intercept = FALSE,
-  exclude = NULL,
-  plot = TRUE,
-  tau,
-  nsim = 500,
-  ...
-)
+\method{ci_plot}{merMod}(obj, tau, intercept = FALSE, ...)
 
-\method{ci_plot}{coxph}(obj, exclude = NULL, plot = TRUE, tau, ...)
+\method{ci_plot}{coxph}(obj, tau, p = TRUE, ...)
 
-\method{ci_plot}{data.frame}(obj, ...)
+\method{ci_plot}{matrix}(obj, ...)
+
+\method{ci_plot}{tbl_regression}(obj, ...)
 }
 \arguments{
-\item{obj}{The object to be plotted; can be a matrix of raw values or a model object}
+\item{obj}{The object to be plotted. This can be either:
+\itemize{
+\item A data frame with variables in the following order:
+\enumerate{
+\item (Optional) Label - if omitted row names will be used instead
+\item Estimate
+\item Lower CI limit
+\item Upper CI limit
+\item (Optional) p-value
+}
+\item A model object (e.g., from \code{lm()}, \code{glm()}, etc.), which will be automatically
+converted to a data frame in this format.
+}
 
-\item{...}{Not used}
+See examples for usage of both.}
 
-\item{sort}{Sort parameters by estimate? (default: true)}
+\item{...}{Not used; for S3 compatibility}
 
-\item{diff}{Include tests of difference / p-values?}
+\item{xlab}{Horizontal axis label (default: 'Estimate')}
 
 \item{null}{Draw a line representing no effect at this value (default: 0)}
 
-\item{trans}{Transformation to be applied (e.g., \code{trans=exp} for a log link)}
+\item{exp}{Should the axis labels be exponentiated because the estimates
+are on a log scale? (default: FALSE)}
 
-\item{p_label}{Label p-values (p=0.02 instead of just 0.02)? (default: FALSE)}
+\item{return}{One of the following:
+\itemize{
+\item \code{gg}: Return the complete plot as a patchwork / gg object (default)
+\item \code{df}: Return the formatted data frame (don't construct a plot at all)
+\item \code{list}: Return the plot components as a list (useful if you want to
+further modify one of the components; see examples)
+}}
+
+\item{tau}{A named vector of effect sizes; CIs will be shown for
+tau*beta. Any coefficients not included are given tau = 1. To exclude a
+variable completely, use tau = 0.}
 
 \item{intercept}{Include a CI for the intercept? (default: FALSE)}
 
-\item{exclude}{Variables to exclude (character vector)}
-
-\item{plot}{If FALSE, just returns the matrix of estimates/CIs/p-values to be plotted but doesn't plot anything}
-
-\item{tau}{A named vector of effect sizes; CIs will be shown for tau*beta. Any coefficients not included are given tau = 1.}
-
-\item{nsim}{Number of simulations; see \code{confint.merMod}}
+\item{p}{Include p-values? (default: TRUE)}
 }
 \description{
-"Forest plot"-style plotting of confidence intervals from a regression model. Basic input is a matrix with columns of estimate/lower/upper, along with an optional 4th column for the p-value. Also works with a variety of models (lm/glm/coxph/etc).
+"Forest plot"-style plotting of confidence intervals, typically from a
+regression model. Basic input is a matrix with columns of
+estimate/lower/upper, along with an optional 4th column for the p-value. Also
+works with a variety of models (lm/glm/coxph/etc).
 }
 \details{
 TO-DO:
@@ -75,16 +89,29 @@ TO-DO:
 }
 }
 \examples{
-# Supplying a matrix
-B <- cbind(1:9, 0:8, 2:10)
-rownames(B) <- LETTERS[1:9]
-ci_plot(B)
+# Supplying a data frame
+b <- data.frame(1:9, 0:8, 2:10)
+rownames(b) <- LETTERS[1:9]
+ci_plot(b)
+rownames(b)[3] <- 'This one is long'
+ci_plot(b)
 
 # Supplying a fitted model object
 fit <- lm(Ozone ~ Solar.R + Wind + Temp, airquality)
 ci_plot(fit)
-ci_plot(fit, tau=c(Solar.R = 100, Temp = 10, Wind = 3))
-ci_plot(fit, tau=c(Solar.R = 100))
+ci_plot(fit, tau = c(Solar.R = 100, Wind = 0))
+ci_plot(fit, p = FALSE)
+fit <- glm(case ~ spontaneous + induced, data = infert, family = binomial())
+ci_plot(fit)
+ci_plot(fit, exp = TRUE, xlab = 'Odds ratio')
+library(lme4)
+fit <- lmer(Reaction ~ Days + I(Days^2) + (1 | Subject), sleepstudy)
+ci_plot(fit)
+library(survival)
+fit <- coxph(Surv(time, status) ~ trt + karno, veteran)
+ci_plot(fit)
+fit <- lm(Ozone ~ Solar.R + Wind + Temp, airquality)
+gtsummary::tbl_regression(fit) |> ci_plot()
 }
 \seealso{
 \code{\link[=ci_int]{ci_int()}}
