@@ -36,6 +36,7 @@ jobs:
             any::pkgdown
             any::broom
             any::broom.helpers
+            local::.
           needs: website
 
       - name: Build site
