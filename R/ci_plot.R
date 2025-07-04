@@ -42,6 +42,7 @@ ci_plot <- function(obj, ...) UseMethod('ci_plot')
 #' @param null    Draw a line representing no effect at this value (default: 0)
 #' @param exp     Should the axis labels be exponentiated because the estimates
 #'   are on a log scale? (default: FALSE)
+#' @param brk     If `exp = TRUE`, you can supply "pretty" breaks (numeric vector)
 #' @param return  One of the following:
 #'   * `gg`: Return the complete plot as a patchwork / gg object (default)
 #'   * `df`: Return the formatted data frame (don't construct a plot at all)
@@ -54,6 +55,7 @@ ci_plot.data.frame <- function(obj,
                                xlab = 'Estimate',
                                null = 0,
                                exp = FALSE,
+                               brk,
                                return = c('gg', 'df', 'list'),
                                ...) {
   return <- match.arg(return)
@@ -108,9 +110,16 @@ ci_plot.data.frame <- function(obj,
 
   # Exponentiate labels
   if (exp) {
-    g <- g + ggplot2::scale_x_continuous(
-      labels = scales::trans_format('exp', format = scales::label_number(0.01))
-    )
+    if (missing(brk)) {
+      g <- g + ggplot2::scale_x_continuous(
+        labels = scales::trans_format("exp", scales::label_number())
+      )
+    } else {
+      g <- g + ggplot2::scale_x_continuous(
+        breaks = log(brk),
+        labels = scales::trans_format("exp", scales::label_number())
+      )
+    }
   }
 
   # Create p-value sidebar

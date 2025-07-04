@@ -18,6 +18,7 @@ ci_plot(obj, ...)
   xlab = "Estimate",
   null = 0,
   exp = FALSE,
+  brk,
   return = c("gg", "df", "list"),
   ...
 )
@@ -59,6 +60,8 @@ See examples for usage of both.}
 
 \item{exp}{Should the axis labels be exponentiated because the estimates
 are on a log scale? (default: FALSE)}
+
+\item{brk}{If \code{exp = TRUE}, you can supply "pretty" breaks (numeric vector)}
 
 \item{return}{One of the following:
 \itemize{
