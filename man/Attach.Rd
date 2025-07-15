@@ -18,6 +18,6 @@ Detach before attaching
 }
 \examples{
 Attach(airquality)
-Attach(airquality)   # Ordinarily this would provoke warnings
+Attach(airquality) # Ordinarily this would provoke warnings
 
 }

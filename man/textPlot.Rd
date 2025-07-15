@@ -26,7 +26,7 @@ b <- runif(10)
 names(a) <- names(b) <- LETTERS[1:10]
 textPlot(a, b)
 
-X <- cbind(a=a, b=b)
+X <- cbind(a = a, b = b)
 textPlot(X)
 
 }

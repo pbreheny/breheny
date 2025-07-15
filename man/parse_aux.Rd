@@ -16,7 +16,8 @@ Parse latex .aux files for fig/tab/etc. numbers
 }
 \examples{
 \dontrun{
-parse_aux('file.aux')
-parse_aux(c('ch1.aux', 'ch2.aux'), 'ex')}
+parse_aux("file.aux")
+parse_aux(c("ch1.aux", "ch2.aux"), "ex")
+}
 
 }

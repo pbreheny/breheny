@@ -22,6 +22,6 @@ Returns the sum of bernoulli variables with different probabilities.
 }
 \examples{
 rasym(5, 100, 5)
-rasym(7, 100, 5, mean=TRUE)
+rasym(7, 100, 5, mean = TRUE)
 
 }

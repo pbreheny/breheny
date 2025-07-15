@@ -36,6 +36,6 @@ differences:
 }
 \examples{
 samsize_pcc(0.5, 0.001)
-samsize_pcc(1, 0.1, nfeat=22000)
-samsize_pcc(0.8, 0.1, p=1/3, nfeat=22000, dfeat=20)
+samsize_pcc(1, 0.1, nfeat = 22000)
+samsize_pcc(0.8, 0.1, p = 1 / 3, nfeat = 22000, dfeat = 20)
 }

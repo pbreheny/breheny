@@ -6,11 +6,11 @@
 #' @param sep   Separator between label and suffix.  Default: _.
 #'
 #' @examples
-#' make_unique(LETTERS[c(1,1,2,2,2,3,4)])
+#' make_unique(LETTERS[c(1, 1, 2, 2, 2, 3, 4)])
 #'
 #' @export
 
-make_unique <- function(x, sep='_') {
+make_unique <- function(x, sep = "_") {
   x <- as.character(x)
   tab <- table(x)
   tab <- tab[tab > 1]

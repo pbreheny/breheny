@@ -10,9 +10,9 @@
 #'
 #' @examples
 #' fit <- lm(Ozone ~ Solar.R + Wind * Temp, airquality)
-#' ci_int(fit, Wind, Temp=c(70, 80, 90))
-#' ci_int(fit, Wind, Temp=c(70, 80, 90)) |> ci_plot()
-#' airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
+#' ci_int(fit, Wind, Temp = c(70, 80, 90))
+#' ci_int(fit, Wind, Temp = c(70, 80, 90)) |> ci_plot()
+#' airquality$Heat <- cut(airquality$Temp, 3, labels = c("Cool", "Mild", "Hot"))
 #' fit <- lm(Ozone ~ Solar.R + Wind * Temp, airquality)
 #' ci_int(fit, Wind, Temp) |> ci_plot()
 #'
@@ -23,9 +23,9 @@
 #'
 #' # A transformation
 #' fit <- lm(Ozone ~ Solar.R + log(Wind) * Temp, airquality)
-#' ci_int(fit, log(Wind), Temp=c(70, 80, 90))
-#' ci_int(fit, log(Wind), Temp=c(70, 80, 90)) |> ci_plot()
-#' airquality$Heat <- cut(airquality$Temp, 3, labels=c("Cool","Mild","Hot"))
+#' ci_int(fit, log(Wind), Temp = c(70, 80, 90))
+#' ci_int(fit, log(Wind), Temp = c(70, 80, 90)) |> ci_plot()
+#' airquality$Heat <- cut(airquality$Temp, 3, labels = c("Cool", "Mild", "Hot"))
 #' fit <- lm(Ozone ~ Solar.R + Wind * Heat, airquality)
 #' ci_int(fit, Wind, Heat) |> ci_plot()
 #' @export
@@ -35,12 +35,13 @@ ci_int <- function(fit, term, ...) {
   m <- match.call()
   cnd <- tryCatch(
     list(str = names(list(...))[1], val = list(...)[[1]]),
-    error = function(e) list(str = as.character(m[4]), val = NULL))
+    error = function(e) list(str = as.character(m[4]), val = NULL)
+  )
   x <- deparse(substitute(term))
 
   # Set up cnd vector if not user-specified
   if (is.null(cnd$val)) {
-    z <- model.frame(fit)[,cnd$str]
+    z <- model.frame(fit)[, cnd$str]
     if (length(unique(z)) <= 5) {
       cnd$val <- unique(z)
     } else {
@@ -54,20 +55,21 @@ ci_int <- function(fit, term, ...) {
     Lower = rep(NA, length(cnd$val)),
     Upper = rep(NA, length(cnd$val)),
     p = rep(NA, length(cnd$val)),
-    row.names=paste0(x, ' (', cnd$str, ' = ', cnd$val, ')'))
+    row.names = paste0(x, " (", cnd$str, " = ", cnd$val, ")")
+  )
 
   # Recenter and update
   for (i in seq_along(cnd$val)) {
-    dat <- eval(fit$call$data, envir=parent.frame())
+    dat <- eval(fit$call$data, envir = parent.frame())
     if (is.factor(cnd$val[i])) {
       dat[[cnd$str]] <- relevel(dat[[cnd$str]], as.character(cnd$val[i]))
     } else {
       dat[[cnd$str]] <- dat[[cnd$str]] - cnd$val[i]
     }
-    new_fit <- update(fit, data=dat)
+    new_fit <- update(fit, data = dat)
     s <- summary(new_fit)$coefficients
     out$Estimate[i] <- coef(new_fit)[x]
-    out[i, 2:3] <- confint(new_fit)[x,]
+    out[i, 2:3] <- confint(new_fit)[x, ]
     out[i, 4] <- s[x, ncol(s)]
   }
 

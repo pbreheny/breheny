@@ -49,18 +49,18 @@ fit <- survival::survfit(survival::Surv(time, status) ~ celltype, veteran)
 Plot(fit)
 
 # Trees
-data(kyphosis, package='rpart')
+data(kyphosis, package = "rpart")
 fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
 Plot(fit)
 fit <- party::ctree(Kyphosis ~ Age + Number + Start, data = kyphosis)
 Plot(fit)
-Plot(fit, summary=TRUE)
-Plot(fit, summary=TRUE, pval=TRUE)
-Plot(fit, pval=TRUE, digits=2)
+Plot(fit, summary = TRUE)
+Plot(fit, summary = TRUE, pval = TRUE)
+Plot(fit, pval = TRUE, digits = 2)
 Data <- kyphosis
 Data$Start <- Data$Start + runif(nrow(Data))
 fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = Data)
 Plot(fit)
-Plot(fit, digits=10)
+Plot(fit, digits = 10)
 
 }

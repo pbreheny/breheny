@@ -23,5 +23,5 @@ x <- matrix(runif(9), 3, 3)
 rownames(x) <- letters[1:3]
 colnames(x) <- letters[4:6]
 matrix_to_dt(x)
-matrix_to_dt(x, 'sample', 'gene', 'expression')
+matrix_to_dt(x, "sample", "gene", "expression")
 }

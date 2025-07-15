@@ -15,6 +15,6 @@ alphaCol(col, alpha)
 Superseded by \code{scales::alpha()}
 }
 \examples{
-alphaCol('red', 0.5)
+alphaCol("red", 0.5)
 
 }

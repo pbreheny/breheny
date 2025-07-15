@@ -23,7 +23,7 @@ Requires aws command line functionality.
 }
 \examples{
 \dontrun{
-s3_share('~/web/pdf/BrehenyCV.pdf')
-s3_share(c('~/web/pdf/BrehenyCV.pdf', '~/web/pdf/mnet.pdf'), r=TRUE)
+s3_share("~/web/pdf/BrehenyCV.pdf")
+s3_share(c("~/web/pdf/BrehenyCV.pdf", "~/web/pdf/mnet.pdf"), r = TRUE)
 }
 }

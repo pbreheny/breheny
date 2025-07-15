@@ -10,19 +10,19 @@
 #'
 #' @examples
 #' rasym(5, 100, 5)
-#' rasym(7, 100, 5, mean=TRUE)
+#' rasym(7, 100, 5, mean = TRUE)
 #'
 #' @export
 #'
 #'
 
-rasym <- function(n, N, len=N, mu=0, mean=FALSE) {
-  if (N %% len != 0) stop('N is not an even multiple of length', call.=FALSE)
-  gap <- floor(N/len) # Should warn?
+rasym <- function(n, N, len = N, mu = 0, mean = FALSE) {
+  if (N %% len != 0) stop("N is not an even multiple of length", call. = FALSE)
+  gap <- floor(N / len) # Should warn?
   nn <- seq(gap, N, gap)
-  Y <- matrix(rnorm(n*len, sd=sqrt(gap)), len, n) + gap*mu
+  Y <- matrix(rnorm(n * len, sd = sqrt(gap)), len, n) + gap * mu
   if (mean) {
-    Z <- apply(Y, 2, cumsum)/nn
+    Z <- apply(Y, 2, cumsum) / nn
   } else {
     Z <- apply(Y, 2, cumsum)
   }

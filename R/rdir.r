@@ -11,6 +11,6 @@
 
 rdir <- function(n, alpha) {
   d <- length(alpha)
-  Y <- matrix(rgamma(n*d, alpha, 1), d, n)
-  t(sweep(Y, 2, colSums(Y), '/'))
+  Y <- matrix(rgamma(n * d, alpha, 1), d, n)
+  t(sweep(Y, 2, colSums(Y), "/"))
 }

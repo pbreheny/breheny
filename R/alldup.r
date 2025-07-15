@@ -14,8 +14,8 @@
 
 alldup <- function(DF, by) {
   if (is.vector(DF)) {
-    DF[duplicated(DF) | duplicated(DF, fromLast=TRUE)]
+    DF[duplicated(DF) | duplicated(DF, fromLast = TRUE)]
   } else {
-    DF[duplicated(DF[[by]]) | duplicated(DF[[by]], fromLast=TRUE), ]
+    DF[duplicated(DF[[by]]) | duplicated(DF[[by]], fromLast = TRUE), ]
   }
 }

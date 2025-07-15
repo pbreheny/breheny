@@ -16,13 +16,13 @@
 #' @encoding UTF-8
 #'
 #' @examples
-#' x <- seq(-3, 4, length=99)
+#' x <- seq(-3, 4, length = 99)
 #' L <- dnorm(1, x)
-#' l <- dnorm(1, x, log=TRUE)
+#' l <- dnorm(1, x, log = TRUE)
 #' plotL(x, L)
 #' plotl(x, l)
 #' L <- cbind(dnorm(1, x), dnorm(2, x))
-#' l <- cbind(dnorm(1, x, log=TRUE), dnorm(2, x, log=TRUE))
+#' l <- cbind(dnorm(1, x, log = TRUE), dnorm(2, x, log = TRUE))
 #' plotL(x, L)
 #' plotl(x, l)
 NULL
@@ -31,23 +31,23 @@ NULL
 #'
 #' @export
 
-plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='n', col, add=FALSE, ...) {
+plotL <- function(x, l, xlab = expression(theta), ylab = expression(L(theta)), bty = "n", col, add = FALSE, ...) {
   if (is.matrix(l)) {
     if (missing(col)) col <- pal(ncol(l))
-    L <- apply(l, 2, function(x) x/max(x))
-    matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, lty=1, add=add)
-    if (!is.null(colnames(L))) toplegend(legend=colnames(L), lwd=3, col=col)
-    if (!add) mtext(ylab, 2, line=2.5)
+    L <- apply(l, 2, function(x) x / max(x))
+    matplot(x, L, type = "l", xlab = xlab, ylab = "", bty = bty, las = 1, col = col, lwd = 3, lty = 1, add = add)
+    if (!is.null(colnames(L))) toplegend(legend = colnames(L), lwd = 3, col = col)
+    if (!add) mtext(ylab, 2, line = 2.5)
     return(invisible(L))
   } else {
     if (missing(col)) col <- pal(2)[2]
-    l <- l/max(l)
+    l <- l / max(l)
     if (add) {
-      lines(x, l, xlab=xlab, ylab=ylab, bty=bty, las=1, col=col, lwd=3, ...)
+      lines(x, l, xlab = xlab, ylab = ylab, bty = bty, las = 1, col = col, lwd = 3, ...)
     } else {
-      plot(x, l, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, ...)
+      plot(x, l, type = "l", xlab = xlab, ylab = "", bty = bty, las = 1, col = col, lwd = 3, ...)
     }
-    if (!add) mtext(ylab, 2, line=2.5)
+    if (!add) mtext(ylab, 2, line = 2.5)
     return(invisible(l))
   }
 }
@@ -56,24 +56,51 @@ plotL <- function(x, l, xlab=expression(theta), ylab=expression(L(theta)), bty='
 #'
 #' @export
 
-plotl <- function(x, l, xlab=expression(theta), ylab=expression("\u2113"*(theta)), bty='n', col, add=FALSE, ...) {
+plotl <- function(x, l, bty = "n", add = FALSE, ...) {
+  dots <- list(...)
+  xlab <- dots[["xlab"]] %||% expression(theta)
+  ylab <- dots[["ylab"]] %||% expression("\u2113" * (theta))
+
   if (is.matrix(l)) {
-    if (missing(col)) col <- pal(ncol(l))
+    col <- dots[["col"]] %||% pal(ncol(l))
     L <- apply(l, 2, function(x) x - max(x))
-    matplot(x, L, type='l', xlab=xlab, ylab='', bty=bty,
-            las=1, col=col, lwd=3, lty=1)
-    if (!is.null(colnames(L))) toplegend(legend=colnames(L), lwd=3, col=col)
-    if (!add) mtext(ylab, 2, line=2.5)
+    matplot(
+      x,
+      L,
+      type = "l",
+      xlab = xlab,
+      ylab = "",
+      bty = bty,
+      las = 1,
+      col = col,
+      lwd = 3,
+      lty = 1,
+      ...
+    )
+    if (!is.null(colnames(L)))
+      toplegend(legend = colnames(L), lwd = 3, col = col)
+    if (!add) mtext(ylab, 2, line = 2.5)
     return(invisible(L))
   } else {
-    if (missing(col)) col <- pal(2)[2]
+    col <- dots[["col"]] %||% pal(2)[2]
     l <- l - max(l)
     if (add) {
-      lines(x, l, col=col, lwd=3, ...)
+      lines(x, l, col = col, lwd = 3, ...)
     } else {
-      plot(x, l, type='l', xlab=xlab, ylab='', bty=bty, las=1, col=col, lwd=3, ...)
+      plot(
+        x,
+        l,
+        type = "l",
+        xlab = xlab,
+        ylab = "",
+        bty = bty,
+        las = 1,
+        col = col,
+        lwd = 3,
+        ...
+      )
     }
-    if (!add) mtext(ylab, 2, line=2.5)
+    if (!add) mtext(ylab, 2, line = 2.5)
     return(invisible(l))
   }
 }

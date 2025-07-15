@@ -1,3 +1,3 @@
-dProd <- function(X,d) {
+dProd <- function(X, d) {
   sweep(X, 2, d, "*")
 }

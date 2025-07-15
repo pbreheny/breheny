@@ -53,21 +53,21 @@ The function allows the passing of some parameters to Rtsne/umap:
 }
 \examples{
 # Plots of the iris data
-pca_plot(iris[,1:4])
-pca_plot(iris[,1:4], grp=iris[,5])
-pca_plot(iris[,1:4], grp=iris[,5], ellipse=TRUE)
-pca_plot(iris[,1:4], grp=iris[,5], method='tsne')
-pca_plot(iris[,1:4], grp=iris[,5], method='umap')
+pca_plot(iris[, 1:4])
+pca_plot(iris[, 1:4], grp = iris[, 5])
+pca_plot(iris[, 1:4], grp = iris[, 5], ellipse = TRUE)
+pca_plot(iris[, 1:4], grp = iris[, 5], method = "tsne")
+pca_plot(iris[, 1:4], grp = iris[, 5], method = "umap")
 
 # What pca_plot returns if plot=FALSE
-head(pca_plot(iris[,1:4], method='pca', plot=FALSE))
-head(pca_plot(iris[,1:4], method='tsne', dims=3, plot=FALSE))
-head(pca_plot(iris[,1:4], method='umap', dims=3, plot=FALSE))
+head(pca_plot(iris[, 1:4], method = "pca", plot = FALSE))
+head(pca_plot(iris[, 1:4], method = "tsne", dims = 3, plot = FALSE))
+head(pca_plot(iris[, 1:4], method = "umap", dims = 3, plot = FALSE))
 
 # Plots of the USArrests data
-pca_plot(USArrests, txt=TRUE)
-pca_plot(USArrests, txt=TRUE, repel=TRUE)
-pca_plot(USArrests, txt=TRUE, grp=rep(LETTERS[1:5], each=10))
-pca_plot(USArrests, txt=TRUE, method='tsne', perplexity=10)
-pca_plot(USArrests, txt=TRUE, method='umap', nn=6)
+pca_plot(USArrests, txt = TRUE)
+pca_plot(USArrests, txt = TRUE, repel = TRUE)
+pca_plot(USArrests, txt = TRUE, grp = rep(LETTERS[1:5], each = 10))
+pca_plot(USArrests, txt = TRUE, method = "tsne", perplexity = 10)
+pca_plot(USArrests, txt = TRUE, method = "umap", nn = 6)
 }

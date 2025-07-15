@@ -20,6 +20,6 @@ Apply rank transformation to new data
 x <- rnorm(100)
 rank_new(x, 1)
 rank_new(x, 4)
-X <- matrix(rnorm(100*5), 100, 5)
+X <- matrix(rnorm(100 * 5), 100, 5)
 rank_new(X, rbind(1:5, -2:2))
 }

@@ -13,9 +13,13 @@
 
 Boot <- function(data, statistic, R, ...) {
   if (is.null(dim(data))) {
-    f <- function(x, ind) {statistic(x[ind])}
+    f <- function(x, ind) {
+      statistic(x[ind])
+    }
   } else {
-    f <- function(x, ind) {statistic(x[ind,])}
+    f <- function(x, ind) {
+      statistic(x[ind, ])
+    }
   }
-  boot::boot(data, statistic=f, R, ...)
+  boot::boot(data, statistic = f, R, ...)
 }

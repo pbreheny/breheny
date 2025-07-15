@@ -8,14 +8,14 @@
 #' @param name  Name of data set to read/download
 #'
 #' @examples
-#' download_data('anorexia')   # Download a specific data set
+#' download_data("anorexia") # Download a specific data set
 #' @export
 
 download_data <- function(name) {
   for (id in name) {
-    target <- paste0('https://raw.githubusercontent.com/IowaBiostat/data-sets/main/', id, '/', id, '.txt')
-    path <- paste0(system.file("extdata", package="breheny"), '/', id, '.txt')
-    download.file(target, path, mode='wb')
+    target <- paste0("https://raw.githubusercontent.com/IowaBiostat/data-sets/main/", id, "/", id, ".txt")
+    path <- paste0(system.file("extdata", package = "breheny"), "/", id, ".txt")
+    download.file(target, path, mode = "wb")
   }
 }
 
@@ -28,7 +28,7 @@ download_data <- function(name) {
 
 read_data <- function(name) {
   name <- as.character(substitute(name))
-  path <- paste0(system.file("extdata", package="breheny"), '/', name, '.txt')
+  path <- paste0(system.file("extdata", package = "breheny"), "/", name, ".txt")
   if (!file.exists(path)) {
     download_data(name)
   }

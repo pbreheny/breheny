@@ -21,8 +21,8 @@ polygon.step(x, y1, y2, border = FALSE, ...)
 Draw a filled polygon as a step function
 }
 \examples{
-plot(1:10, 1:10, type='n', ylim=c(0,12))
-polygon.step(1:10, 0:8, 2:10, col='gray')
-lines(1:10, 1:10, type='s')
+plot(1:10, 1:10, type = "n", ylim = c(0, 12))
+polygon.step(1:10, 0:8, 2:10, col = "gray")
+lines(1:10, 1:10, type = "s")
 
 }

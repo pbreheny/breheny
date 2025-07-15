@@ -22,7 +22,7 @@ event_chart(Data, shift = FALSE, scale = 1)
 Inspired by \code{Hmisc::event.chart()}
 }
 \examples{
-df <- read.csv(system.file("extdata/cdcaids.txt", package="breheny"))
+df <- read.csv(system.file("extdata/cdcaids.txt", package = "breheny"))
 event_chart(df, FALSE)
 event_chart(df, TRUE)
 event_chart(df, TRUE, 365.25)

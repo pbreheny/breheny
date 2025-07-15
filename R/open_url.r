@@ -4,10 +4,10 @@
 #'
 #' @examples
 #' \donttest{
-#' open_url('www.google.com')
+#' open_url("www.google.com")
 #' }
 #' @export
 
 open_url <- function(x) {
-  system2('sensible-browser', c('--new-window', x), stdout=NULL, stderr=NULL, wait=FALSE)
+  system2("sensible-browser", c("--new-window", x), stdout = NULL, stderr = NULL, wait = FALSE)
 }

@@ -37,9 +37,9 @@ Primarily intended for plotting posterior densities
 }
 \examples{
 M <- cbind(rgamma(1000, 2, 2), rnorm(1000))
-dnplot(M[,1])
-dnplot(M[,1], pos=TRUE)
+dnplot(M[, 1])
+dnplot(M[, 1], pos = TRUE)
 dnplot(M)
-dnplot(M, labs=c('Gamma', 'Normal'))
-dnplot(M, labs=c('Gamma', 'Normal'))
+dnplot(M, labs = c("Gamma", "Normal"))
+dnplot(M, labs = c("Gamma", "Normal"))
 }

@@ -10,5 +10,5 @@
 
 devload <- function(pkg) {
   pkgname <- as.character(match.call()$pkg)
-  devtools::load_all(paste0('~/dev/', pkgname))
+  devtools::load_all(paste0("~/dev/", pkgname))
 }

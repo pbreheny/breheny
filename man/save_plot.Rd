@@ -18,6 +18,6 @@ See \code{ggplot2::ggsave()} for saving grid plots.
 plot(1:10)
 \dontrun{
 # Typical journal options:
-save_plot('test.png', width = 3.5, height = 3.5, units = 'in', res = 600)
+save_plot("test.png", width = 3.5, height = 3.5, units = "in", res = 600)
 }
 }

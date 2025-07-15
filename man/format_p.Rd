@@ -19,7 +19,7 @@ Format p-values nicely
 \examples{
 format_p(0.000003434)
 format_p(0.12)
-format_p(0.12, label=TRUE)
-format_p(c(0.12, 0.000003434)) |> cat(sep = '\n')
-format_p(c(0.12, 0.000003434), label = TRUE) |> cat(sep = '\n')
+format_p(0.12, label = TRUE)
+format_p(c(0.12, 0.000003434)) |> cat(sep = "\n")
+format_p(c(0.12, 0.000003434), label = TRUE) |> cat(sep = "\n")
 }

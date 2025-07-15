@@ -6,13 +6,13 @@
 #'
 #' @examples
 #' Attach(airquality)
-#' Attach(airquality)   # Ordinarily this would provoke warnings
+#' Attach(airquality) # Ordinarily this would provoke warnings
 #'
 #' @export
 
-Attach <- function(x, name=deparse(substitute(x)), ...) {
+Attach <- function(x, name = deparse(substitute(x)), ...) {
   if (is.element(name, search())) {
-    detach(pos=match(name, search()))
+    detach(pos = match(name, search()))
   }
-  attach(x, name=name, ...)
+  attach(x, name = name, ...)
 }

@@ -16,7 +16,7 @@ A data table; no columns will be entirely missing
 Currently only works for data tables, and only for completely missing columns
 }
 \examples{
-DT <- data.table::data.table(A=1:3, B=NA, C=c(runif(2), NA))
+DT <- data.table::data.table(A = 1:3, B = NA, C = c(runif(2), NA))
 DropMiss(DT)
 
 }

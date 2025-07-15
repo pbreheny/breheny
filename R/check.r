@@ -5,24 +5,28 @@
 #' @param ...                Additional arguments to `all.equal()`
 #'
 #' @examples
-#' .test <- 'Example'
-#' check(1,1)
-#' try(check(1,2), silent=TRUE)
+#' .test <- "Example"
+#' check(1, 1)
+#' try(check(1, 2), silent = TRUE)
 #' cat(geterrmessage())
 #'
 #' @export
 
-check <- function(x, y, check.attributes=FALSE, ...) {
+check <- function(x, y, check.attributes = FALSE, ...) {
   if (missing(y)) {
     xname <- gsub("()", "", match.call()[2])
-    if (x==TRUE) return(TRUE)
+    if (x == TRUE) {
+      return(TRUE)
+    }
     message <- paste0("Problem in ", .test, "\n", xname, " FALSE")
   }
-  checkResult <- all.equal(x, y, check.attributes=check.attributes, ...)
-  if (class(checkResult)[1]=="logical") return(TRUE)
+  checkResult <- all.equal(x, y, check.attributes = check.attributes, ...)
+  if (class(checkResult)[1] == "logical") {
+    return(TRUE)
+  }
   xname <- gsub("()", "", match.call()[2])
   yname <- gsub("()", "", match.call()[3])
-  if (!exists('.test')) .test <- ''
+  if (!exists(".test")) .test <- ""
   message <- paste0("Problem in ", .test, "\n", xname, " not equal to ", yname, "\n", checkResult)
-  stop(message, call.=FALSE)
+  stop(message, call. = FALSE)
 }

@@ -16,9 +16,9 @@ Like \code{dnplot()}, but using ggplot2.
 }
 \examples{
 M <- cbind(rgamma(1000, 2, 2), rnorm(1000))
-colnames(M) <- c('Gamma', 'Normal')
-density_plot(M[,1])
+colnames(M) <- c("Gamma", "Normal")
+density_plot(M[, 1])
 density_plot(M)
-density_plot(rexp(100, 2), labs='Exponential')
-density_plot(data.frame(Gamma=rgamma(1000, 2, 2), Normal=rnorm(1000)))
+density_plot(rexp(100, 2), labs = "Exponential")
+density_plot(data.frame(Gamma = rgamma(1000, 2, 2), Normal = rnorm(1000)))
 }

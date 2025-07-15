@@ -13,5 +13,5 @@ process_yaml(file)
 Split a file into yaml and body
 }
 \examples{
-process_yaml(system.file("extdata/example.rmd", package="breheny"))
+process_yaml(system.file("extdata/example.rmd", package = "breheny"))
 }

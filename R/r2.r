@@ -13,10 +13,10 @@
 #' @export
 
 r2 <- function(fit) {
-  mf <- 1 - fit$deviance/fit$null.deviance
+  mf <- 1 - fit$deviance / fit$null.deviance
   n <- length(fit$y)
   cs <- 1 - exp(-(fit$null.deviance - fit$deviance) / n)
   l0 <- 1 - exp(-fit$null.deviance / n)
   ng <- cs / l0
-  c(mf=mf, cs=cs, ng=ng)
+  c(mf = mf, cs = cs, ng = ng)
 }

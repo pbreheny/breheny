@@ -19,6 +19,9 @@ Wrapper to create geom_contour of a function
 }
 \examples{
 x <- y <- seq(-10, 10, 0.1)
-f <- function(x, y) { r <- sqrt(x^2+y^2); 10 * sin(r)/r }
+f <- function(x, y) {
+  r <- sqrt(x^2 + y^2)
+  10 * sin(r) / r
+}
 ggcontour(x, y, f)
 }

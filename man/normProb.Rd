@@ -18,6 +18,6 @@ Draw a normal curve and shade area under an interval (probability)
 }
 \examples{
 normProb(1, 2)
-normProb(1, 2, outside=TRUE)
-normProb(1, 2, lwd=5, col='pink', main='Nice!')
+normProb(1, 2, outside = TRUE)
+normProb(1, 2, lwd = 5, col = "pink", main = "Nice!")
 }

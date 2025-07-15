@@ -31,11 +31,11 @@ Power is calculated for two-sample studies.  Can be vectorized, but \code{w}, \c
 }
 \examples{
 epower(30, 2)
-epower(30, lam=c(2,1), cens=c(0.2, 0.5))
-epower(seq(30, 100, 10), lam=c(2,1), cens=c(0.2, 0.5))
-epower(seq(30, 100, 10), w=c(2,1), lam=c(2,1), cens=c(0.2, 0.5))
+epower(30, lam = c(2, 1), cens = c(0.2, 0.5))
+epower(seq(30, 100, 10), lam = c(2, 1), cens = c(0.2, 0.5))
+epower(seq(30, 100, 10), w = c(2, 1), lam = c(2, 1), cens = c(0.2, 0.5))
 epower(30, seq(1.5, 2.5, 0.1))
-epower(30, 2, alpha=c(0.01, 0.05, 0.1))
+epower(30, 2, alpha = c(0.01, 0.05, 0.1))
 esamsize(1.5)
-esamsize(lam=c(1.5, 1), cens=1)
+esamsize(lam = c(1.5, 1), cens = 1)
 }

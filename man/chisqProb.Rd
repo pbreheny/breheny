@@ -20,5 +20,5 @@ Draw a chi-squared curve and shade area to the right (probability)
 }
 \examples{
 chisqProb(2)
-chisqProb(2, right=FALSE)
+chisqProb(2, right = FALSE)
 }

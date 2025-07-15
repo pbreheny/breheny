@@ -5,15 +5,18 @@
 #'
 #' @export
 
-colorize_terminal <- function(err=TRUE, warn = FALSE) {
+colorize_terminal <- function(err = TRUE, warn = FALSE) {
   if (!suppressMessages({
-    requireNamespace("cli")})) stop("cli package is not installed", call.=FALSE)
-  options(prompt=cli::combine_ansi_styles("cyan", "bold")("> "))
+    requireNamespace("cli")
+  })) {
+    stop("cli package is not installed", call. = FALSE)
+  }
+  options(prompt = cli::combine_ansi_styles("cyan", "bold")("> "))
   if (err) {
     options(error = quote({
       cat(cli::combine_ansi_styles("red", "bold")(geterrmessage()))
-      if (!interactive()) q(status=1)
-    }), show.error.messages=FALSE)
+      if (!interactive()) q(status = 1)
+    }), show.error.messages = FALSE)
   }
   if (warn) {
     globalCallingHandlers(

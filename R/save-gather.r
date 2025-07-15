@@ -20,12 +20,12 @@
 #'
 #' @export
 
-bsave <- function(res, suffix="") {
-  Suffix <- if (nchar(suffix) > 0) paste("-",suffix,sep="") else suffix
+bsave <- function(res, suffix = "") {
+  Suffix <- if (nchar(suffix) > 0) paste("-", suffix, sep = "") else suffix
   NCA <- as.numeric(commandArgs(TRUE))
   if (length(NCA)) {
-    saveRDS(res, file=paste0("tmp", NCA[1], Suffix, ".rds"))
+    saveRDS(res, file = paste0("tmp", NCA[1], Suffix, ".rds"))
   } else {
-    saveRDS(res, file=paste0(Sys.Date(), Suffix,".rds"))
+    saveRDS(res, file = paste0(Sys.Date(), Suffix, ".rds"))
   }
 }

@@ -49,5 +49,5 @@ Bayesian analysis of one-sample binomial data using conjugate beta priors
 }
 \examples{
 binom_bayes(10, 16)
-binom_bayes(0, 21, plot=TRUE)
+binom_bayes(0, 21, plot = TRUE)
 }

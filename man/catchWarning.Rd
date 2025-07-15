@@ -16,10 +16,10 @@ but it's hard to get at the warning because the error causes the code to crash b
 is signalled.
 }
 \examples{
-out <- catchWarning(log('a'))
+out <- catchWarning(log("a"))
 out$value
-out <- catchWarning(as.numeric(c('1', 'a')))
+out <- catchWarning(as.numeric(c("1", "a")))
 out
-out <- catchWarning(1+1)
+out <- catchWarning(1 + 1)
 out
 }

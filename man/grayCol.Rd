@@ -17,14 +17,14 @@ grayCol(col, grayness, darkness = 0.25)
 Take a color and make it duller
 }
 \examples{
-grayCol('red', 0.5)
-plot(1:10, pch=19, col='red')
-points(2:10, pch=19, col=grayCol('red', 0.5))
-points(3:10, pch=19, col=grayCol('red', 0.75))
-points(4:10, pch=19, col=grayCol('red', 0.75, 0.1))
-points(5:10, pch=19, col=grayCol('red', 0.75, 0.5))
+grayCol("red", 0.5)
+plot(1:10, pch = 19, col = "red")
+points(2:10, pch = 19, col = grayCol("red", 0.5))
+points(3:10, pch = 19, col = grayCol("red", 0.75))
+points(4:10, pch = 19, col = grayCol("red", 0.75, 0.1))
+points(5:10, pch = 19, col = grayCol("red", 0.75, 0.5))
 
-grayCol(c('blue', 'red', 'green'), c(0.75, 0, 0.75), darkness=0.1)
-plot(1:3, pch=19, col=.Last.value)
+grayCol(c("blue", "red", "green"), c(0.75, 0, 0.75), darkness = 0.1)
+plot(1:3, pch = 19, col = .Last.value)
 
 }

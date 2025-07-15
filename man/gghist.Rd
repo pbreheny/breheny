@@ -18,6 +18,6 @@ Simple interface to ggplot2 histogram
 }
 \examples{
 gghist(rnorm(100))
-gghist(runif(100), breaks=seq(0, 1, 0.1))
-gghist(rnorm(100), density=TRUE)
+gghist(runif(100), breaks = seq(0, 1, 0.1))
+gghist(rnorm(100), density = TRUE)
 }

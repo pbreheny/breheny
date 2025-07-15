@@ -16,12 +16,12 @@ ggmat <- function(x, y) {
     y <- x
     x <- 1:nrow(x)
   } else {
-    if (length(x) != nrow(y)) stop('dimensions of x and y do not match', call.=FALSE)
+    if (length(x) != nrow(y)) stop("dimensions of x and y do not match", call. = FALSE)
   }
   dat <- as.data.table(y) |>
     cbind(x) |>
-    melt(id.vars = c('x'))
-  p <- ggplot2::ggplot(dat, ggplot2::aes(.data$x, .data$value, group=.data$variable, color=.data$variable)) +
+    melt(id.vars = c("x"))
+  p <- ggplot2::ggplot(dat, ggplot2::aes(.data$x, .data$value, group = .data$variable, color = .data$variable)) +
     ggplot2::geom_line()
   p
 }

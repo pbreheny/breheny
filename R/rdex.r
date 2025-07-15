@@ -6,11 +6,11 @@
 #'
 #' @examples
 #' rdex(10)
-#' a <- rdex(10000, mean=3, var=4)
+#' a <- rdex(10000, mean = 3, var = 4)
 #' var(a)
 #'
 #' @export
 
-rdex <- function(n, mean=0, var=1) {
-  mean + sample(c(-1,1),n,replace=TRUE) * rexp(n, sqrt(2/var))
+rdex <- function(n, mean = 0, var = 1) {
+  mean + sample(c(-1, 1), n, replace = TRUE) * rexp(n, sqrt(2 / var))
 }

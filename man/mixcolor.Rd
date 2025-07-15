@@ -17,7 +17,7 @@ mixcolor(x, y, frac = 0.5, alpha = 1)
 Mix two colors
 }
 \examples{
-mixcolor('#008DFFFF', 'white')
-mixcolor('#008DFFFF', 'white', frac=0.9)
-mixcolor('#008DFFFF', 'white', alpha=0.2)
+mixcolor("#008DFFFF", "white")
+mixcolor("#008DFFFF", "white", frac = 0.9)
+mixcolor("#008DFFFF", "white", alpha = 0.2)
 }

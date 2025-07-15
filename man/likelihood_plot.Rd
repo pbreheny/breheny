@@ -18,16 +18,7 @@ plotL(
   ...
 )
 
-plotl(
-  x,
-  l,
-  xlab = expression(theta),
-  ylab = expression("\u2113" * (theta)),
-  bty = "n",
-  col,
-  add = FALSE,
-  ...
-)
+plotl(x, l, bty = "n", add = FALSE, ...)
 }
 \arguments{
 \item{x}{Parameter values (on x axis)}
@@ -50,13 +41,13 @@ plotl(
 \code{plotL()} plots the likelihood, \code{plotl()} plots the log-likelihood
 }
 \examples{
-x <- seq(-3, 4, length=99)
+x <- seq(-3, 4, length = 99)
 L <- dnorm(1, x)
-l <- dnorm(1, x, log=TRUE)
+l <- dnorm(1, x, log = TRUE)
 plotL(x, L)
 plotl(x, l)
 L <- cbind(dnorm(1, x), dnorm(2, x))
-l <- cbind(dnorm(1, x, log=TRUE), dnorm(2, x, log=TRUE))
+l <- cbind(dnorm(1, x, log = TRUE), dnorm(2, x, log = TRUE))
 plotL(x, L)
 plotl(x, l)
 }

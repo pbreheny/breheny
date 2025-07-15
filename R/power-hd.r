@@ -22,31 +22,33 @@
 #'
 #' @examples
 #' power_hd(10, 1000, 100, 1)
-#' power_hd(seq(10, 100, by=10), 1000, 100, 1)
+#' power_hd(seq(10, 100, by = 10), 1000, 100, 1)
 #' power_hd(300, 100000, 50, 0.2)
 #' @export
 
-power_hd <- function(n, p, d, m, FDR=0.1) {
+power_hd <- function(n, p, d, m, FDR = 0.1) {
   N <- length(n)
   expected_hits <- marginal_power <- disjunctive_power <- numeric(N)
   for (i in 1:N) {
     # Function to estimate the FDR based on the expected number of rejections
     f <- function(log_a) {
       a <- exp(log_a)
-      bb <- tpower(n=2*n[i], delta=m, alpha=a, verbose=FALSE)
-      a*p / (a*(p-d) + bb*d) - FDR
+      bb <- tpower(n = 2 * n[i], delta = m, alpha = a, verbose = FALSE)
+      a * p / (a * (p - d) + bb * d) - FDR
     }
     if (f(-20) > 0) {
       marginal_power[i] <- expected_hits[i] <- disjunctive_power[i] <- 0
     } else {
       log_a <- uniroot(f, c(-20, -0.01))$root
-      b <- tpower(n=2*n[i], delta=m, alpha=exp(log_a), verbose=FALSE)
+      b <- tpower(n = 2 * n[i], delta = m, alpha = exp(log_a), verbose = FALSE)
       marginal_power[i] <- b
-      expected_hits[i] <- b*d
-      disjunctive_power[i] <- 1-(1-b)^d
+      expected_hits[i] <- b * d
+      disjunctive_power[i] <- 1 - (1 - b)^d
     }
   }
-  list(expected_hits = expected_hits,
-       marginal_power = marginal_power,
-       disjunctive_power = disjunctive_power)
+  list(
+    expected_hits = expected_hits,
+    marginal_power = marginal_power,
+    disjunctive_power = disjunctive_power
+  )
 }

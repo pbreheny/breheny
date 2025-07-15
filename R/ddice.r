@@ -12,17 +12,17 @@
 #' @export
 
 ddice <- function(x, n, s) {
-  m <- floor((x-n)/s)
+  m <- floor((x - n) / s)
   k <- 0:m
   if (x < n) {
     num <- 0
-  } else if (x > n*s) {
+  } else if (x > n * s) {
     num <- 0
   } else {
-    num <- sum((-1)^k * choose(n, k) * choose(x-k*s-1, n-1))
+    num <- sum((-1)^k * choose(n, k) * choose(x - k * s - 1, n - 1))
   }
   den <- s^n
-  structure(num/den, numerator=num, denominator=den, class='ddice')
+  structure(num / den, numerator = num, denominator = den, class = "ddice")
 }
 
 #' @rdname ddice
@@ -31,26 +31,26 @@ ddice <- function(x, n, s) {
 #'
 #' @export
 
-pdice <- function(x, n, s, lower.tail=TRUE) {
+pdice <- function(x, n, s, lower.tail = TRUE) {
   den <- s^n
   num <- 0
   if (lower.tail) {
     if (x >= n) {
       for (i in n:x) {
-        num <- num + attr(ddice(i, n, s), 'numerator')
+        num <- num + attr(ddice(i, n, s), "numerator")
       }
     }
   } else {
-    if (x <= n*s) {
-      for (i in x:(n*s)) {
-        num <- num + attr(ddice(i, n, s), 'numerator')
+    if (x <= n * s) {
+      for (i in x:(n * s)) {
+        num <- num + attr(ddice(i, n, s), "numerator")
       }
     }
   }
-  structure(num/den, numerator=num, denominator=den, class='ddice')
+  structure(num / den, numerator = num, denominator = den, class = "ddice")
 }
 
 #' @export
-print.ddice <- function(x, digits=1, ...) {
-  cat(attr(x, 'numerator'), '/', attr(x, 'denominator'), ' (', round(100*x, digits=digits), '%)\n', sep='')
+print.ddice <- function(x, digits = 1, ...) {
+  cat(attr(x, "numerator"), "/", attr(x, "denominator"), " (", round(100 * x, digits = digits), "%)\n", sep = "")
 }

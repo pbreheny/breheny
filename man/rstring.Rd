@@ -20,6 +20,6 @@ Generate random string of characters
 }
 \examples{
 rstring(1)
-rstring(5, length=30, include.extra=TRUE)
+rstring(5, length = 30, include.extra = TRUE)
 
 }

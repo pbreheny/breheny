@@ -15,22 +15,22 @@
 #' rsamsize(0.05)
 #'
 #' rpower_beta(0.1)
-#' rpower_beta(beta=0.13)
+#' rpower_beta(beta = 0.13)
 #' @export
 
-rpower <- function(rsq, n, k=1, p=k, alpha=0.05) {
-  pf(qf(1-alpha, k, n-p), k, n-p, ncp=n*rsq, lower.tail=FALSE)
+rpower <- function(rsq, n, k = 1, p = k, alpha = 0.05) {
+  pf(qf(1 - alpha, k, n - p), k, n - p, ncp = n * rsq, lower.tail = FALSE)
 }
 
 #' @rdname rpower
 #' @export
 
-rsamsize <- function(rsq, k=1, p=k, power=0.8, alpha=0.05) {
-  u <- uniroot(rsamsize_f, c(2, 1e6), rsq=rsq, k=k, p=p, power=power, alpha=alpha)
+rsamsize <- function(rsq, k = 1, p = k, power = 0.8, alpha = 0.05) {
+  u <- uniroot(rsamsize_f, c(2, 1e6), rsq = rsq, k = k, p = p, power = power, alpha = alpha)
   ceiling(u$root)
 }
 
-rsamsize_f <- function(n, rsq, k=1, p=k, power=0.8, alpha=0.05) {
+rsamsize_f <- function(n, rsq, k = 1, p = k, power = 0.8, alpha = 0.05) {
   rpower(rsq, n, k, p, alpha) - power
 }
 

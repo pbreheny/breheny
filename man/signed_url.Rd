@@ -32,7 +32,7 @@ see \code{bin/signed-url}.
 }
 \examples{
 \dontrun{
-signed_url('~/pdf/teaching/7110-f23/dk-1.pdf')
-signed_url('~/pdf/teaching/7110-f23/dk-*.pdf', r=TRUE)
+signed_url("~/pdf/teaching/7110-f23/dk-1.pdf")
+signed_url("~/pdf/teaching/7110-f23/dk-*.pdf", r = TRUE)
 }
 }

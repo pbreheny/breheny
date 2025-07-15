@@ -6,7 +6,7 @@
 #'
 #' @examples
 #' library(ashr)
-#' z <- c(rnorm(900), rnorm(200, sd=2))
+#' z <- c(rnorm(900), rnorm(200, sd = 2))
 #' fit <- ash(z, rep(1, length(z)))
 #' lfdr_plot.ash(fit)
 #' @export
@@ -19,6 +19,6 @@ lfdr_plot.ash <- function(fit, n = 99, ...) {
   f0 <- approxfun(z, ashr::get_lfdr(fit))
   y <- h$density * (1 - f0(h$mids))
   for (k in seq_along(h$mids)) {
-    if (y[k] != 0) lines(rep(h$mids[k], 2), c(0, y[k]), lwd = 2, col = 'red')
+    if (y[k] != 0) lines(rep(h$mids[k], 2), c(0, y[k]), lwd = 2, col = "red")
   }
 }

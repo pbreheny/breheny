@@ -7,4 +7,3 @@
 xlsdt <- function(...) {
   data.table::as.data.table(readxl::read_excel(...))
 }
-

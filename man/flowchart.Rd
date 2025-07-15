@@ -25,17 +25,17 @@ information that goes into the flowchart.  The plotting is then handled via the
 }
 \examples{
 fl <- Flow$new("All children\n(n=935)")
-fl$add("Returned form\n(n=511)", parent=1)
-fl$add("Baseline: 0\n(n=447)", parent=2, x=-1)
-fl$add("Baseline: 1 or 2\n(n=14)", parent=2)
-fl$add("Baseline: 3\n(n=50)", parent=2, x=1)
-fl$add("Initiation\n(n=315)", parent=3, x=-1)
-fl$add("Completion\n(n=276)", parent=6, x=-1)
-fl$add("Completion\n(n=12)", parent=4)
+fl$add("Returned form\n(n=511)", parent = 1)
+fl$add("Baseline: 0\n(n=447)", parent = 2, x = -1)
+fl$add("Baseline: 1 or 2\n(n=14)", parent = 2)
+fl$add("Baseline: 3\n(n=50)", parent = 2, x = 1)
+fl$add("Initiation\n(n=315)", parent = 3, x = -1)
+fl$add("Completion\n(n=276)", parent = 6, x = -1)
+fl$add("Completion\n(n=12)", parent = 4)
 fl
 plot(fl)
-plot(fl, hpad=20, vpad=20)
-plot(fl, xm=0.25)
+plot(fl, hpad = 20, vpad = 20)
+plot(fl, xm = 0.25)
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}

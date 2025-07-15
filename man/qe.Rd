@@ -13,7 +13,7 @@ qe(a, b, c)
 Some extra effort is dedicated to making the solution stable even when a is close to zero.
 }
 \examples{
-qe(1, 3, -4)  # -4, 1
-qe(0, 1, 2)   # Just -2
+qe(1, 3, -4) # -4, 1
+qe(0, 1, 2) # Just -2
 
 }

@@ -15,7 +15,7 @@ contingency_table(Tab, digits = 2)
 Format a contingency table for use with knitr
 }
 \examples{
-Tab <- table(A=rnorm(100)>0, B=rnorm(100)>0)
+Tab <- table(A = rnorm(100) > 0, B = rnorm(100) > 0)
 contingency_table(Tab)
 
 }

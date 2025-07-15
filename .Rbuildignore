@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
-^fixdoc$
 ^\.version\.json$
 ^\.github$
 ^pkgdown$

@@ -29,12 +29,12 @@
 #' b <- data.frame(1:9, 0:8, 2:10)
 #' rownames(b) <- LETTERS[1:9]
 #' ci_plot(b)
-#' rownames(b)[3] <- 'This one is long'
+#' rownames(b)[3] <- "This one is long"
 #' ci_plot(b)
 #'
 #' @export
 
-ci_plot <- function(obj, ...) UseMethod('ci_plot')
+ci_plot <- function(obj, ...) UseMethod("ci_plot")
 
 #' @rdname ci_plot
 #'
@@ -52,14 +52,16 @@ ci_plot <- function(obj, ...) UseMethod('ci_plot')
 #' @export
 
 ci_plot.data.frame <- function(obj,
-                               xlab = 'Estimate',
+                               xlab = "Estimate",
                                null = 0,
                                exp = FALSE,
                                brk,
-                               return = c('gg', 'df', 'list'),
+                               return = c("gg", "df", "list"),
                                ...) {
   return <- match.arg(return)
-  if (return == 'df') return(obj)
+  if (return == "df") {
+    return(obj)
+  }
 
   # Set up CI data frame
   if (is.character(obj[[1]])) {
@@ -69,15 +71,17 @@ ci_plot.data.frame <- function(obj,
     lab <- rownames(obj)
   }
   lab <- factor(lab, rev(lab))
-  if (ncol(obj) < 3 || ncol(obj) > 4)
-    stop('The object you are passing to ci_plot() is not formatted correctly. See ?ci_plot.',
-         call. = FALSE)
+  if (ncol(obj) < 3 || ncol(obj) > 4) {
+    stop("The object you are passing to ci_plot() is not formatted correctly. See ?ci_plot.",
+      call. = FALSE
+    )
+  }
 
-  colnames(obj)[1:3] <- c('est', 'lwr', 'upr')
+  colnames(obj)[1:3] <- c("est", "lwr", "upr")
   df <- data.frame(
     name = lab,
     obj[, 1:3],
-    even = rep_len(c('no', 'yes'), nrow(obj)),
+    even = rep_len(c("no", "yes"), nrow(obj)),
     start = seq(0.5, nrow(obj), 1),
     end = seq(0.5, nrow(obj), 1) + 1
   )
@@ -98,14 +102,14 @@ ci_plot.data.frame <- function(obj,
       y = .data$name,
       yend = .data$name
     )) +
-    ggplot2::ylab('') +
-    ggplot2::scale_fill_manual(values = c('white', 'gray75')) +
-    ggplot2::guides(fill = 'none') +
+    ggplot2::ylab("") +
+    ggplot2::scale_fill_manual(values = c("white", "gray75")) +
+    ggplot2::guides(fill = "none") +
     ggplot2::theme(axis.text.y = ggplot2::element_text(hjust = 0))
 
   # Add null line
   if (!is.null(null)) {
-    g <- g + ggplot2::geom_vline(xintercept = null, lty = 2, col = 'gray70')
+    g <- g + ggplot2::geom_vline(xintercept = null, lty = 2, col = "gray70")
   }
 
   # Exponentiate labels
@@ -130,11 +134,12 @@ ci_plot.data.frame <- function(obj,
       df$p <- obj[[4]]
     }
     p <- ggplot2::ggplot(df, ggplot2::aes(0, .data$name, label = .data$p)) +
-      ggplot2::geom_text(hjust = 'left', size = 3) +
+      ggplot2::geom_text(hjust = "left", size = 3) +
       ggplot2::theme_void() +
-      ggplot2::coord_cartesian(clip = 'off', xlim = c(0, 0.5))
-    if (return == 'list')
+      ggplot2::coord_cartesian(clip = "off", xlim = c(0, 0.5))
+    if (return == "list") {
       return(list(ci = g, p = p))
+    }
     g <- g + ggplot2::xlab(xlab) + p + patchwork::plot_layout(widths = c(10, 1))
   }
   g
@@ -161,8 +166,9 @@ ci_plot.lm <- function(obj, tau, intercept = FALSE, p = TRUE, ...) {
     coef(obj)[j],
     confint(obj, j)
   )
-  if (p)
+  if (p) {
     b <- cbind(b, summary(obj)$coef[j, 4])
+  }
   if (!missing(tau)) b <- ci_contrast(b, tau)
   ci_plot(b, ...)
 }
@@ -171,7 +177,7 @@ ci_plot.lm <- function(obj, tau, intercept = FALSE, p = TRUE, ...) {
 #' @examples
 #' fit <- glm(case ~ spontaneous + induced, data = infert, family = binomial())
 #' ci_plot(fit)
-#' ci_plot(fit, exp = TRUE, xlab = 'Odds ratio')
+#' ci_plot(fit, exp = TRUE, xlab = "Odds ratio")
 #' @export
 ci_plot.glm <- function(obj, ...) ci_plot.lm(obj, ...)
 
@@ -184,7 +190,7 @@ ci_plot.glm <- function(obj, ...) ci_plot.lm(obj, ...)
 ci_plot.merMod <- function(obj, tau, intercept = FALSE, ...) {
   fix <- lme4::fixef(obj)
   j <- names(fix)
-  if (!intercept) j <- setdiff(j, '(Intercept)')
+  if (!intercept) j <- setdiff(j, "(Intercept)")
   b <- data.frame(fix[j], confint(obj, j, quiet = TRUE))
   if (!missing(tau)) b <- ci_contrast(b, tau)
   ci_plot(b, ...)
@@ -202,8 +208,9 @@ ci_plot.coxph <- function(obj, tau, p = TRUE, ...) {
     coef(obj)[j],
     confint(obj, j)
   )
-  if (p)
+  if (p) {
     b <- cbind(b, summary(obj)$coef[j, 5])
+  }
   if (!missing(tau)) b <- ci_contrast(b, tau)
   ci_plot(b, ...)
 }
@@ -224,8 +231,8 @@ ci_plot.tbl_regression <- function(obj, ...) {
   df <- data.frame(
     tbl[[1]],
     as.numeric(tbl[[2]]),
-    stringr::str_split_i(tbl[[3]], ',', 1) |> as.numeric(),
-    stringr::str_split_i(tbl[[3]], ',', 2) |> as.numeric(),
+    stringr::str_split_i(tbl[[3]], ",", 1) |> as.numeric(),
+    stringr::str_split_i(tbl[[3]], ",", 2) |> as.numeric(),
     tbl[[4]]
   )
   ci_plot(df[!is.na(df[[2]]), ], ...)
@@ -234,7 +241,7 @@ ci_plot.tbl_regression <- function(obj, ...) {
 ci_contrast <- function(b, tau) {
   if (is.null(names(tau)) || (!all(names(tau) %in% rownames(b)))) {
     stop(
-      'tau must be a named vector with names that correspond to coefficients in the model',
+      "tau must be a named vector with names that correspond to coefficients in the model",
       call. = FALSE
     )
   }

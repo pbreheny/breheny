@@ -18,7 +18,7 @@ Make an lFDR plot for an ash object
 }
 \examples{
 library(ashr)
-z <- c(rnorm(900), rnorm(200, sd=2))
+z <- c(rnorm(900), rnorm(200, sd = 2))
 fit <- ash(z, rep(1, length(z)))
 lfdr_plot.ash(fit)
 }

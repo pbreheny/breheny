@@ -10,26 +10,26 @@
 #'
 #' @examples
 #' ggbox(matrix(rnorm(50), 10, 5))
-#' ggbox(matrix(rnorm(50), 10, 5), xlab='categories')
+#' ggbox(matrix(rnorm(50), 10, 5), xlab = "categories")
 #' ggbox(rexp(10))
-#' ggbox(rexp(10), 'A plot of') + ggplot2::ylab('Something')
+#' ggbox(rexp(10), "A plot of") + ggplot2::ylab("Something")
 #'
 #' # Using labels
 #' X <- iris[, 1:4]
-#' attr(X[[4]], 'label') <- "The petal's width"
+#' attr(X[[4]], "label") <- "The petal's width"
 #' ggbox(X)
-#' ggbox(X[,4])
-#' ggbox(X[,4], horiz=TRUE)
-#' ggbox(X, horiz=TRUE)
+#' ggbox(X[, 4])
+#' ggbox(X[, 4], horiz = TRUE)
+#' ggbox(X, horiz = TRUE)
 #' @export
 
-ggbox <- function(X, xlab, horiz=FALSE) {
+ggbox <- function(X, xlab, horiz = FALSE) {
   if (!is.data.frame(X)) X <- as.data.frame(X)
   df <- lapply(X, as.vector) |> stack()
   df$ind <- as.character(df$ind)
   for (v in names(X)) {
-    if ('label' %in% names(attributes(X[[v]]))) {
-      df$ind[df$ind == v] <- attr(X[[v]], 'label')
+    if ("label" %in% names(attributes(X[[v]]))) {
+      df$ind[df$ind == v] <- attr(X[[v]], "label")
     }
   }
   if (horiz) {
@@ -52,8 +52,8 @@ ggbox <- function(X, xlab, horiz=FALSE) {
       p <- p + ggplot2::xlab(xlab)
     }
     if (length(unique(df$ind)) == 1) {
-      p <- p + ggplot2::theme(axis.text.x=ggplot2::element_blank()) +
-        ggplot2::theme(axis.ticks.x=ggplot2::element_blank()) +
+      p <- p + ggplot2::theme(axis.text.x = ggplot2::element_blank()) +
+        ggplot2::theme(axis.ticks.x = ggplot2::element_blank()) +
         ggplot2::ylab(df$ind[1])
     }
   }

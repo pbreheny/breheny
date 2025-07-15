@@ -26,9 +26,9 @@ Make a log-scale axis
 x <- rexp(100)
 y <- runif(100)
 plot(log(x), y)
-plot(log(x), y, xaxt='n', xlab='x')
+plot(log(x), y, xaxt = "n", xlab = "x")
 logAxis()
-plot(log(x), y, xaxt='n', xlab='x')
-logAxis(style='pow', disp=2)
+plot(log(x), y, xaxt = "n", xlab = "x")
+logAxis(style = "pow", disp = 2)
 
 }

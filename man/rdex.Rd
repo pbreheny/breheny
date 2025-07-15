@@ -18,7 +18,7 @@ Generate random double exponential variates
 }
 \examples{
 rdex(10)
-a <- rdex(10000, mean=3, var=4)
+a <- rdex(10000, mean = 3, var = 4)
 var(a)
 
 }

@@ -10,10 +10,10 @@
 #' rownames(x) <- letters[1:3]
 #' colnames(x) <- letters[4:6]
 #' matrix_to_dt(x)
-#' matrix_to_dt(x, 'sample', 'gene', 'expression')
+#' matrix_to_dt(x, "sample", "gene", "expression")
 #' @export
 
-matrix_to_dt <- function(x, row='row', col='col', val='val') {
+matrix_to_dt <- function(x, row = "row", col = "col", val = "val") {
   out <- as.table(x) |> data.table::as.data.table(x)
   names(out) <- c(row, col, val)
   out

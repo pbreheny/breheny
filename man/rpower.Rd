@@ -38,5 +38,5 @@ rpower(0.05, 40, 5, 20)
 rsamsize(0.05)
 
 rpower_beta(0.1)
-rpower_beta(beta=0.13)
+rpower_beta(beta = 0.13)
 }

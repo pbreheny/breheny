@@ -1,4 +1,4 @@
-List <- function (..., labels = TRUE) {
+List <- function(..., labels = TRUE) {
   dotlist <- list(...)
   lname <- names(dotlist)
   name <- vname <- as.character(sys.call())[-1]

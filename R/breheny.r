@@ -10,6 +10,6 @@
 #' @import data.table
 #' @import R6
 #' @import grid
-#' @importFrom rlang .data
+#' @importFrom rlang .data `%||%`
 #' @importFrom patchwork plot_layout
 NULL

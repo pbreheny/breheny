@@ -15,6 +15,6 @@ make_unique(x, sep = "_")
 Leaves entries untouched if they are already unique; adds a suffix like '_1', etc. if necessary.
 }
 \examples{
-make_unique(LETTERS[c(1,1,2,2,2,3,4)])
+make_unique(LETTERS[c(1, 1, 2, 2, 2, 3, 4)])
 
 }

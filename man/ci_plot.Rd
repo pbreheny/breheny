@@ -96,7 +96,7 @@ TO-DO:
 b <- data.frame(1:9, 0:8, 2:10)
 rownames(b) <- LETTERS[1:9]
 ci_plot(b)
-rownames(b)[3] <- 'This one is long'
+rownames(b)[3] <- "This one is long"
 ci_plot(b)
 
 # Supplying a fitted model object
@@ -106,7 +106,7 @@ ci_plot(fit, tau = c(Solar.R = 100, Wind = 0))
 ci_plot(fit, p = FALSE)
 fit <- glm(case ~ spontaneous + induced, data = infert, family = binomial())
 ci_plot(fit)
-ci_plot(fit, exp = TRUE, xlab = 'Odds ratio')
+ci_plot(fit, exp = TRUE, xlab = "Odds ratio")
 library(lme4)
 fit <- lmer(Reaction ~ Days + I(Days^2) + (1 | Subject), sleepstudy)
 ci_plot(fit)

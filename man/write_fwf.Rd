@@ -23,10 +23,10 @@ write_fwf(dt, width, con = stdout(), align = "l", na = "NA", col.names = TRUE)
 https://gist.github.com/haozhu233/28d1309b58431f4929f78243054f1f58
 }
 \examples{
-dt <- data.frame(a = 1:3, b = NA, c = c('a', 'b', 'c'))
+dt <- data.frame(a = 1:3, b = NA, c = c("a", "b", "c"))
 write_fwf(dt, width = c(4, 4, 3))
 write_fwf(dt, 5)
 
-X <- matrix(LETTERS[1:9], 3, 3, dimnames=list(1:3, paste0('V', 1:3)))
+X <- matrix(LETTERS[1:9], 3, 3, dimnames = list(1:3, paste0("V", 1:3)))
 write_fwf(X, 6)
 }

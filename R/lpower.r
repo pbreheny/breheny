@@ -1,7 +1,7 @@
 # Power functions for logistic regression (in progress)
 #
 # Calculate logistic regression r2 for a given beta
-b2r <- function(b, type='cs') {
+b2r <- function(b, type = "cs") {
   n <- 10000
   x <- rep_len(c(-1, 1), n)
   pi <- binomial()$linkinv(x * b)
@@ -16,14 +16,14 @@ r2b <- function(r) {
 }
 
 # Logistic regression power
-l_pwr <- function(n, b, N=1000) {
+l_pwr <- function(n, b, N = 1000) {
   x <- rep_len(c(-1, 1), n)
   pi <- binomial()$linkinv(x * b)
   p <- numeric(N)
   for (i in 1:N) {
     y <- rbinom(n = n, size = 1, prob = pi)
-    smr <- glm(y ~ x, family=binomial) |> summary()
-    p[i] <- smr$coefficients[2,4]
+    smr <- glm(y ~ x, family = binomial) |> summary()
+    p[i] <- smr$coefficients[2, 4]
   }
   mean(p < 0.05)
 }

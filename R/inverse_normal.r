@@ -7,6 +7,6 @@
 #' @export
 inverse_normal <- function(x) {
   na_idx <- is.na(x)
-  qx <- (rank(x, na.last = 'keep') - .5) / (length(x) - sum(na_idx))
+  qx <- (rank(x, na.last = "keep") - .5) / (length(x) - sum(na_idx))
   qnorm(qx)
 }

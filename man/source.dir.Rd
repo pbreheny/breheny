@@ -14,7 +14,7 @@ Source all .R files in a directory
 }
 \examples{
 \dontrun{
-source.dir('R')
+source.dir("R")
 }
 
 }

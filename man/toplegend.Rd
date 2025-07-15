@@ -21,6 +21,6 @@ Make a legend on top or right side of plot
 g <- rbinom(20, 1, 0.5)
 x <- rnorm(20)
 y <- rnorm(20)
-plot(x, y, col=pal(2)[g+1], pch=19)
-toplegend(legend=c('Group 1', 'Group 2'), col=pal(2), pch=19)
+plot(x, y, col = pal(2)[g + 1], pch = 19)
+toplegend(legend = c("Group 1", "Group 2"), col = pal(2), pch = 19)
 }

@@ -9,5 +9,5 @@
 #' @export
 
 prank <- function(x) {
-  rank(x, na.last='keep')/sum(!is.na(x))
+  rank(x, na.last = "keep") / sum(!is.na(x))
 }

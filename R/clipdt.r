@@ -5,5 +5,5 @@
 #' @export
 
 clipdt <- function(...) {
-  read.table('clipboard') |> as.data.table(...)
+  read.table("clipboard") |> as.data.table(...)
 }

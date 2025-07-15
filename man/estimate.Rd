@@ -27,7 +27,7 @@ estimate(fit, c(0, 1, -1, 5))
 
 # Logistic regression
 DF <- as.data.frame(Titanic)
-DF <- DF[rep(1:nrow(DF), DF$Freq),]
-fit <- glm(Survived ~ Class + Sex + Age, DF, family=binomial)
-estimate(fit, c(0, 1, -1, 0, 0, 0), trans=exp)
+DF <- DF[rep(1:nrow(DF), DF$Freq), ]
+fit <- glm(Survived ~ Class + Sex + Age, DF, family = binomial)
+estimate(fit, c(0, 1, -1, 0, 0, 0), trans = exp)
 }

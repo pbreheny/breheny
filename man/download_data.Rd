@@ -19,7 +19,7 @@ not included with the package and must be downloaded separately using
 \code{download_data()}; this only needs to be done once.
 }
 \examples{
-download_data('anorexia')   # Download a specific data set
+download_data("anorexia") # Download a specific data set
 dat <- read_data(whickham)
 head(dat)
 }

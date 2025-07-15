@@ -9,13 +9,17 @@
 #' plot(1:10)
 #' \dontrun{
 #' # Typical journal options:
-#' save_plot('test.png', width = 3.5, height = 3.5, units = 'in', res = 600)
+#' save_plot("test.png", width = 3.5, height = 3.5, units = "in", res = 600)
 #' }
 #' @export
 
 save_plot <- function(file, ...) {
   ext <- tools::file_ext(file)
-  dev_fun <- switch(ext, png = png, pdf = pdf, svg = svg)
+  dev_fun <- switch(ext,
+    png = png,
+    pdf = pdf,
+    svg = svg
+  )
 
   # Record the current plot
   p <- recordPlot()

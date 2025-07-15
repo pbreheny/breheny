@@ -20,7 +20,9 @@ Provides a reverse log scale to ggplot; especially useful for p-values
 }
 \examples{
 library(ggplot2)
-DF <- data.frame(x=1:3, y=c(0.1, 0.01, 0.001))
-ggplot(DF, aes(x, y)) + geom_point() + scale_y_revlog(10)
+DF <- data.frame(x = 1:3, y = c(0.1, 0.01, 0.001))
+ggplot(DF, aes(x, y)) +
+  geom_point() +
+  scale_y_revlog(10)
 
 }

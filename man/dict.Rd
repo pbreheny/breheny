@@ -15,7 +15,7 @@ column has the keys.}
 Keys must be valid
 }
 \examples{
-d <- dict(a=5, b=10)
+d <- dict(a = 5, b = 10)
 d$b
 d <- data.frame(letters[1:10], 1:10) |>
   dict()

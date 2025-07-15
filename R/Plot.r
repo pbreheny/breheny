@@ -10,19 +10,19 @@
 #' Plot(fit)
 #'
 #' # Trees
-#' data(kyphosis, package='rpart')
+#' data(kyphosis, package = "rpart")
 #' fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
 #' Plot(fit)
 #' fit <- party::ctree(Kyphosis ~ Age + Number + Start, data = kyphosis)
 #' Plot(fit)
-#' Plot(fit, summary=TRUE)
-#' Plot(fit, summary=TRUE, pval=TRUE)
-#' Plot(fit, pval=TRUE, digits=2)
+#' Plot(fit, summary = TRUE)
+#' Plot(fit, summary = TRUE, pval = TRUE)
+#' Plot(fit, pval = TRUE, digits = 2)
 #' Data <- kyphosis
 #' Data$Start <- Data$Start + runif(nrow(Data))
 #' fit <- rpart::rpart(Kyphosis ~ Age + Number + Start, data = Data)
 #' Plot(fit)
-#' Plot(fit, digits=10)
+#' Plot(fit, digits = 10)
 #'
 #' @export
 
@@ -33,17 +33,23 @@ Plot <- function(obj, ...) UseMethod("Plot")
 #' @param digits    Number of digits to show in edges.  Default: 1.
 #' @rdname Plot
 #' @export
-Plot.BinaryTree <- function(obj, pval=FALSE, summary=FALSE, digits=1, ...) {
-  if (summary) plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits), terminal_panel=panelSummary)
-  else plot(obj, ip_args=list(id=FALSE, pval=pval), tp_args=list(id=FALSE), ep_args=list(digits=digits))
+Plot.BinaryTree <- function(obj, pval = FALSE, summary = FALSE, digits = 1, ...) {
+  if (summary) {
+    plot(obj, ip_args = list(id = FALSE, pval = pval), tp_args = list(id = FALSE), ep_args = list(digits = digits), terminal_panel = panelSummary)
+  } else {
+    plot(obj, ip_args = list(id = FALSE, pval = pval), tp_args = list(id = FALSE), ep_args = list(digits = digits))
+  }
 }
 
 #' @rdname Plot
 #' @export
-Plot.rpart <- function(obj, summary=FALSE, digits=1, ...) {
+Plot.rpart <- function(obj, summary = FALSE, digits = 1, ...) {
   fit <- partykit::as.party(obj)
-  if (summary) plot(fit, ip_args=list(id=FALSE, pval=FALSE), tp_args=list(id=FALSE), ep_args=list(digits=digits), terminal_panel=panelSummary)
-  else plot(fit, ip_args=list(id=FALSE, pval=FALSE), tp_args=list(id=FALSE), ep_args=list(digits=digits))
+  if (summary) {
+    plot(fit, ip_args = list(id = FALSE, pval = FALSE), tp_args = list(id = FALSE), ep_args = list(digits = digits), terminal_panel = panelSummary)
+  } else {
+    plot(fit, ip_args = list(id = FALSE, pval = FALSE), tp_args = list(id = FALSE), ep_args = list(digits = digits))
+  }
 }
 
 #' @param legend      Where to put the legend. Either 'top', 'right', or 'none'; default: 'top'
@@ -51,14 +57,14 @@ Plot.rpart <- function(obj, summary=FALSE, digits=1, ...) {
 #' @param col         Vector of colors corresponding to groups.
 #' @rdname Plot
 #' @export
-Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", ylab="Survival", col, ...) {
+Plot.survfit <- function(obj, legend = c("top", "right", "none"), xlab = "Time", ylab = "Survival", col, ...) {
   legend <- match.arg(legend)
   if ("pstate" %in% names(obj)) {
-    n <- ncol(obj$pstate)-1
+    n <- ncol(obj$pstate) - 1
     labs <- names(obj$p0)[1:n]
   } else {
     n <- length(obj$strata)
-    labs <- gsub('.*=', '', names(obj$strata))
+    labs <- gsub(".*=", "", names(obj$strata))
   }
   if (missing(col)) {
     if (n == 0) {
@@ -67,12 +73,12 @@ Plot.survfit <- function(obj, legend=c("top", "right", "none"), xlab="Time", yla
       col <- pal(n)
     }
   }
-  plot(obj, xlab=xlab, ylab=ylab, bty="n", las=1, col=col, lwd=3, ...)
+  plot(obj, xlab = xlab, ylab = ylab, bty = "n", las = 1, col = col, lwd = 3, ...)
   if (n > 0) {
     if (legend == "top") {
-      toplegend(legend=labs, col=pal(n), lwd=3)
+      toplegend(legend = labs, col = pal(n), lwd = 3)
     } else if (legend == "right") {
-      rightlegend(legend=labs, col=pal(n), lwd=3)
+      rightlegend(legend = labs, col = pal(n), lwd = 3)
     }
   }
 }
