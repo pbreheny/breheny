@@ -25,6 +25,8 @@
 #' l <- cbind(dnorm(1, x, log = TRUE), dnorm(2, x, log = TRUE))
 #' plotL(x, L)
 #' plotl(x, l)
+#' plotL(x, L, col = rainbow(2))
+#' plotl(x, l, col = rainbow(2))
 NULL
 
 #' @rdname likelihood_plot
@@ -60,22 +62,30 @@ plotl <- function(x, l, bty = "n", add = FALSE, ...) {
   dots <- list(...)
   xlab <- dots[["xlab"]] %||% expression(theta)
   ylab <- dots[["ylab"]] %||% expression("\u2113" * (theta))
+  dots$xlab <- NULL
+  dots$ylab <- NULL
 
   if (is.matrix(l)) {
     col <- dots[["col"]] %||% pal(ncol(l))
+    dots$col <- NULL
     L <- apply(l, 2, function(x) x - max(x))
-    matplot(
-      x,
-      L,
-      type = "l",
-      xlab = xlab,
-      ylab = "",
-      bty = bty,
-      las = 1,
-      col = col,
-      lwd = 3,
-      lty = 1,
-      ...
+    do.call(
+      matplot,
+      c(
+        list(
+          x,
+          L,
+          type = "l",
+          xlab = xlab,
+          ylab = "",
+          bty = bty,
+          las = 1,
+          col = col,
+          lwd = 3,
+          lty = 1
+        ),
+        dots
+      )
     )
     if (!is.null(colnames(L)))
       toplegend(legend = colnames(L), lwd = 3, col = col)
@@ -83,21 +93,27 @@ plotl <- function(x, l, bty = "n", add = FALSE, ...) {
     return(invisible(L))
   } else {
     col <- dots[["col"]] %||% pal(2)[2]
+    dots$col <- NULL
     l <- l - max(l)
     if (add) {
       lines(x, l, col = col, lwd = 3, ...)
     } else {
-      plot(
-        x,
-        l,
-        type = "l",
-        xlab = xlab,
-        ylab = "",
-        bty = bty,
-        las = 1,
-        col = col,
-        lwd = 3,
-        ...
+      do.call(
+        plot,
+        c(
+          list(
+            x,
+            l,
+            type = "l",
+            xlab = xlab,
+            ylab = "",
+            bty = bty,
+            las = 1,
+            col = col,
+            lwd = 3
+          ),
+          dots
+        )
       )
     }
     if (!add) mtext(ylab, 2, line = 2.5)
