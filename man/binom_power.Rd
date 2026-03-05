@@ -4,7 +4,7 @@
 \alias{binom_power}
 \title{Power for a one-sample binomial test}
 \usage{
-binom_power(n, p0, p1, alpha = 0.05)
+binom_power(n, p0, p1, alpha = 0.05, approx = FALSE)
 }
 \arguments{
 \item{n}{Sample size}
@@ -13,7 +13,9 @@ binom_power(n, p0, p1, alpha = 0.05)
 
 \item{p1}{Alternative hypothesis proportion}
 
-\item{alpha}{Type 1 error rate}
+\item{alpha}{Type 1 error rate (default: 0.05)}
+
+\item{approx}{Use z approximation? (default: false)}
 }
 \description{
 Test is two-sided.
@@ -21,4 +23,5 @@ Test is two-sided.
 \examples{
 binom_power(200, 0.10, 0.05)
 binom_power(200, 0.90, 0.95)
+binom_power(200, 0.90, 0.95, approx = TRUE)
 }
