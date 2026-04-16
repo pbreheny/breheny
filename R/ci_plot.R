@@ -212,6 +212,7 @@ ci_plot.coxph <- function(obj, tau, p = TRUE, ...) {
     b <- cbind(b, summary(obj)$coef[j, 5])
   }
   if (!missing(tau)) b <- ci_contrast(b, tau)
+  colnames(b) <- c("Estimate", "Lower", "Upper", "p")
   ci_plot(b, ...)
 }
 
@@ -225,6 +226,7 @@ ci_plot.matrix <- function(obj, ...) {
 #' @examples
 #' fit <- lm(Ozone ~ Solar.R + Wind + Temp, airquality)
 #' gtsummary::tbl_regression(fit) |> ci_plot()
+#' gtsummary::tbl_regression(fit) |> ci_plot(return = "df")
 #' @export
 ci_plot.tbl_regression <- function(obj, ...) {
   tbl <- as.data.frame(obj)
@@ -235,6 +237,7 @@ ci_plot.tbl_regression <- function(obj, ...) {
     stringr::str_split_i(tbl[[3]], ",", 2) |> as.numeric(),
     tbl[[4]]
   )
+  colnames(df) <- c("Term", "Estimate", "Lower", "Upper", "p")
   ci_plot(df[!is.na(df[[2]]), ], ...)
 }
 
