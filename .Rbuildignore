@@ -6,3 +6,5 @@
 ^pkgdown$
 ^\.lintr$
 
+^\.positai$
+^\.claude$
