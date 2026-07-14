@@ -115,6 +115,7 @@ fit <- coxph(Surv(time, status) ~ trt + karno, veteran)
 ci_plot(fit)
 fit <- lm(Ozone ~ Solar.R + Wind + Temp, airquality)
 gtsummary::tbl_regression(fit) |> ci_plot()
+gtsummary::tbl_regression(fit) |> ci_plot(return = "df")
 }
 \seealso{
 \code{\link[=ci_int]{ci_int()}}

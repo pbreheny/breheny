@@ -18,4 +18,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Patrick Breheny \email{patrick-breheny@uiowa.edu}
 
+Authors:
+\itemize{
+  \item Patrick Breheny \email{patrick-breheny@uiowa.edu}
+}
+
 }

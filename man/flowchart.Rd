@@ -38,92 +38,97 @@ plot(fl, hpad = 20, vpad = 20)
 plot(fl, xm = 0.25)
 }
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{n}}{Number of nodes}
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{n}}{Number of nodes}
 
-\item{\code{Parent}}{Vector of parent nodes}
+    \item{\code{Parent}}{Vector of parent nodes}
 
-\item{\code{x}}{Vector of horizontal positions}
+    \item{\code{x}}{Vector of horizontal positions}
 
-\item{\code{Label}}{Vector of labels}
-}
-\if{html}{\out{</div>}}
+    \item{\code{Label}}{Vector of labels}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Flow-new}{\code{Flow$new()}}
-\item \href{#method-Flow-print}{\code{Flow$print()}}
-\item \href{#method-Flow-add}{\code{Flow$add()}}
-\item \href{#method-Flow-clone}{\code{Flow$clone()}}
-}
+  \itemize{
+    \item \href{#method-Flow-initialize}{\code{Flow$new()}}
+    \item \href{#method-Flow-print}{\code{Flow$print()}}
+    \item \href{#method-Flow-add}{\code{Flow$add()}}
+    \item \href{#method-Flow-clone}{\code{Flow$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Flow-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Flow-new}{}}}
-\subsection{Method \code{new()}}{
-Initialize a new flowchart at its parent node
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Flow$new(lab, x = 0)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-Flow-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Flow-initialize}{}}}
+\subsection{\code{Flow$new()}}{
+  Initialize a new flowchart at its parent node
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Flow$new(lab, x = 0)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{lab}}{Label (node text)}
+      \item{\code{x}}{Horizontal position (0=center)}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lab}}{Label (node text)}
-
-\item{\code{x}}{Horizontal position (0=center)}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Flow-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Flow-print}{}}}
-\subsection{Method \code{print()}}{
-Print the current status of the flowchart
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Flow$print()}\if{html}{\out{</div>}}
+\subsection{\code{Flow$print()}}{
+  Print the current status of the flowchart
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Flow$print()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Flow-add"></a>}}
 \if{latex}{\out{\hypertarget{method-Flow-add}{}}}
-\subsection{Method \code{add()}}{
-Add a node to the flowchart
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Flow$add(lab, parent, x = 0)}\if{html}{\out{</div>}}
+\subsection{\code{Flow$add()}}{
+  Add a node to the flowchart
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Flow$add(lab, parent, x = 0)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{lab}}{Label (node text)}
+      \item{\code{parent}}{Number (i.e., row) of this node's parent}
+      \item{\code{x}}{Horizontal position (0=center)}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lab}}{Label (node text)}
-
-\item{\code{parent}}{Number (i.e., row) of this node's parent}
-
-\item{\code{x}}{Horizontal position (0=center)}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Flow-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Flow-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Flow$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Flow$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Flow$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
