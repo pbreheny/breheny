@@ -12,5 +12,5 @@
 
 mixcolor <- function(x, y, frac = 0.5, alpha = 1) {
   z <- frac * col2rgb(x) + (1 - frac) * col2rgb(y)
-  alphaCol(rgb(z[1], z[2], z[3], maxColorValue = 255), alpha = alpha)
+  rgb(z[1], z[2], z[3], maxColorValue = 255) |> scales::alpha(alpha = alpha)
 }
