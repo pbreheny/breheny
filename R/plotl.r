@@ -43,7 +43,7 @@ plotL <- function(
   add = FALSE,
   ...
 ) {
-  if (any(l) < 0) {
+  if (any(l < 0)) {
     stop("Likelihood cannot be negative", call. = FALSE)
   }
   if (is.matrix(l)) {
