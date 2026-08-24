@@ -33,24 +33,69 @@ NULL
 #'
 #' @export
 
-plotL <- function(x, l, xlab = expression(theta), ylab = expression(L(theta)), bty = "n", col, add = FALSE, ...) {
+plotL <- function(
+  x,
+  l,
+  xlab = expression(theta),
+  ylab = expression(L(theta)),
+  bty = "n",
+  col,
+  add = FALSE,
+  ...
+) {
+  if (any(L) < 0) {
+    stop("Likelihood cannot be negative", call. = FALSE)
+  }
   if (is.matrix(l)) {
-    if (missing(col)) col <- pal(ncol(l))
+    if (missing(col)) {
+      col <- pal(ncol(l))
+    }
     L <- apply(l, 2, function(x) x / max(x))
-    matplot(x, L, type = "l", xlab = xlab, ylab = "", bty = bty, las = 1, col = col, lwd = 3, lty = 1, add = add)
-    if (!is.null(colnames(L))) toplegend(legend = colnames(L), lwd = 3, col = col)
-    if (!add) mtext(ylab, 2, line = 2.5)
+    matplot(
+      x,
+      L,
+      type = "l",
+      xlab = xlab,
+      ylab = "",
+      bty = bty,
+      las = 1,
+      col = col,
+      lwd = 3,
+      lty = 1,
+      add = add
+    )
+    if (!is.null(colnames(L))) {
+      toplegend(legend = colnames(L), lwd = 3, col = col)
+    }
+    if (!add) {
+      mtext(ylab, 2, line = 2.5)
+    }
     return(invisible(L))
   } else {
-    if (missing(col)) col <- pal(2)[2]
-    l <- l / max(l)
-    if (add) {
-      lines(x, l, xlab = xlab, ylab = ylab, bty = bty, las = 1, col = col, lwd = 3, ...)
-    } else {
-      plot(x, l, type = "l", xlab = xlab, ylab = "", bty = bty, las = 1, col = col, lwd = 3, ...)
+    if (missing(col)) {
+      col <- pal(2)[2]
     }
-    if (!add) mtext(ylab, 2, line = 2.5)
-    return(invisible(l))
+    l_scaled <- l / max(l)
+    if (add) {
+      lines(x, l_scaled, xlab = xlab, ylab = ylab, bty = bty, las = 1, col = col, lwd = 3, ...)
+    } else {
+      plot(
+        x,
+        l_scaled,
+        type = "l",
+        xlab = xlab,
+        ylab = "",
+        bty = bty,
+        las = 1,
+        col = col,
+        lwd = 3,
+        ...
+      )
+    }
+    if (!add) {
+      mtext(ylab, 2, line = 2.5)
+    }
+    return(invisible(l_scaled))
   }
 }
 
@@ -87,9 +132,12 @@ plotl <- function(x, l, bty = "n", add = FALSE, ...) {
         dots
       )
     )
-    if (!is.null(colnames(L)))
+    if (!is.null(colnames(L))) {
       toplegend(legend = colnames(L), lwd = 3, col = col)
-    if (!add) mtext(ylab, 2, line = 2.5)
+    }
+    if (!add) {
+      mtext(ylab, 2, line = 2.5)
+    }
     return(invisible(L))
   } else {
     col <- dots[["col"]] %||% pal(2)[2]
@@ -101,22 +149,14 @@ plotl <- function(x, l, bty = "n", add = FALSE, ...) {
       do.call(
         plot,
         c(
-          list(
-            x,
-            l,
-            type = "l",
-            xlab = xlab,
-            ylab = "",
-            bty = bty,
-            las = 1,
-            col = col,
-            lwd = 3
-          ),
+          list(x, l, type = "l", xlab = xlab, ylab = "", bty = bty, las = 1, col = col, lwd = 3),
           dots
         )
       )
     }
-    if (!add) mtext(ylab, 2, line = 2.5)
+    if (!add) {
+      mtext(ylab, 2, line = 2.5)
+    }
     return(invisible(l))
   }
 }
