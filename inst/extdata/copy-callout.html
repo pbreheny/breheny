@@ -1,0 +1,46 @@
+<!-- Adds a "Copy" button to each callout that copies its body as plain text -->
+<style>
+  .callout-copy {
+    float: right;
+    margin-left: auto;
+    padding: 0 0.5em;
+    font-size: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+  }
+  .callout-copy:hover { background: #f0f0f0; }
+</style>
+<script>
+document.querySelectorAll(".callout").forEach(function (callout) {
+  var header = callout.querySelector(".callout-header");
+  var body = callout.querySelector(".callout-body-container");
+  if (!header || !body) return;
+  var btn = document.createElement("button");
+  btn.className = "callout-copy";
+  btn.textContent = "Copy";
+  btn.addEventListener("click", function () {
+    var text = body.innerText.trim();
+    var done = function () {
+      btn.textContent = "Copied!";
+      setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done);
+    } else {
+      // Fallback for browsers that block the clipboard API on local files
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      done();
+    }
+  });
+  header.style.display = "flex";
+  header.style.alignItems = "center";
+  header.appendChild(btn);
+});
+</script>
