@@ -128,5 +128,7 @@ import(grid)
 import(stats)
 import(utils)
 importFrom(patchwork,plot_layout)
-importFrom(rlang,.data)
-importFrom(rlang,`%||%`)
+importFrom(rlang,
+  "%||%",
+  .data
+)

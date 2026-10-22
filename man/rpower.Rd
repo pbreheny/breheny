@@ -13,29 +13,57 @@ rsamsize(rsq, k = 1, p = k, power = 0.8, alpha = 0.05)
 rpower_beta(rsq, beta)
 }
 \arguments{
-\item{rsq}{Fraction of variance explained by the features to be tested}
+\item{rsq}{Partial R² of the predictors to be tested (see Details)}
 
 \item{n}{Sample size}
 
 \item{k}{Number of parameters to test}
 
-\item{p}{Number of parameters in model (default: k)}
+\item{p}{Number of predictors in the model, not counting the
+intercept (default: \code{k})}
 
 \item{alpha}{Type 1 error rate}
 
 \item{power}{Desired power}
 
-\item{beta}{Beta coefficient}
+\item{beta}{Standardized regression coefficient}
+}
+\value{
+\code{rpower()} returns power; \code{rsamsize()} returns the smallest sample
+size achieving the desired power.
 }
 \description{
-Power for regression (or any continuous outcome)
+Power and sample size for testing \code{k} coefficients in a linear regression
+model with \code{p} predictors (plus an intercept), based on the noncentral F
+distribution. These match G*Power's "Linear multiple regression: Fixed
+model, R² increase" calculation.
+}
+\details{
+Effect size is specified as the partial R², the fraction of variability
+\emph{remaining after adjusting for the other predictors} that is explained by
+the \code{k} predictors being tested:
+\deqn{R^2_{partial} = \frac{R^2_{full} - R^2_{reduced}}{1 - R^2_{reduced}}.}
+Equivalently, Cohen's \eqn{f^2 = R^2_{partial} / (1 - R^2_{partial})}. The
+noncentrality parameter is \eqn{\lambda = n f^2} with \code{k} and \code{n - p - 1}
+degrees of freedom.
+
+For a single binary predictor with balanced groups, \eqn{R^2_{partial} =
+d^2 / (d^2 + 4)}, where \code{d} is Cohen's d; in this case, \code{rpower()} with
+\code{p = 1} agrees exactly with a two-sample t-test.
+
+\code{rpower_beta()} converts between partial R² and the corresponding
+standardized regression coefficient (the coefficient for a predictor with
+unit variance when the residual standard deviation is 1).
 }
 \examples{
 rpower(0.05, 40)
 rpower(0.05, 40, 5)
 rpower(0.05, 40, 5, 20)
-rpower(0.05, 40, 5, 20)
 rsamsize(0.05)
+
+# Cohen's d = 0.5, n = 128: same as a two-sample t-test with 64 per group
+d <- 0.5
+rpower(d^2 / (d^2 + 4), 128)
 
 rpower_beta(0.1)
 rpower_beta(beta = 0.13)
